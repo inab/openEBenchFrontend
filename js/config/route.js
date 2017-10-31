@@ -22,5 +22,11 @@
             .when("/stats", {
                 templateUrl : "view/template/stats-page.html"
             })
+            .when("/benchmarking/", {
+                templateUrl : "view/template/bench-page.html"
+            })
+            .when("/benchmarking/:community", {
+                templateUrl : "view/template/community-page.html"
+            })
     }
 })();

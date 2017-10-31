@@ -1,0 +1,35 @@
+<div ng-controller="benchController as benchCtrl" class="container-fluid">
+  <h1 class="center-content"> Communities </h1>
+
+  <table style="width:100%" class="table table-striped">
+
+    <th>             Acronym       </th>
+    <th colspan="3"> Name          </th>
+    <th>             Status        </th>
+    <th colspan="3"> Description   </th>
+    <th colspan="3"> Url           </th>
+    <th></th>
+    <!-- NOTE: Show or hide the extended community information depending on the state of the Community -->
+    <tr ng-repeat="x in benchCtrl.communities" ng-click="benchCtrl.communities[$index].show = !benchCtrl.communities[$index].show; benchCtrl.extendCommunity($index)">
+      <td>
+        <div class="" placeholder="{{x._id}}" uib-tooltip="{{x._id}}" tooltip-placement="auto" tooltip-trigger="mouseenter" tooltip-enable="true">
+          {{x._id}}
+        </div>
+      </td>
+      <td colspan="3">
+        <div class="" placeholder="{{x.name}}" uib-tooltip="{{x.name}}" tooltip-placement="auto" tooltip-trigger="mouseenter" tooltip-enable="true">
+          {{x.name}}
+        </div>
+      </td>
+      <td> {{x.status_id[0]}} </td>
+      <td colspan="3">
+        <div class="" placeholder="{{x.description}}" uib-tooltip="{{x.description}}" tooltip-placement="auto" tooltip-trigger="mouseenter" tooltip-enable="true">
+          {{x.description}}
+        </div>
+      </td>
+      <td colspan="3"> <a href="{{x.MainSite}}"> {{x.MainSite}} </a> </td>
+      <td> <a href="#!/benchmarking/{{x._id}}"> More </a> </td>
+    </tr>
+  </table>
+
+</div>
