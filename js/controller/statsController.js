@@ -29,6 +29,7 @@
 			.then(function (response){
 				vm.orderStats(response.data);
 			}).catch(function(error){
+				console.log(error);
 				vm.createMsg(error.status);
 			});
 
@@ -93,6 +94,7 @@
 		@return messageToDisplay this is the the code that is displayed when there is an error
 		*/
 		vm.createMsg = function (code){
+			console.log(code);
 			vm.loadingDisplay = 2;
 			vm.message = errorService.error(code);
 		}
