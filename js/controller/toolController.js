@@ -76,14 +76,13 @@
 			var limit = 100;
 			var size = size;
 			while(skip<size){
-				vm.loopChunks(skip,limit);
+			vm.loopChunks(skip,limit);
 				skip = skip + limit;
 
 			}
 		}
 
 
-		
 
 		//loop chunks
 		vm.loopChunks = function(skip,limit){
