@@ -27,7 +27,7 @@
 		var url = 'https://elixir.bsc.es/tools/statistics/';
 		dataservice.getData(url)
 			.then(function (response){
-				
+
 				vm.orderStats(response.data);
 			}).catch(function(error){
 
@@ -85,7 +85,6 @@
 
 
 		vm.options = {legend: {display: true, position: 'bottom'}};
-
 
 		/**
 		@name createMsg
