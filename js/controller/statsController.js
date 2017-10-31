@@ -27,9 +27,10 @@
 		var url = 'https://elixir.bsc.es/tools/statistics/';
 		dataservice.getData(url)
 			.then(function (response){
+				
 				vm.orderStats(response.data);
 			}).catch(function(error){
-				console.log(error);
+
 				vm.createMsg(error.status);
 			});
 
