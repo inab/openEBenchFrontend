@@ -16,10 +16,13 @@
             .when("/", {
                 templateUrl : "view/template/home-page.html"
             })
-            .when("/tools", {
+            .when("/tool/", {
                 templateUrl : "view/template/tool-page.html"
             })
-            .when("/stats", {
+            .when("/tool/:toolName/:toolType/:toolUrl",{
+                templateUrl : "view/template/tool-details-page.html"
+            })
+            .when("/stats/", {
                 templateUrl : "view/template/stats-page.html"
             })
             .when("/benchmarking/", {

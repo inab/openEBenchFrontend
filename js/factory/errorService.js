@@ -17,8 +17,10 @@
             return service;
 
             function error(code) {
-                return "<div class='alert alert-danger text-center' role='alert'> Error with code : "+code+"</div>";
+                console.log("<div class='container alert alert-danger text-center' role='alert'> Error with code : "+code+"</div>");
             };
+
+
         }
 
 

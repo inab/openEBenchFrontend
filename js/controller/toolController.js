@@ -16,7 +16,7 @@
 	@version 1.0
 	@author Vicky Sundesha
 	*/
-	function toolController ($scope, $http, $window, $rootScope, $anchorScroll, $location, $q, dataservice, errorService){
+	function toolController ($scope, $http, $window, $rootScope, $anchorScroll, $location, $q, dataService, errorService){
 
 		var vm = this;
 
@@ -42,9 +42,9 @@
 			//if $rootScope.array is empty
 			if(!$rootScope.array){
 				var url = 'https://elixir.bsc.es/tools/statistics/';
-				dataservice.getData(url)
+				dataService.getData(url)
 					.then(function (response){
-						vm.statsData = response.data;
+						// vm.statsData = response.data;
 						vm.getChunks(response.data.all.total);
 						$rootScope.typeArray = Object.keys(response.data);
 						vm.loadingDisplay = 0;
@@ -87,7 +87,7 @@
 		//loop chunks
 		vm.loopChunks = function(skip,limit){
 			var url = 'https://elixir.bsc.es/tool?skip='+skip+'&limit='+limit
-			dataservice.getData(url)
+			dataService.getData(url)
 				.then(function (response){
 					vm.pushData(response);
 				}).catch(function(error){
@@ -121,8 +121,9 @@
 		*/
 		vm.createMsg = function (code){
 			vm.loadingDisplay = 2;
-			var messageToDisplay = errorService.error(code)
-            vm.message = messageToDisplay;
+			// var messageToDisplay = errorService.error(code)
+            //vm.message = messageToDisplay;
+			dataService.error(code)
 		}
 
 
@@ -135,12 +136,16 @@
 		@author Vicky Sundesha
 		*/
 		vm.showDetails = function (tool){
+
 			vm.basicDetails=tool;
-			var url = tool._id.replace(/\/tool\//g,"/metrics/").replace("http","https");
+			// var url = tool._id.replace(/\/tool\//g,"/metrics/").replace("http","https");
 			vm.displayDetailsView = 1;
-			// vm.metrics = "<opeb data-widgetService="+url+"></opeb>";
-			vm.metrics = url;
-			// dataservice.getData(url)
+
+
+
+			vm.urlToolDetails = $location.absUrl()+tool.getId().split(/.+\/tool\//g)[1];
+			//
+			// dataService.getData(url)
 			// 	.then(function (response){
 			// 		vm.metrics = response.data;
 			// });
@@ -232,7 +237,7 @@
 		vm.advancedSearch = function (){
 			if(vm.edamTerm){
 				var url = "https://elixir.bsc.es/edam/tool/search?text="+vm.edamTerm;
-				dataservice.getData(url)
+				dataService.getData(url)
 					.then(function (response){
 						vm.searchByEdam(response.data);
 					}).catch(function(error){
@@ -262,7 +267,7 @@
 	}
 
 
-	toolController.$inject = ['$scope','$http', '$window','$rootScope','$anchorScroll', '$location', '$q', 'dataservice', 'errorService']
+	toolController.$inject = ['$scope','$http', '$window','$rootScope','$anchorScroll', '$location', '$q', 'dataService', 'errorService']
 
 	angular
 	.module('elixibilitasApp')

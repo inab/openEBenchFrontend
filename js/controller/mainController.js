@@ -17,14 +17,17 @@
 	@version 1.0
 	@author Vicky Madan Sundesha
 	*/
-	function mainController ($scope, $rootScope, dataservice){
+	function mainController ($scope, $rootScope, dataService){
+        var vm = this;
         $rootScope.array;
         $rootScope.allData=[];
         $rootScope.typeArray=[];
 
+
+
     };
 
-    mainController.$inject = ['$scope','$rootScope','dataservice']
+    mainController.$inject = ['$scope','$rootScope','dataService']
 
     angular
     .module('elixibilitasApp')

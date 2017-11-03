@@ -12,7 +12,7 @@
 
 
 
-	function benchController ($scope, $http, $window, $rootScope, $anchorScroll, $location, $q , $routeParams, dataservice){
+	function benchController ($scope, $http, $window, $rootScope, $anchorScroll, $location, $q , $routeParams, dataService){
 
 		var vm = this;
 
@@ -32,7 +32,7 @@
 		{
 			var url = "https://elixir.bsc.es/benchmarking/Community.json"
 			vm.communities = [];
-			dataservice.getData(url).then(function (response){
+			dataService.getData(url).then(function (response){
 
 				response.data.Commmunity.forEach(function(element)
 				{
@@ -62,7 +62,7 @@
 		'$location',
 		'$q',
 		"$routeParams",
-		'dataservice'
+		'dataService'
 	]
 
 	// Controller creation inside the module elixibilitasApp

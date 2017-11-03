@@ -15,7 +15,7 @@
 	@version 1.0
 	@author Vicky Sundesha
 	*/
-	function statsController ($scope, $http, $window, $rootScope, $anchorScroll, $location, $q ,dataservice, errorService){
+	function statsController ($scope, $http, $window, $rootScope, $anchorScroll, $location, $q ,dataService, errorService){
 
 		var vm = this;
 
@@ -25,7 +25,7 @@
 
 
 		var url = 'https://elixir.bsc.es/tools/statistics/';
-		dataservice.getData(url)
+		dataService.getData(url)
 			.then(function (response){
 
 				vm.orderStats(response.data);
@@ -98,9 +98,40 @@
 			vm.loadingDisplay = 2;
 			vm.message = errorService.error(code);
 		}
-	};
 
-	statsController.$inject = ['$scope','$http', '$window','$rootScope','$anchorScroll', '$location', '$q' ,'dataservice', 'errorService']
+
+	$scope.labels = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+	"Juillet"
+];
+$scope.type = "bar";
+$scope.series = ['Series A', 'Series B'];
+$scope.options = {
+	title: {
+		display: false
+	},
+	tooltips: {
+		mode: 'index',
+		intersect: true
+	},
+	responsive: true,
+	scales: {
+		xAxes: [{
+			stacked: true,
+		}],
+		yAxes: [{
+			stacked: true
+		}]
+	}
+};
+$scope.data = [
+	[65, 59, 90, 81, 56, 55, 40],
+
+	[28, 48, 40, 19, 96, 27, 100],
+	[10,12,13,15,17,52,65]
+];
+$scope.colors = ['#00ADF9'];
+};
+		statsController.$inject = ['$scope','$http', '$window','$rootScope','$anchorScroll', '$location', '$q' ,'dataService', 'errorService']
 
 	angular
 	.module('elixibilitasApp')

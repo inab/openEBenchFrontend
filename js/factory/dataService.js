@@ -3,15 +3,16 @@
 
     angular
         .module('elixibilitasApp')
-        .factory('dataservice', dataservice);
+        .factory('dataService', dataService);
 
-    dataservice.$inject = ['$http','$q'];
+    dataService.$inject = ['$http','$q'];
 
 
-        function dataservice($http,$q) {
+        function dataService($http,$q) {
 
             var service = {
-                getData: getData
+                getData: getData,
+                error:error
             }
 
             return service;
@@ -19,7 +20,7 @@
             function getData(url) {
                 var def = $q.defer();
                 $http({
-                    
+
                     method: 'GET',
                     url: url,
                 }).then(function successCallback(response){
@@ -28,6 +29,11 @@
                         def.reject(response);
                 });
                 return def.promise;
+            };
+
+
+            function error(code) {
+                console.log("<div class='container alert alert-danger text-center' role='alert'> Error with code : "+code+"</div>");
             };
         }
 
