@@ -63,7 +63,6 @@
 
 
 		$('input').hover(elevated);
-		// $('.elevate').hover(elevated);
 
 
 		function elevated(){
@@ -73,8 +72,8 @@
 		// get api in chunks
 		vm.getChunks = function (size){
 			var skip = 0;
-			var limit = 100;
-			var size = size;
+			var limit = size;
+			var size = 500;
 			while(skip<size){
 			vm.loopChunks(skip,limit);
 				skip = skip + limit;
@@ -86,7 +85,7 @@
 
 		//loop chunks
 		vm.loopChunks = function(skip,limit){
-			var url = 'https://elixir.bsc.es/tool?skip='+skip+'&limit='+limit
+			var url = 'https://elixir.bsc.es/tools/search?projection=description&projection=name&skip='+skip+'&limit='+limit;
 			dataService.getData(url)
 				.then(function (response){
 					vm.pushData(response);
@@ -121,9 +120,9 @@
 		*/
 		vm.createMsg = function (code){
 			vm.loadingDisplay = 2;
-			// var messageToDisplay = errorService.error(code)
-            //vm.message = messageToDisplay;
-			dataService.error(code)
+			var messageToDisplay = errorService.error(code)
+            vm.message = messageToDisplay;
+			// dataService.error(code)
 		}
 
 
@@ -137,13 +136,12 @@
 		*/
 		vm.showDetails = function (tool){
 
-			vm.basicDetails=tool;
+			// vm.basicDetails=tool;
 			// var url = tool._id.replace(/\/tool\//g,"/metrics/").replace("http","https");
-			vm.displayDetailsView = 1;
+			// vm.displayDetailsView = 1;
 
 
-
-			vm.urlToolDetails = $location.absUrl()+tool.getId().split(/.+\/tool\//g)[1];
+			$window.open($location.absUrl()+tool.getId().split(/.+\/tool\//g)[1], "_blank");
 			//
 			// dataService.getData(url)
 			// 	.then(function (response){
@@ -154,52 +152,52 @@
 		vm.allData= function (tool){
 			var array = []
 			for (var i = 0; i < tool.length; i++) {
-				array.push(vm.initTool(tool[i],vm.initInstance(tool[i])));
+				array.push(vm.initTool(tool[i]));
 			}
 			return array
 		}
 
 
-		/**
-		@name initInstance
-		@description Creats new instances of a tool and returns the instance
-		@param tool is the response data from the Api
-		@param i is the posistion
-		@version 1.0
-		@author Vicky Sundesha
-		*/
-		vm.initInstance = function (tool){
-			var instance = new Instance();
-			// if(tool['@type']){
-			// 	instance.setType(tool['@type'])
-			// }
-			if(tool.version){
-				instance.setVersion(tool.version)
-			}
-			if(tool.publications){
-				instance.setPublication(tool.publications)
-			}
-			if(tool.repositories){
-				instance.setRepo(tool.repositories)
-			}
-			if(tool.documentation){
-				instance.setDocs(tool.documentation)
-			}
-			return instance;
-		}
+		// /**
+		// @name initInstance
+		// @description Creats new instances of a tool and returns the instance
+		// @param tool is the response data from the Api
+		// @param i is the posistion
+		// @version 1.0
+		// @author Vicky Sundesha
+		// */
+		// vm.initInstance = function (tool){
+		// 	var instance = new Instance();
+		// 	// if(tool['@type']){
+		// 	// 	instance.setType(tool['@type'])
+		// 	// }
+		// 	if(tool.version){
+		// 		instance.setVersion(tool.version)
+		// 	}
+		// 	if(tool.publications){
+		// 		instance.setPublication(tool.publications)
+		// 	}
+		// 	if(tool.repositories){
+		// 		instance.setRepo(tool.repositories)
+		// 	}
+		// 	if(tool.documentation){
+		// 		instance.setDocs(tool.documentation)
+		// 	}
+		// 	return instance;
+		// }
 
 
-		/**
-		@name checkName
-		@description checks if the tool name exists
-		@param tool is the response data from the Api
-		@param i is the posistion
-		@version 1.0
-		@author Vicky Sundesha
-		*/
-		vm.checkName = function (i,tool){
-			return tool[i].name != tool[i-1].name ? false : true;
-		}
+		// /**
+		// @name checkName
+		// @description checks if the tool name exists
+		// @param tool is the response data from the Api
+		// @param i is the posistion
+		// @version 1.0
+		// @author Vicky Sundesha
+		// */
+		// vm.checkName = function (i,tool){
+		// 	return tool[i].name != tool[i-1].name ? false : true;
+		// }
 
 
 		/**
@@ -217,13 +215,13 @@
 			toolBasicDetails.setType(tool['@type']);
 			toolBasicDetails.setName(tool.name);
 			toolBasicDetails.setDesc(tool.description);
-			toolBasicDetails.setLink(tool.homepage);
-			toolBasicDetails.setContact(tool.contacts);
-			toolBasicDetails.setCredits(tool.credits);
-			var urlToBioTools = "";
-			var urlToBioTools = "https://bio.tools/"+tool.name.replace(/[\s]/g,"_");
-			toolBasicDetails.setLinkToBioTool(urlToBioTools);
-			toolBasicDetails.setInstance(instance);
+			// toolBasicDetails.setLink(tool.homepage);
+			// toolBasicDetails.setContact(tool.contacts);
+			// toolBasicDetails.setCredits(tool.credits);
+			// var urlToBioTools = "";
+			// var urlToBioTools = "https://bio.tools/"+tool.name.replace(/[\s]/g,"_");
+			// toolBasicDetails.setLinkToBioTool(urlToBioTools);
+			// toolBasicDetails.setInstance(instance);
 			return toolBasicDetails;
 		}
 
@@ -236,7 +234,7 @@
 
 		vm.advancedSearch = function (){
 			if(vm.edamTerm){
-				var url = "https://elixir.bsc.es/edam/tool/search?text="+vm.edamTerm;
+				var url = "https://elixir.bsc.es/edam/tools/search?text="+vm.edamTerm;
 				dataService.getData(url)
 					.then(function (response){
 						vm.searchByEdam(response.data);

@@ -16,6 +16,9 @@
             .when("/", {
                 templateUrl : "view/template/home-page.html"
             })
+            .when("/search/:search", {
+                templateUrl : "view/template/search-page.html"
+            })
             .when("/tool/", {
                 templateUrl : "view/template/tool-page.html"
             })
@@ -31,5 +34,6 @@
             .when("/benchmarking/:community", {
                 templateUrl : "view/template/community-page.html"
             })
+            .otherwise({redirectTo:'/'})
     }
 })();

@@ -1,5 +1,5 @@
-<div ng-controller="homeController as homeCtrl" class="" ng-init="homeCtrl.loadInitData()">
-    <span ng-show="homeCtrl.loadingDisplay == 0">
+<div ng-controller="homeController as homeCtrl" class="">
+    <span>
         <div class="container-fluid main-div" >
 
             <section class="col-md-12">
@@ -7,10 +7,10 @@
                     <h1  class="text-center">OpenEBench</h1>
                 </div>
                 <div class="main-content-center">
-                    <input ng-model="text" class="elevated" type="text" name="" value="" placeholder="Search...">
-                    <div>
-                        <button type="button" class="btn btn-primary" ng-click="homeCtrl.search(text)" >Search</button>
-                    </div>
+                    <input ng-model="text" class="elevated" type="text" name="" value="" placeholder="Search..." required>
+                </div>
+                <div class="main-content-center">
+                    <button type="button" class="custom-button elevated" ng-click="homeCtrl.search(text)" ng-disabled="!text" >Go!</button>
                 </div>
             </section>
 
@@ -56,17 +56,5 @@
             </section>
         </div>
     </span>
-    <span ng-show=homeCtrl.loadingDisplay==1>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Details</th>
-            </tr>
-            <tr ng-repeat="tool in homeCtrl.data">
-                <td>{{tool.name}}</td>
-                <td><a ng-click=homeCtrl.parseurl(tool["@id"])> {{tool["@id"]}}</a></td>
-            </tr>
-        </table>
-        </span>
-    </span>
+
 </div>
