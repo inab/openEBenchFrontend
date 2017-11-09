@@ -27,14 +27,14 @@
                 vm.currentPage = 1;
                 vm.pageSize = 10;
                 var search  = $routeParams.search ? $routeParams.search : " ";
-                console.log(search,"hla");
                 var url =   "https://elixir.bsc.es/tools/search?text="+search+"&projection=name";
                 dataService.getData(url)
                 .then(function (response){
                 vm.data = response.data;
                     vm.loadingDisplay = 1;
                 }).catch(function (error){
-                    console.log(error);
+                    vm.error = error
+                    vm.loadingDisplay = 1;
                 })
 
             }

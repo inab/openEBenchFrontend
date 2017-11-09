@@ -1,4 +1,5 @@
 <div class="container-table container" ng-controller="searchController as searchCtrl" ng-init="searchCtrl.loadInitData()">
+    <error-message error="searchCtrl.error" ng-show="searchCtrl.loadingDisplay==2" ></error-message>
     <div class="responsive-table">
 
         <table class="table table-striped" >

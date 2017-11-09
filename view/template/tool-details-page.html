@@ -1,42 +1,43 @@
 <div class="container" ng-controller="toolDetailsController as toolDetailsCtrl" ng-init="toolDetailsCtrl.loadInitData()" >
+    <div ng-show="loadingDisplay==1"<>
+        <h1>{{toolDetailsCtrl.tool.name}}</h1>
+        <p>{{toolDetailsCtrl.tool.description}}</p>
+        <img class ="table-icons" ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/>
+        <p>{{toolDetailsCtrl.tool.version ? toolDetailsCtrl.tool.version : "No version information found"}}</p>
+        <a href="{{toolDetailsCtrl.tool.homepage}}">{{toolDetailsCtrl.tool.homepage}}</a>
+        <div ng-repeate="credit in toolDetailsCtrl.tool.credits">
+            {{credit}}
+        </div>
 
-    <h1>{{toolDetailsCtrl.tool.name}}</h1>
-    <p>{{toolDetailsCtrl.tool.description}}</p>
-    <img class ="table-icons" ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/>
-    <p>{{toolDetailsCtrl.tool.version ? toolDetailsCtrl.tool.version : "No version information found"}}</p>
-    <a href="{{toolDetailsCtrl.tool.homepage}}">{{toolDetailsCtrl.tool.homepage}}</a>
-    <div ng-repeate="credit in toolDetailsCtrl.tool.credits">
-        {{credit}}
-    </div>
-
-    <p ng-if="toolDetailsCtrl.tool.credits.length==0">No credits found</p>
-    <span ng-repeat="credit in toolDetailsCtrl.tool.credits">
-       <span ng-repeat="(key,value) in credit">
-           <p>{{key}} : {{value ? value : "No credits found"}}</p>
-       </span>
-    </span>
-
-    <p ng-if="toolDetailsCtrl.tool.contacts.length==0">No contacts found</p>
-    <span ng-repeat="contact in toolDetailsCtrl.tool.contacts">
-       <span ng-repeat="(key,value) in contact">
-           <p>{{key}} : {{value ? value : "No contacts found"}}</p>
-       </span>
-    </span>
-
-    <span ng-repeat="(key,value) in toolDetailsCtrl.tool.documentation">
-        <p>{{key}} : {{value ? value : "No documentations found"}}</p>
-    </span>
-
-    <p ng-if="toolDetailsCtrl.tool.publications.length==0">No publications</p>
-    <span ng-repeat="publication in toolDetailsCtrl.tool.publications">
-        <span ng-repeat="(key,value) in publication">
-            <p>{{key}} : {{value ? value : "No publications found"}}</p>
+        <p ng-if="toolDetailsCtrl.tool.credits.length==0">No credits found</p>
+        <span ng-repeat="credit in toolDetailsCtrl.tool.credits">
+           <span ng-repeat="(key,value) in credit">
+               <p>{{key}} : {{value ? value : "No credits found"}}</p>
+           </span>
         </span>
-    </span>
 
-    <p ng-if="toolDetailsCtrl.tool.repositories.length== 0">No repositories found</p>
-    <ul ng-repeat="repositories in toolDetailsCtrl.tool.repositories">
-        <a target="_blank" href="{{repoLinks}}">{{repoLinks}}</a>
-    </ul>
+        <p ng-if="toolDetailsCtrl.tool.contacts.length==0">No contacts found</p>
+        <span ng-repeat="contact in toolDetailsCtrl.tool.contacts">
+           <span ng-repeat="(key,value) in contact">
+               <p>{{key}} : {{value ? value : "No contacts found"}}</p>
+           </span>
+        </span>
 
+        <span ng-repeat="(key,value) in toolDetailsCtrl.tool.documentation">
+            <p>{{key}} : {{value ? value : "No documentations found"}}</p>
+        </span>
+
+        <p ng-if="toolDetailsCtrl.tool.publications.length==0">No publications</p>
+        <span ng-repeat="publication in toolDetailsCtrl.tool.publications">
+            <span ng-repeat="(key,value) in publication">
+                <p>{{key}} : {{value ? value : "No publications found"}}</p>
+            </span>
+        </span>
+
+        <p ng-if="toolDetailsCtrl.tool.repositories.length== 0">No repositories found</p>
+        <ul ng-repeat="repositories in toolDetailsCtrl.tool.repositories">
+            <a target="_blank" href="{{repoLinks}}">{{repoLinks}}</a>
+        </ul>
+    </div>
+    <error-message error="statsCtrl.error" ng-show="statsCtrl.loadingDisplay==2" ></error-message>
 </div>

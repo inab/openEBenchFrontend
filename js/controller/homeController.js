@@ -27,9 +27,6 @@
             }
 		 }
 
-
-
-
          homeController.$inject = ['$scope','$rootScope','dataService','$location','$window']
 
         angular.module('elixibilitasApp')

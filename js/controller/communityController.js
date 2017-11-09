@@ -150,16 +150,6 @@
 	};
 
 
-	function datasetDirective(){
-		return {
-  			scope: {
-  			      element: '=',
-  						index: '=',
-  						length: '='
-  			    },
-  	    templateUrl: 'view/template/dataset-template.html'
-  	  };
-	}
 
 	communityController.$inject =
 	[
@@ -178,6 +168,5 @@
 	angular
 	.module('elixibilitasApp')
 	.controller("communityController", communityController)
-	.directive('datasetDirective', datasetDirective);
 
 })();

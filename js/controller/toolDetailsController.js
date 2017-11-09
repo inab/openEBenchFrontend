@@ -21,13 +21,13 @@
 
 		vm.loadInitData = function (){
 			var  url = "https://elixir.bsc.es"+$location.path();
-			console.log(url);
 			dataService.getData(url)
 			.then(function (response){
 				vm.tool = response.data;
 				vm.loadingDisplay=1;
 			}).catch(function (error){
-				console.log(error);
+				vm.error = error;
+				vm.loadingDisplay=2
 			})
 		}
     };

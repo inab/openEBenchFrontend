@@ -33,7 +33,6 @@
 			vm.toolsArray = [];
 			vm.displayDetailsView = 0;
 			vm.basicDetails;
-			vm.message = "";
 			vm.edamTerm = "";
 			vm.sortKey;
 			vm.reverse;
@@ -49,7 +48,8 @@
 						$rootScope.typeArray = Object.keys(response.data);
 						vm.loadingDisplay = 0;
 					}).catch(function(error){
-						vm.createMsg(error.status);
+						vm.error = error;
+						vm.loadingDisplay = 2;
 					})
 
 
@@ -90,7 +90,8 @@
 				.then(function (response){
 					vm.pushData(response);
 				}).catch(function(error){
-					vm.createMsg(error.status);
+					vm.error = error;
+					vm.loadingDisplay = 2;
 				})
 		}
 
@@ -100,7 +101,6 @@
 			vm.chunks.push(vm.allData(tool.data))
 			vm.toolsArray = [].concat.apply([], vm.chunks);
 			$rootScope.array = [].concat.apply([], vm.chunks);
-
 			vm.loadingDisplay = 1
 		}
 
@@ -108,21 +108,6 @@
 		vm.sort = function (keyName){
 			vm.sortKey = keyName;
 			vm.reverse = !vm.reverse;
-		}
-
-
-		/**
-		@name createMsg
-		@description creates div with error message
-		@version 1.0
-		@author Vicky Sundesha
-		@return messageToDisplay this is the the code that is displayed when there is an error
-		*/
-		vm.createMsg = function (code){
-			vm.loadingDisplay = 2;
-			var messageToDisplay = errorService.error(code)
-            vm.message = messageToDisplay;
-			// dataService.error(code)
 		}
 
 
@@ -239,7 +224,8 @@
 					.then(function (response){
 						vm.searchByEdam(response.data);
 					}).catch(function(error){
-						vm.createMsg(error.status);
+						vm.error = error;
+						vm.loadingDisplay = 2;
 					})
 			} else {
 				vm.toolsArray = $rootScope.array;
