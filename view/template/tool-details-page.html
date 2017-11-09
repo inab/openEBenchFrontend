@@ -1,5 +1,5 @@
 <div class="container" ng-controller="toolDetailsController as toolDetailsCtrl" ng-init="toolDetailsCtrl.loadInitData()" >
-    <div ng-show="loadingDisplay==1"<>
+    <div ng-show="toolDetailsCtrl.loadingDisplay==1">
         <h1>{{toolDetailsCtrl.tool.name}}</h1>
         <p>{{toolDetailsCtrl.tool.description}}</p>
         <img class ="table-icons" ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/>
