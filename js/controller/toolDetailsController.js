@@ -24,7 +24,9 @@
 			dataService.getData(url)
 			.then(function (response){
 				vm.tool = response.data;
+				console.log(vm.tool);
 				vm.loadingDisplay=1;
+
 			}).catch(function (error){
 				vm.error = error;
 				vm.loadingDisplay=2

@@ -17,17 +17,20 @@
 	@version 1.0
 	@author Vicky Madan Sundesha
 	*/
-	function mainController ($scope, $rootScope, dataService){
+	function mainController ($scope, $rootScope, dataService,$location){
         var vm = this;
         $rootScope.array;
         $rootScope.allData=[];
         $rootScope.typeArray=[];
-
+        vm.isActive = function (viewLocation) {
+             var active = (viewLocation === $location.path());
+             return active;
+        }
 
 
     };
 
-    mainController.$inject = ['$scope','$rootScope','dataService']
+    mainController.$inject = ['$scope','$rootScope','dataService','$location']
 
     angular
     .module('elixibilitasApp')

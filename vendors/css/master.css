@@ -148,6 +148,10 @@ input{
 .main-bg-color{
     background-color: rgb(241,242,236);
 }
+
+li.activecustom > a{
+     color: #EF7500 !important;
+}
 .custom-button{
     background-color: #FFFFFF;
     border: solid 1px #EF7500;
