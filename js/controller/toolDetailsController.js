@@ -24,8 +24,8 @@
 			dataService.getData(url)
 			.then(function (response){
 				vm.tool = response.data;
-				console.log(vm.tool);
 				vm.loadingDisplay=1;
+				vm.badge = {name:url.split(/tool\/(.*):/)[1]};
 
 			}).catch(function (error){
 				vm.error = error;
