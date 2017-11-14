@@ -25,13 +25,48 @@
 			.then(function (response){
 				vm.tool = response.data;
 				vm.loadingDisplay=1;
-				vm.badge = {name:url.split(/tool\/(.*):/)[1]};
+				vm.badge = url.split(/tool\/(.*):/)[1];
+				// _do();
+				vm.type="bar";
+				vm.data = [1,-1,1,1,-1];
+				vm.labels = ["10/11","11/11","12/11","13/11","14/11"];
+				vm.colors = ['#5CB85C','#D9534F','#5CB85C','#5CB85C','#D9534F'];
+				vm.options = {
+					title: {
+						display: false
+					},
+					scales:{
+			            yAxes: [{
+			                gridLines : {
+			                    display : false
+			                },
+							maxBarThickness: 100
+			            }],
+
+						xAxes: [{
+							categoryPercentage: 1.0,
+	            			barPercentage: 1.0
+						}]
+			        },
+					tooltips:{
+						enabled:false
+					},
+					scaleStepWidth: 1
+				}
 
 			}).catch(function (error){
 				vm.error = error;
 				vm.loadingDisplay=2
 			})
 		}
+
+
+
+		vm._do = function () {
+
+
+		}
+
     };
 
 

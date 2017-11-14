@@ -7,7 +7,7 @@
 
         function badgeTag (){
             var scope = {
-                badge : '='
+                badge : '=?'
             }
             var directive = {
                 restrict : 'EA',

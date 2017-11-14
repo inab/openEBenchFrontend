@@ -34,7 +34,11 @@ nav a{
         display: none;
     }
 }
-
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
 .center-content{
     text-align: center;
 }
