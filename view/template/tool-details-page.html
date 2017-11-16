@@ -1,144 +1,33 @@
 <div class="container" ng-controller="toolDetailsController as toolDetailsCtrl" ng-init="toolDetailsCtrl.loadInitData()" >
     <div ng-show="toolDetailsCtrl.loadingDisplay==1" class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">{{toolDetailsCtrl.tool.name}}<img ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/></h1>
+            </div>
+            <div class="col-md-12">
+                <small><p class="text-center" ><a  href="{{toolDetailsCtrl.tool.homepage}}">{{toolDetailsCtrl.tool.homepage}}</a></p></small>
+            </div>
+        </div>
 
-        <h1 class="text-center">{{toolDetailsCtrl.tool.name}}<img ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/></h1>
         <div class="row">
             <div class="col-md-2">
                 <p><b>Description: </b></p>
             </div>
-            <div class="col-md-8">
-                <p>{{toolDetailsCtrl.tool.description}}</p>
+            <div class="col-md-10">
+                <p>{{toolDetailsCtrl.tool.description}}
+                    <span id="badge-tag" class="label label-info">bio.tools</span>
+                    <span id="badge-tag" style="background-color: coral"  class="label label-info">Github</span>
+                </p>
+
             </div>
-            <div class="col-md-2">
-                <!-- <badge-tag badge="toolDetailsCtrl.badgeArray[0]"></badge-tag> -->
-                <span  class="label label-info">bio.tools</span>
-                <span style="background-color: coral"  class="label label-info">Github</span>
-            </div>
+            <!-- <div class="col-md-2">
+                <badge-tag badge="toolDetailsCtrl.badgeArray[0]"></badge-tag>
+            </div> -->
         </div>
-        <div class="row">
-            <div class="col-md-2">
-                <p><b>Version: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p>{{toolDetailsCtrl.tool.version ? toolDetailsCtrl.tool.version : "No version information found"}}</p>
-            </div>
-            <div class="col-md-2">
-                <span  class="label label-info">bio.tools</span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">
-                <p><b>Credits: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p ng-if="toolDetailsCtrl.tool.credits.length==0">No credits found</p>
-                <span ng-repeat="credit in toolDetailsCtrl.tool.credits">
-                    <span ng-repeat="(key,value) in credit">
-                        <p>{{key}} : {{value ? value : "No credits found"}}</p>
-                    </span>
-                </span>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">
-                <p><b>Contacts: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p ng-if="toolDetailsCtrl.tool.contacts.length==0">No contacts found</p>
-                <span ng-repeat="contact in toolDetailsCtrl.tool.contacts">
-                    <span ng-repeat="(key,value) in contact">
-                        <p>{{key}} : {{value ? value : "No contacts found"}}</p>
-                    </span>
-                </span>
-            </div>
-            <div class="col-md-2">
-                <span  class="label label-info">bio.tools</span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">
-                <p><b>Documentation: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p ng-if="toolDetailsCtrl.tool.documentation.length==0 || !toolDetailsCtrl.tool.documentation">No documentation found</p>
-                <span ng-repeat="(key,value) in toolDetailsCtrl.tool.documentation">
-                    <p>{{key}} : {{value ? value : "No documentations found"}}</p>
-                </span>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-2">
-                <p><b>Publications: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p ng-if="toolDetailsCtrl.tool.publications.length==0">No publications</p>
-                <span ng-repeat="publication in toolDetailsCtrl.tool.publications">
-                    <span ng-repeat="(key,value) in publication">
-                        <p>{{key}} : {{value ? value : "No publications found"}}</p>
-                    </span>
-                </span>
-            </div>
-            <div class="col-md-2">
-                <span  class="label label-info">bio.tools</span>
-                <span style="background-color: coral"  class="label label-info">Github</span>
-                <span style="background-color: #00B9B4"  class="label label-info">OpenMinTed</span>
-
-            </div>
-        </div>
-        <!-- {{toolDetailsCtrl.tool}} -->
-        <div class="row">
-            <div class="col-md-2">
-                <p><b>Repositories: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p ng-if="toolDetailsCtrl.tool.repositories.length==0 || !toolDetailsCtrl.tool.repositories">No repositories found</p>
-                <span ng-repeat="repositories in toolDetailsCtrl.tool.repositories">
-                    <a target="_blank" href="{{repoLinks}}">{{repoLinks}}</a>
-                </span>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div>
-
+        <hr>
         <div class="row">
             <div class="col-md-12">
-                <h2 class="text-center">Up time</h2>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <stacked-bar-chart></stacked-bar-chart>
-            </div>
-        <!-- </div>
-
-        <div class="row"> -->
-            <div class="col-md-6">
-                <canvas class="chart chart-base"
-                chart-type="toolDetailsCtrl.type"
-                chart-labels="toolDetailsCtrl.labels"
-                chart-colors="toolDetailsCtrl.colors"
-                chart-options="toolDetailsCtrl.options"
-                chart-data="toolDetailsCtrl.data">
-                </canvas>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center">Stats</h2>
+                <h2 class="text-center">Metrics</h2>
             </div>
         </div>
 
@@ -194,12 +83,142 @@
                 </p>
             </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Up time</h2>
+            </div>
+        </div>
 
         <div class="row">
+            <div class="col-md-6">
+                <up-time-chart></up-time-chart>
+            </div>
+        <!-- </div>
+
+        <div class="row"> -->
+            <div class="col-md-6">
+                <canvas class="chart chart-base"
+                chart-type="toolDetailsCtrl.type"
+                chart-labels="toolDetailsCtrl.labels"
+                chart-colors="toolDetailsCtrl.colors"
+                chart-options="toolDetailsCtrl.options"
+                chart-data="toolDetailsCtrl.data">
+                </canvas>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-2">
+                <p><b>Version: </b></p>
+            </div>
+            <div class="col-md-8">
+                <p>{{toolDetailsCtrl.tool.version ? toolDetailsCtrl.tool.version : "No version information found"}}</p>
+            </div>
+            <div class="col-md-2">
+                <span  class="label label-info">bio.tools</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <p><b>Credits: </b></p>
+            </div>
+            <div class="col-md-8">
+                <p ng-if="toolDetailsCtrl.tool.credits.length==0">No credits found</p>
+                <span ng-repeat="credit in toolDetailsCtrl.tool.credits">
+                    <span ng-repeat="(key,value) in credit">
+                        <p>{{key}} : {{toolDetailsCtrl.checkIfEmail(value) ? value.replace("@","_at_").replace(".","_dot_") : value}}</p>
+                    </span>
+                </span>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <p><b>Contacts: </b></p>
+            </div>
+            <div class="col-md-8">
+                <p ng-if="toolDetailsCtrl.tool.contacts.length==0">No contacts found</p>
+                <span ng-repeat="contact in toolDetailsCtrl.tool.contacts">
+                    <span ng-repeat="(key,value) in contact">
+                        <p>{{key}} : {{toolDetailsCtrl.checkIfEmail(value) ? value.replace("@","_at_").replace(".","_dot_") : value}}</p>
+                    </span>
+                </span>
+            </div>
+            <div class="col-md-2">
+                <span  class="label label-info">bio.tools</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <p><b>Documentation: </b></p>
+            </div>
+            <div class="col-md-8">
+                <p ng-if="toolDetailsCtrl.tool.documentation.length==0 || !toolDetailsCtrl.tool.documentation">No documentation found</p>
+                <span ng-repeat="(key,value) in toolDetailsCtrl.tool.documentation">
+                    <p>{{key}} : {{value ? value : "No documentations found"}}</p>
+                </span>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-2">
+                <p><b>Publications: </b></p>
+            </div>
+            <div class="col-md-8">
+                <p ng-if="toolDetailsCtrl.tool.publications.length==0">No publications</p>
+                <span ng-repeat="publication in toolDetailsCtrl.tool.publications">
+                    <span ng-repeat="(key,value) in publication">
+                        <!-- <span ng-if="key=='pmid'">
+                            <p>{{key}} : <a target="_blank" ng-href="https://www.ncbi.nlm.nih.gov/pubmed/{{value}}">{{value}}</a></p>
+                        </span>
+                        <span ng-if="key=='doi'">
+                            <p>{{key}} : <a target="_blank" ng-href="https://doi.org/{{value}}">{{value}}</a></p>
+                        </span> -->
+                        <p>{{key}} : <a ng-href="{{toolDetailsCtrl.publicationLinks(key,value)}}">{{value}}</a></p>
+                    </span>
+                </span>
+            </div>
+            <div class="col-md-2">
+                <span  class="label label-info">bio.tools</span>
+                <span style="background-color: coral"  class="label label-info">Github</span>
+                <span style="background-color: #00B9B4"  class="label label-info">OpenMinTed</span>
+
+            </div>
+        </div>
+        <!-- {{toolDetailsCtrl.tool}} -->
+        <div class="row">
+            <div class="col-md-2">
+                <p><b>Repositories: </b></p>
+            </div>
+            <div class="col-md-8">
+                <p ng-if="toolDetailsCtrl.tool.repositories.length==0 || !toolDetailsCtrl.tool.repositories">No repositories found</p>
+                <span ng-repeat="repositories in toolDetailsCtrl.tool.repositories">
+                    <a target="_blank" href="{{repoLinks}}">{{repoLinks}}</a>
+                </span>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+
+
+
+
+        <!-- <div class="row">
             <div class="col-md-12">
                 <a href="{{toolDetailsCtrl.tool.homepage}}">{{toolDetailsCtrl.tool.homepage}}</a>
             </div>
-        </div>
+        </div> -->
     </div>
 
 

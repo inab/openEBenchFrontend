@@ -60,11 +60,20 @@
 			})
 		}
 
+		vm.checkIfEmail = function (value){
+			return $rootScope.emailRegex.test(value);
+		}
 
-
-		vm._do = function () {
-
-
+		vm.publicationLinks = function (key,value){
+			var res = ""
+			if(key=="pmid"){
+				res = "https://www.ncbi.nlm.nih.gov/pubmed/"+value;
+			}else if(key=="doi"){
+				res = "https://doi.org/"+value;
+			} else {
+				res = value;
+			}
+			return res;
 		}
 
     };

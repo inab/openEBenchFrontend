@@ -70,10 +70,10 @@
 		}
 
 		// get api in chunks
-		vm.getChunks = function (size){
+		vm.getChunks = function (a){
 			var skip = 0;
-			var limit = size;
-			var size = 500;
+			var limit = a;
+			var size = 100;
 			while(skip<size){
 			vm.loopChunks(skip,limit);
 				skip = skip + limit;

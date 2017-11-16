@@ -3,9 +3,9 @@
 
     angular
         .module('elixibilitasApp')
-        .directive('stackedBarChart', stackedBarChart);
+        .directive('upTimeChart', upTimeChart);
 
-        function stackedBarChart (){
+        function upTimeChart (){
             var directive = {
                 link : link,
                 restrict : 'EA'
@@ -16,14 +16,11 @@
 
                 // set the dimensions and margins of the graph
                 var margin = {top: 20, right: 20, bottom: 50, left: 70};
-                var width = 400 - margin.left - margin.right;
+                var width = 400;
                 var height = 200 - margin.top - margin.bottom;
 
                 // parse the date / time
                 var parseTime = d3.utcParse("%Y-%m-%dT%H:%M:%S.%LZ");
-
-
-
 
                 // set the ranges
                 var x = d3.scaleTime().range([0, width]);
@@ -37,7 +34,8 @@
                 // append the svg obgect to the body of the page
                 // appends a 'group' element to 'svg'
                 // moves the 'group' element to the top left margin
-                var svg = d3.select(element[0]).append("svg")
+                var svg = d3.select(element[0])
+                .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                   .append("g")

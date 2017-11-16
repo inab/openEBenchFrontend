@@ -1,13 +1,13 @@
 <div ng-controller="communityController as ctrller" class="container container-table" id="container">
   <div >
     <!-- <div dataset-directive></div> -->
-    <h1 class="center-content" > {{ctrller.community.name}} </h1>
-    <h3 class="center-content" > {{ctrller.community.description}}</h3>
+    <h1 class="text-center" > {{ctrller.community.name}} </h1>
+    <h3 class="text-center" > {{ctrller.community.description}}</h3>
 
   </div>
 
   <div ng-if="!ctrller.isObjectEmpty(ctrller.datasets)" >
-    <h2 class="center-content">Datasets</h2>
+    <h2 class="text-center">Datasets</h2>
     <div uib-carousel active="active" interval="1000" no-wrap="noWrapSlides" style="height:335px; width:90%;margin: 0 auto;" template-url="view/template/carousel-template.html">
       <div uib-slide ng-repeat="x in ctrller.datasets" ng-if="ctrller.getSizeOf(ctrller.datasets) > 6" active="active" index="$index" style="height:100%">
         <div dataset-directive
@@ -96,7 +96,7 @@
   </div>
 
 <div ng-if="!ctrller.isObjectEmpty(ctrller.metrics)">
-  <!-- <h2 class="center-content"> <b>Metrics</b></h2> -->
+  <!-- <h2 class="text-center"> <b>Metrics</b></h2> -->
   <table class="table table-striped" style="width: 100%">
 
     <thead>
@@ -131,7 +131,7 @@
 </div>
 
 <div ng-if="!ctrller.isObjectEmpty(ctrller.testevents)">
-  <!-- <h2 class="center-content"> <b>Test Events</b></h2> -->
+  <!-- <h2 class="text-center"> <b>Test Events</b></h2> -->
   <table class="table table-striped" style="width: 100%">
     <thead>
       <th style="font-size: 20px" colspan="2">
