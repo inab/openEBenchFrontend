@@ -20,7 +20,8 @@
 		var vm = this;
 
 		vm.loadInitData = function (){
-			var  url = "https://elixir.bsc.es"+$location.path();
+			// console.log($location.path());
+			var  url = "https://elixir.bsc.es/monitor"+$location.path();
 			console.log(url);
 			dataService.getData(url)
 			.then(function (response){
