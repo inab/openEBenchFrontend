@@ -40,7 +40,7 @@
 
 			//if $rootScope.array is empty
 			if(!$rootScope.array){
-				var url = 'https://elixir.bsc.es/tools/statistics/';
+				var url = urlObject.urlStatistics;
 				dataService.getData(url)
 					.then(function (response){
 						// vm.statsData = response.data;
@@ -85,7 +85,7 @@
 
 		//loop chunks
 		vm.loopChunks = function(skip,limit){
-			var url = 'https://elixir.bsc.es/tools/search?projection=description&projection=name&projection=homepage&skip='+skip+'&limit='+limit;
+			var url = urlObject.urlSkipAndLimit+skip+'&limit='+limit;
 			dataService.getData(url)
 				.then(function (response){
 					vm.pushData(response);
@@ -219,7 +219,7 @@
 
 		vm.advancedSearch = function (){
 			if(vm.edamTerm){
-				var url = "https://elixir.bsc.es/edam/tool/search?text="+vm.edamTerm;
+				var url = urlObject.urlEdamSearch+vm.edamTerm;
 				dataService.getData(url)
 					.then(function (response){
 						vm.searchByEdam(response.data);

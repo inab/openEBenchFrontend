@@ -26,7 +26,7 @@
 
 		vm.retrieveInfo = function()
 		{
-			var url = "https://elixir.bsc.es/benchmarking/Community/" + $routeParams.community + ".json"
+			var url = urlObject.urlBenchmarkCommunity + $routeParams.community + ".json"
 			dataService.getData(url).then(function (response){
 				vm.community.description = response.data.description;
 				if ("Dataset" in response.data)
@@ -47,7 +47,7 @@
 		vm.retrieveDatasets = function(datasets)
 		{
 			datasets.forEach(function(value, index){
-				var url = "https://elixir.bsc.es/benchmarking/Dataset/" + value._id + ".json"
+				var url = urlObject.urlBenchmarkDataset + value._id + ".json"
 				dataService.getData(url).then(function (response){
 					vm.datasets[response.data._id] = response.data;
 				});
@@ -58,7 +58,7 @@
 		{
 			if (dataset_id in vm.datasets) return false;
 			vm.datasets[dataset_id] = "NotAvailable"
-			var url = "https://elixir.bsc.es/benchmarking/Dataset/" + dataset_id + ".json"
+			var url = urlObject.urlBenchmarkDataset + dataset_id + ".json"
 			dataService.getData(url).then(function (response){
 				vm.datasets[response.data._id] = response.data;
 			});
@@ -68,7 +68,7 @@
 		vm.retrieveMetrics = function(metrics)
 		{
 			metrics.forEach(function(value, index){
-				var url = "https://elixir.bsc.es/benchmarking/Metrics/" + value._id + ".json"
+				var url = urlObject.urlBenchmarkMetrics + value._id + ".json"
 				dataService.getData(url).then(function (response){
 					vm.metrics[response.data._id] = response.data;
 				});
@@ -79,7 +79,7 @@
 		{
 			if (metric_id in vm.metrics) return false;
 			vm.metrics[metric_id] = "NotAvailable"
-			var url = "https://elixir.bsc.es/benchmarking/Metrics/" + metric_id + ".json"
+			var url = urlObject.urlBenchmarkMetrics + metric_id + ".json"
 			dataService.getData(url).then(function (response){
 				vm.metrics[response.data._id] = response.data;
 			});
@@ -88,7 +88,7 @@
 		vm.retrieveTestEvents = function(testevents)
 		{
 			testevents.forEach(function(value, index){
-				var url = "https://elixir.bsc.es/benchmarking/TestEvent/" + value._id + ".json"
+				var url = urlObject.urlBenchmarkTestEvent + value._id + ".json"
 				dataService.getData(url).then(function (response){
 					vm.testevents[response.data._id] = response.data;
 					vm.retrieveTool(response.data.tool_id);
@@ -100,7 +100,7 @@
 		{
 			if (testevent_id in vm.testevents) return false;
 			vm.testevents[testevent_id] = "NotAvailable"
-			var url = "https://elixir.bsc.es/benchmarking/TestEvent/" + metric_id + ".json"
+			var url = urlObject.urlBenchmarkTestEvent  + metric_id + ".json"
 			dataService.getData(url).then(function (response){
 				vm.testevents[response.data._id] = response.data;
 				vm.retrieveTool(response.data.tool_id);
@@ -111,7 +111,7 @@
 		{
 			if (tool in vm.tools) return false;
 			vm.tools[tool] = "NotAvailable"
-			var url = "https://elixir.bsc.es/benchmarking/Tool/" + tool + ".json"
+			var url = urlObject.urlBenchmarkTool + tool + ".json"
 			dataService.getData(url).then(function (response){
 				vm.tools[response.data._id] = response.data;
 			});

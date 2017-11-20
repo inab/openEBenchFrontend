@@ -27,7 +27,7 @@
                 vm.currentPage = 1;
                 vm.pageSize = 10;
                 var search  = $routeParams.search ? $routeParams.search : " ";
-                var url =   "https://elixir.bsc.es/tools/search?text="+search+"&projection=name";
+                var url = urlObject.urlMainSearch+search+"&projection=name";
                 dataService.getData(url)
                 .then(function (response){
                 vm.data = response.data;

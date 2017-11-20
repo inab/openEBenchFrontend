@@ -16,7 +16,7 @@
 
 		var vm = this;
 
-		vm.apiurl = "https://elixir.bsc.es/benchmarking"
+		vm.apiurl = urlObject.urlBenchmark;
 
 		vm.makeChart = function()
 		{

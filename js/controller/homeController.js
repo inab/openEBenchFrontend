@@ -23,6 +23,7 @@
 
 
             vm.search = function (search){
+                console.log($location.absUrl());
                 $window.open($location.absUrl()+"search/"+search, "_self");
             }
 		 }

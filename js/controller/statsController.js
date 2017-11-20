@@ -24,7 +24,7 @@
 		vm.statistics = [];
 
 
-		var url = 'https://elixir.bsc.es/tools/statistics/';
+		var url = urlObject.urlStatistics;
 		dataService.getData(url)
 			.then(function (response){
 				vm.orderStats(response.data);

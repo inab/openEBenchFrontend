@@ -21,11 +21,14 @@
 
 		vm.loadInitData = function (){
 			var  url = "https://elixir.bsc.es"+$location.path();
+			console.log(url);
 			dataService.getData(url)
 			.then(function (response){
 				vm.tool = response.data;
 				vm.loadingDisplay=1;
-				vm.badge = url.split(/tool\/(.*):/)[1];
+				vm.badge = vm.badgefn(url);
+				vm.biolink = vm.bioToolsLink(url);
+
 				// _do();
 				vm.type="bar";
 				vm.data = [1,-1,1,1,-1];
@@ -55,6 +58,7 @@
 				}
 
 			}).catch(function (error){
+				console.log(error);
 				vm.error = error;
 				vm.loadingDisplay=2
 			})
@@ -73,6 +77,18 @@
 			} else {
 				res = value;
 			}
+			return res;
+		}
+
+		vm.bioToolsLink = function (url){
+			var res = ""
+			res = url.match(/\/([^/]+:[^/]+)\//)[1].replace(":","/");
+			return "https://"+res;
+		}
+
+		vm.badgefn = function (url){
+			var res = ""
+			res = url.split(/tool\/(.*):/)[1];
 			return res;
 		}
 

@@ -143,7 +143,9 @@ input{
 .container-table{
     width: 96%;
 }
-
+img{
+    font-size: 12px;
+}
 
 .main-div{
     margin: 0 auto;
@@ -181,6 +183,12 @@ footer {
 }
 #badge-tag{
     font-size: 12px;
+}
+/*D3 charts line css*/
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
 }
 /*ng-view{
     padding-bottom: 50px;
