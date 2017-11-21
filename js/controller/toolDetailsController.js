@@ -21,8 +21,8 @@
 
 		vm.loadInitData = function (){
 			// console.log($location.path());
-			var  url = "https://elixir.bsc.es/monitor"+$location.path();
-			console.log(url);
+			var  url = "https://openebench.bsc.es/monitor"+$location.path();
+			
 			dataService.getData(url)
 			.then(function (response){
 				vm.tool = response.data;

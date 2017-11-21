@@ -2,13 +2,25 @@
     <div ng-show="toolDetailsCtrl.loadingDisplay==1" class="jumbotron">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center"><a  href="{{toolDetailsCtrl.tool.homepage}}">{{toolDetailsCtrl.tool.name}}</a>
-                <img ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/></h1>
+                <div class="col-md-10">
+                    <h1 class="text-center" >{{toolDetailsCtrl.tool.name}}
+                        <span style="">
+
+                            <a href="{{toolDetailsCtrl.biolink}}" target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a>
+                        </span>
+
+                    </h1>
+
+                </div>
+                <div class="col-md-2">
+                    <img ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/>
+                    <img ng-src="img/web.png" data-toggle="tooltip" title="web" alt="web"/>
+                </div>
             </div>
 
             <div class="col-md-12">
-                <!-- <small><p class="text-center" ><a  href="{{toolDetailsCtrl.tool.homepage}}" target="_blank">{{toolDetailsCtrl.tool.homepage}}</a></p></small> -->
-                <small><p class="text-center"><a href="{{toolDetailsCtrl.biolink}}" target="_blank">{{toolDetailsCtrl.biolink}}</a></p></small>
+                <small><h5 class="text-center" ><a  href="{{toolDetailsCtrl.tool.homepage}}" target="_blank">{{toolDetailsCtrl.tool.homepage}}</a></h5></small>
+                <!-- <small><p class="text-center"><a href="{{toolDetailsCtrl.biolink}}" target="_blank">{{toolDetailsCtrl.biolink}}</a></p></small> -->
             </div>
 
         </div>

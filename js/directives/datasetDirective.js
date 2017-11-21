@@ -14,7 +14,7 @@
             var directive = {
                 restrict : 'EA',
                 scope : scope,
-                templateUrl: 'view/template/dataset-template.html'
+                templateUrl: 'view/template/directive/dataset-template.html'
             }
             return directive;
 

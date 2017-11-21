@@ -30,7 +30,7 @@
 
 		vm.retrieveCommunities = function()
 		{
-			var url = "https://elixir.bsc.es/benchmarking/Community.json"
+			var url = "https://openebench.bsc.es/benchmarking/Community.json"
 			vm.communities = [];
 			dataService.getData(url).then(function (response){
 

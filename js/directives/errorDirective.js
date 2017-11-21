@@ -12,7 +12,7 @@
             var directive = {
                 restrict : 'EA',
                 scope : scope,
-                templateUrl : 'view/template/error-template.html'
+                templateUrl : 'view/template/directive/error-template.html'
             }
             return directive;
 

@@ -12,7 +12,7 @@
             var directive = {
                 restrict : 'EA',
                 scope : scope,
-                templateUrl : 'view/template/badge-template.html'
+                templateUrl : 'view/template/directive/badge-template.html'
             }
             return directive;
 

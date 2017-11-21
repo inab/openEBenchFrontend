@@ -12,7 +12,7 @@
             }
             return directive;
 
-             function link (scope, element, attrs){
+            function link (scope, element, attrs){
 
                 // set the dimensions and margins of the graph
                 var margin = {top: 20, right: 20, bottom: 50, left: 70};
@@ -20,7 +20,8 @@
                 var height = 200 - margin.top - margin.bottom;
 
                 // parse the date / time
-                var parseTime = d3.utcParse("%Y-%m-%dT%H:%M:%S.%LZ");
+                var parseTime = d3.utcParse("%d-%m-%Y");
+                // var parsed3.time.format("%d-%b-%y").parse;
 
                 // set the ranges
                 var x = d3.scaleTime().range([0, width]);
@@ -43,24 +44,33 @@
                           "translate(" + margin.left + "," + margin.top + ")");
 
 
-                var data = [{
-                    date: "2017-11-11T16:35:29.875Z",
+                var data = [
+                {
+                    date: "10-11-2017",
                     status : "1"
                 },
                 {
-                    date: "2017-11-12T16:35:29.875Z",
+                    date: "11-11-2017",
+                    status : "1"
+                },
+                {
+                    date: "12-11-2017",
                     status : "0"
                 },
                 {
-                    date: "2017-11-13T16:35:29.875Z",
+                    date: "13-11-2017",
+                    status : "0"
+                },
+                {
+                    date: "14-11-2017",
                     status : "1"
                 },
                 {
-                    date: "2017-11-14T16:35:29.875Z",
+                    date: "15-11-2017",
                     status : "1"
                 },
                 {
-                    date: "2017-11-15T16:35:29.875Z",
+                    date: "16-11-2017",
                     status : "0"
                 }];
 
@@ -106,7 +116,7 @@
 
 
 
-             }
+            }
 
         }
 
