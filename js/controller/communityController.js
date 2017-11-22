@@ -26,7 +26,7 @@
 
 		vm.retrieveInfo = function()
 		{
-			var url = urlObject.urlBenchmarkCommunity + $routeParams.community + ".json"
+			var url = "https://elixir.bsc.es/benchmarking/Community.json"
 			dataService.getData(url).then(function (response){
 				vm.community.description = response.data.description;
 				if ("Dataset" in response.data)

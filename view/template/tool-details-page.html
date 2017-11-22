@@ -2,16 +2,18 @@
     <div ng-show="toolDetailsCtrl.loadingDisplay==1" class="jumbotron">
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-10">
-                    <h1 class="text-center" >{{toolDetailsCtrl.tool.name}}
-                        <span style="">
-
-                            <a href="{{toolDetailsCtrl.biolink}}" target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a>
-                        </span>
-
-                    </h1>
-
+                <div class="col-md-7">
+                    <h1 class="text-right" >{{toolDetailsCtrl.tool.name}}</h1>
                 </div>
+                <div class="col-md-3">
+                    <span>
+                        <br>
+                        <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a><br>
+                        <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: coral" id="badge1" class="label label-info">Github</span></a><br>
+                        <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: #00B9B4" id="badge1" class="label label-info">OpenMinTed</span></a>
+                    </span>
+                </div>
+
                 <div class="col-md-2">
                     <img ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/>
                     <img ng-src="img/web.png" data-toggle="tooltip" title="web" alt="web"/>
@@ -191,7 +193,7 @@
             <div class="col-md-2">
                 <p><b>Publications: </b></p>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <p ng-if="toolDetailsCtrl.tool.publications.length==0">No publications</p>
                 <span ng-repeat="publication in toolDetailsCtrl.tool.publications">
                     <span ng-repeat="(key,value) in publication">
@@ -199,12 +201,12 @@
                     </span>
                 </span>
             </div>
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                 <span  class="label label-info">bio.tools</span>
                 <span style="background-color: coral"  class="label label-info">Github</span>
                 <span style="background-color: #00B9B4"  class="label label-info">OpenMinTed</span>
 
-            </div>
+            </div> -->
         </div>
         <!-- {{toolDetailsCtrl.tool}} -->
         <!-- <div class="row">

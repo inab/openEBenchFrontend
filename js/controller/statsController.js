@@ -82,7 +82,7 @@
 			for (var b of object){
 				if (b.type!="all") {
 					if(b.total>100){
-						labels.push(b.type.toUpperCase()+" ("+b.total+")");
+						labels.push(b.type.toUpperCase()+": "+b.total);
 						ope.push(b.operational);
 						notOpe.push(b.notOperational);
 					} else {
