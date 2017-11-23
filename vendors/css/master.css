@@ -38,6 +38,43 @@ nav li:hover{
         display: none;
     }
 }
+@media(max-width:870px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+    /* more code here */
+}
 
 /*table settings*/
 table {
@@ -95,8 +132,8 @@ a[href^="https://"],a[href^="http://"] {
 .main-content-center input{
     border:1px solid #e7e7e7e7;
     height: 60px;
-    width: 80%;
-    font-size: xx-large;
+    width: 60%;
+    font-size: 16px;
     font-weight: bold;
     padding-left: 15px;
 }
@@ -167,7 +204,8 @@ li.activecustom > a{
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    width: 20%;
+    width: 10%;
+    height: 60px;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
@@ -184,17 +222,14 @@ footer {
 #badge-tag{
     font-size: 12px;
 }
+
 /*D3 charts line css*/
 .line {
   fill: none;
   stroke: steelblue;
   stroke-width: 2px;
 }
-/*ng-view{
-    padding-bottom: 50px;
-}*/
-#badge1{
-    /*vertical-align: top;*/
 
+#badge1{
     font-size: 10px;
 }

@@ -31,6 +31,9 @@
                 dataService.getData(url)
                 .then(function (response){
                 vm.data = response.data;
+                if(vm.data.length==1){
+                    vm.parseurl(vm.data[0]["@id"]);
+                };
                     vm.loadingDisplay = 1;
                 }).catch(function (error){
                     vm.error = error

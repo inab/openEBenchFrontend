@@ -1,32 +1,29 @@
 <div class="container" ng-controller="toolDetailsController as toolDetailsCtrl" ng-init="toolDetailsCtrl.loadInitData()" >
     <div ng-show="toolDetailsCtrl.loadingDisplay==1" class="jumbotron">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-7">
-                    <h1 class="text-right" >{{toolDetailsCtrl.tool.name}}</h1>
-                </div>
-                <div class="col-md-3">
-                    <span>
-                        <br>
-                        <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a><br>
-                        <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: coral" id="badge1" class="label label-info">Github</span></a><br>
-                        <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: #00B9B4" id="badge1" class="label label-info">OpenMinTed</span></a>
-                    </span>
-                </div>
-
-                <div class="col-md-2">
-                    <img ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/>
-                    <img ng-src="img/web.png" data-toggle="tooltip" title="web" alt="web"/>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <small><h5 class="text-center" ><a  href="{{toolDetailsCtrl.tool.homepage}}" target="_blank">{{toolDetailsCtrl.tool.homepage}}</a></h5></small>
-                <!-- <small><p class="text-center"><a href="{{toolDetailsCtrl.biolink}}" target="_blank">{{toolDetailsCtrl.biolink}}</a></p></small> -->
-            </div>
-
+        <div class="col-md-12">
+            <h1 class="text-center" >{{toolDetailsCtrl.tool.name}}</h1>
         </div>
+        <div class="row">
+            <div class="col-md-4" style="padding-bottom:2%">
+                <div style="text-align:right">
+                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a>
+                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: coral" id="badge1" class="label label-info">Github</span></a>
+                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: #00B9B4" id="badge1" class="label label-info">OpenMinTed</span></a><br>
+                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: pink" id="badge1" class="label label-info">Github</span></a>
+                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span   id="badge1" class="label label-warning">OpenMinTed</span></a>
+                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  id="badge1" class="label label-danger">bio.tools</span></a>
+            </div>
+            </div>
+            <div class="col-md-4">
+                <small><h5 class="text-center" ><a  href="{{toolDetailsCtrl.tool.homepage}}" target="_blank">{{toolDetailsCtrl.tool.homepage}}</a></h5></small>
+            </div>
+            <div class="col-md-4">
 
+                <img style="vertical-align: text-bottom" ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/>
+                <img style="vertical-align: text-bottom" ng-src="img/web.png" data-toggle="tooltip" title="web" alt="web"/>
+            </div>
+        </div>
+        <hr>
         <div class="row">
             <div class="col-md-2">
                 <p><b>Description: </b></p>
@@ -53,7 +50,7 @@
                 <span  class="label label-info">bio.tools</span>
             </div> -->
         </div>
-        <hr>
+
         <div class="row">
             <div class="col-md-12">
                 <h2 class="text-center">Metrics</h2>
@@ -66,12 +63,16 @@
             </div>
             <div class="col-md-10">
                 <p>
-                    <span  class="label label-danger">website</span>
-                    <span  class="label label-danger">domain</span>
-                    <span  class="label label-danger">recognizability</span>
-                    <span  class="label label-success">logo</span>
-                    <span  class="label label-danger">registries</span>
-                    <span  class="label label-success">uniqueness</span>
+                    <img src="https://img.shields.io/badge/website-%20%20%20%20%20%20-green.svg" alt="">
+                    <img src="https://img.shields.io/badge/domain-%20%20%20%20%20%20-green.svg" alt="">
+                    <img src="https://img.shields.io/badge/recognizability-%20%20%20%20%20%20-red.svg" alt="">
+                    <img src="https://img.shields.io/badge/registries-%20%20%20%20%20%20-red.svg" alt="">
+                    <img src="https://img.shields.io/badge/uniqueness-%20%20%20%20%20%20-green.svg" alt="">
+                    <!-- https://img.shields.io/badge/domain-online-green.svg -->
+                    <!-- <span  class="label label-danger">recognizability</span> -->
+                    <!-- <span  class="label label-success">logo</span> -->
+                    <!-- <span  class="label label-danger">registries</span> -->
+                    <!-- <span  class="label label-success">uniqueness</span> -->
                 </p>
             </div>
         </div>
@@ -81,8 +82,10 @@
             </div>
             <div class="col-md-10">
                 <p>
-                    <span  class="label label-success">binary distribution</span>
-                    <span  class="label label-success">sourcecode</span>
+                    <img src="https://img.shields.io/badge/binary_distribution-AVAILABLE-green.svg" alt="">
+                    <img src="https://img.shields.io/badge/sourcecode-AVAILABLE-green.svg" alt="">
+                    <!-- <span  class="label label-success">binary distribution</span>
+                    <span  class="label label-success">sourcecode</span> -->
                 </p>
             </div>
         </div>
@@ -92,8 +95,10 @@
             </div>
             <div class="col-md-10">
                 <p>
-                    <span  class="label label-success">open source</span>
-                    <span  class="label label-danger">OSI</span>
+                    <img src="https://img.shields.io/badge/open_source-YES-green.svg" alt="">
+                    <img src="https://img.shields.io/badge/OSI-NO-red.svg" alt="">
+                    <!-- <span  class="label label-success">open source</span>
+                    <span  class="label label-danger">OSI</span> -->
                 </p>
             </div>
         </div>
@@ -103,12 +108,18 @@
             </div>
             <div class="col-md-10">
                 <p>
-                    <span  class="label label-danger">Help</span>
+                    <img src="https://img.shields.io/badge/Help-NO-red.svg" alt="">
+                    <img src="https://img.shields.io/badge/Tutorial-YES-green.svg" alt="">
+                    <img src="https://img.shields.io/badge/Publications-YES-green.svg" alt="">
+                    <!-- <span  class="label label-danger">Help</span>
                     <span  class="label label-danger">Tutorial</span>
-                    <span  class="label label-danger">Publications</span>
-                    <span  class="label label-danger">Readme</span>
+                    <span  class="label label-danger">Publications</span> -->
+                    <img src="https://img.shields.io/badge/Readme-NO-red.svg" alt="">
+                    <img src="https://img.shields.io/badge/Howto-NO-red.svg" alt="">
+                    <img src="https://img.shields.io/badge/API-NO-red.svg" alt="">
+                    <!-- <span  class="label label-danger">Readme</span>
                     <span  class="label label-danger">Howto</span>
-                    <span  class="label label-danger">API</span>
+                    <span  class="label label-danger">API</span> -->
                 </p>
             </div>
         </div>

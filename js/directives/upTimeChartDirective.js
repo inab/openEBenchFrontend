@@ -72,6 +72,10 @@
                 {
                     date: "16-11-2017",
                     status : "0"
+                },
+                {
+                    date: "17-11-2017",
+                    status : "1"
                 }];
 
 
@@ -91,7 +95,7 @@
                 // Add the x Axis
                 svg.append("g")
                   .attr("transform", "translate(0," + height + ")")
-                  .call(d3.axisBottom(x).ticks(data.length));
+                  .call(d3.axisBottom(x).ticks(data.length).tickFormat(data.date));
 
                 // text label for the x axis
                 svg.append("text")
