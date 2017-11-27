@@ -26,7 +26,7 @@
 
 		vm.retrieveInfo = function()
 		{
-			var url = "https://elixir.bsc.es/benchmarking/Community.json"
+			var url = "https://elixir.bsc.es/benchmarking/Community/" + vm.community.name +".json"
 			dataService.getData(url).then(function (response){
 				vm.community.description = response.data.description;
 				if ("Dataset" in response.data)
@@ -42,12 +42,13 @@
 					vm.retrieveTestEvents(response.data.TestEvent);
 				}
 			});
-		}();
+		}
 
 		vm.retrieveDatasets = function(datasets)
 		{
+
 			datasets.forEach(function(value, index){
-				var url = urlObject.urlBenchmarkDataset + value._id + ".json"
+				var url = urlObject.urlBenchmarkDataset+ value._id + ".json"
 				dataService.getData(url).then(function (response){
 					vm.datasets[response.data._id] = response.data;
 				});
@@ -147,6 +148,8 @@
 				return index;
 			}
 		}
+
+		vm.retrieveInfo();
 	};
 
 

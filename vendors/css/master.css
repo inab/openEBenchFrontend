@@ -147,11 +147,6 @@ a[href^="https://"],a[href^="http://"] {
     position: relative;
 }
 
-/*main sections*/
-section{
-    margin-top: 8%;
-    margin-bottom: 8%;
-}
 .main-image{
     width:200px;
     height:200px;
