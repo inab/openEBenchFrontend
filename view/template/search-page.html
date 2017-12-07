@@ -5,17 +5,20 @@
         <table class="table table-striped" >
             <tr>
                 <th>Name</th>
-                <th>Details</th>
+                <th>More info</th>
+                <th>Types</th>
             </tr>
             <tr dir-paginate="tool in searchCtrl.data | itemsPerPage: searchCtrl.pageSize" current-page="searchCtrl.currentPage">
-                <td>{{tool.name}}</td>
-                <td>
-                    <a ng-click=searchCtrl.parseurl(tool["@id"]) type="button" class="btn btn-info btn-xs" >+ info</a>
+                <td><p>{{tool["_id"]._id}}</p></td>
+                <td class="col-md-2;">
+                    <a ng-click="searchCtrl.showDetails(tool);" type="button" class="btn btn-info btn-xs" >+ info</a>
                 </td>
+                <td ><span  ng-repeat="a in tool.tools" style="display:inline-block"><img class ="table-icons" ng-src="img/{{a['@type']}}.png" data-toggle="tooltip" title="{{a['@type'] | uppercase}}" alt="{{a['@type']  | uppercase}}"/></span></td>
             </tr>
             <tr>
-                <td colspan="2" ng-if="searchCtrl.data.length==0">No data found</td>
+                <td colspan="3" ng-if="searchCtrl.data.length==0">No data found</td>
             </tr>
+
         </table>
         <div class="text-center">
             <dir-pagination-controls boundary-links="true" max-size="12"></dir-pagination-controls>

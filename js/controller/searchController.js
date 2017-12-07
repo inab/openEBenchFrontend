@@ -27,14 +27,13 @@
                 vm.currentPage = 1;
                 vm.pageSize = 10;
                 var search  = $routeParams.search ? $routeParams.search : " ";
-                var url = urlObject.urlMainSearch+search+"&projection=name";
+                var url = "https://openebench.bsc.es/monitor/rest/search2?text="+search;
                 dataService.getData(url)
                 .then(function (response){
                 vm.data = response.data;
-                if(vm.data.length==1){
-                    vm.parseurl(vm.data[0]["@id"]);
-                };
+                if(vm.data = response.data){
                     vm.loadingDisplay = 1;
+                }
                 }).catch(function (error){
                     vm.error = error
                     vm.loadingDisplay = 1;
@@ -42,9 +41,17 @@
 
             }
 
-            vm.parseurl = function (a){
-                $window.open(window.location.pathname+"#!/tool/"+a.split(/.+\/tool\//g)[1], "_blank");
-            }
+            /**
+            @name showDetails
+            @description showDetails is called when details button is clicked for everytool this iterates the semantics and send each semantic to this corisponding function.
+            @param tool for details.
+            @version 1.0
+            @author Vicky Sundesha
+            */
+            vm.showDetails = function (tool){
+                $window.open("http://localhost/~vsundesh/openEBenchFrontend/#!/tool/"+tool._id._id, "_blank");
+            };
+
 		 }
 
 

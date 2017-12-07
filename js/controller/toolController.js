@@ -43,7 +43,6 @@
 				var url = urlObject.urlStatistics;
 				dataService.getData(url)
 					.then(function (response){
-						// vm.statsData = response.data;
 						vm.getChunks(response.data.all.total);
 						$rootScope.typeArray = Object.keys(response.data);
 						vm.loadingDisplay = 0;
@@ -70,14 +69,13 @@
 		}
 
 		// get api in chunks
-		vm.getChunks = function (a){
+		vm.getChunks = function (totalTools){
 			var skip = 0;
-			var limit = a;
+			var limit = totalTools;
 			var size = 100;
 			while(skip<size){
 			vm.loopChunks(skip,limit);
 				skip = skip + limit;
-
 			}
 		}
 
@@ -97,11 +95,16 @@
 
 
 		//the data recived from api in places
-		vm.pushData = function (tool){
-			vm.chunks.push(vm.allData(tool.data))
+		vm.pushData = function (tools){
+		 	vm.chunks.push(tools.data)
 			vm.toolsArray = [].concat.apply([], vm.chunks);
 			$rootScope.array = [].concat.apply([], vm.chunks);
 			vm.loadingDisplay = 1
+
+			// vm.chunks.push(vm.allData(tools.data))
+			// vm.toolsArray = [].concat.apply([], vm.chunks);
+			// $rootScope.array = [].concat.apply([], vm.chunks);
+			// vm.loadingDisplay = 1
 		}
 
 		//Sort name
@@ -120,27 +123,16 @@
 		@author Vicky Sundesha
 		*/
 		vm.showDetails = function (tool){
-
-			// vm.basicDetails=tool;
-			// var url = tool._id.replace(/\/tool\//g,"/metrics/").replace("http","https");
-			// vm.displayDetailsView = 1;
-
-
-			$window.open($location.absUrl()+tool.getId().split(/.+\/tool\//g)[1], "_blank");
-			//
-			// dataService.getData(url)
-			// 	.then(function (response){
-			// 		vm.metrics = response.data;
-			// });
+			$window.open($location.absUrl()+tool._id._id, "_blank");
 		};
 
-		vm.allData= function (tool){
-			var array = []
-			for (var i = 0; i < tool.length; i++) {
-				array.push(vm.initTool(tool[i]));
-			}
-			return array
-		}
+		// vm.allData= function (tool){
+		// 	var array = []
+		// 	for (var i = 0; i < tool.length; i++) {
+		// 		array.push(vm.initTool(tool[i]));
+		// 	}
+		// 	return array
+		// }
 
 
 		// /**
@@ -194,21 +186,21 @@
 		@version 1.0
 		@author Vicky Sundesha
 		*/
-		vm.initTool = function (tool){
-			var toolBasicDetails = new Tool();
-			toolBasicDetails.setId(tool['@id']);
-			toolBasicDetails.setType(tool['@type']);
-			toolBasicDetails.setName(tool.name);
-			toolBasicDetails.setDesc(tool.description);
-			toolBasicDetails.setLink(tool.homepage);
-			// toolBasicDetails.setContact(tool.contacts);
-			// toolBasicDetails.setCredits(tool.credits);
-			// var urlToBioTools = "";
-			// var urlToBioTools = "https://bio.tools/"+tool.name.replace(/[\s]/g,"_");
-			// toolBasicDetails.setLinkToBioTool(urlToBioTools);
-			// toolBasicDetails.setInstance(instance);
-			return toolBasicDetails;
-		}
+		// vm.initTool = function (tool){
+		// 	var toolBasicDetails = new Tool();
+		// 	toolBasicDetails.setId(tool['@id']);
+		// 	toolBasicDetails.setType(tool['@type']);
+		// 	toolBasicDetails.setName(tool.name);
+		// 	toolBasicDetails.setDesc(tool.description);
+		// 	toolBasicDetails.setLink(tool.homepage);
+		// 	toolBasicDetails.setContact(tool.contacts);
+		// 	toolBasicDetails.setCredits(tool.credits);
+		// 	var urlToBioTools = "";
+		// 	var urlToBioTools = "https://bio.tools/"+tool.name.replace(/[\s]/g,"_");
+		// 	toolBasicDetails.setLinkToBioTool(urlToBioTools);
+		// 	toolBasicDetails.setInstance(instance);
+		// 	return toolBasicDetails;
+		// }
 
 		vm.removeFilter = function () {
 			vm.edamTerm = "";

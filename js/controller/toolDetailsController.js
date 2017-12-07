@@ -19,50 +19,47 @@
 
 		var vm = this;
 
+
 		vm.loadInitData = function (){
-			// console.log($location.path());
-			var  url = "https://openebench.bsc.es/monitor"+$location.path();
-			
+			var a = $location.absUrl().split("/");
+			var  url = "https://openebench.bsc.es/monitor/rest/search?id="+a[a.length-1];
+			console.log(url);
 			dataService.getData(url)
 			.then(function (response){
-				vm.tool = response.data;
-				vm.loadingDisplay=1;
-				vm.badge = vm.badgefn(url);
-				vm.biolink = vm.bioToolsLink(url);
-
-				// _do();
-				vm.type="bar";
-				vm.data = [1,-1,1,1,-1];
-				vm.labels = ["10/11","11/11","12/11","13/11","14/11"];
-				vm.colors = ['#5CB85C','#D9534F','#5CB85C','#5CB85C','#D9534F'];
-				vm.options = {
-					title: {
-						display: false
-					},
-					scales:{
-			            yAxes: [{
-			                gridLines : {
-			                    display : false
-			                },
-							maxBarThickness: 100
-			            }],
-
-						xAxes: [{
-							categoryPercentage: 1.0,
-	            			barPercentage: 1.0
-						}]
-			        },
-					tooltips:{
-						enabled:false
-					},
-					scaleStepWidth: 1
+				vm.responseData = response.data;
+				vm.tools = vm.responseData;
+				console.log(vm.tools);
+				if(vm.tools=vm.responseData){
+					vm.loadingDisplay=1;
 				}
-
+				// vm.loadUpTimeChart(url);
 			}).catch(function (error){
-				console.log(error);
+
 				vm.error = error;
 				vm.loadingDisplay=2
 			})
+		}
+
+		vm.loadUpTimeChart = function (url){
+			dataService.getData(vm.parseLink("last_seen",url))
+				.then(function (response){
+					vm.createUpTimeChartData(response.data);
+				}).catch(function (error){
+					vm.error = error;
+				})
+		}
+
+		vm.createUpTimeChartData = function (data){
+			var a = [];
+			for (d of data) {
+				d.value = 1;
+				a.push(d);
+			}
+			setTimeout(function () {
+				console.log(a);
+				vm.data = a;
+			}, 5000);
+
 		}
 
 		vm.checkIfEmail = function (value){
@@ -70,27 +67,46 @@
 		}
 
 		vm.publicationLinks = function (key,value){
+			console.log(key,value);
 			var res = ""
 			if(key=="pmid"){
-				res = "https://www.ncbi.nlm.nih.gov/pubmed/"+value;
+				window.open("https://www.ncbi.nlm.nih.gov/pubmed/"+value);
 			}else if(key=="doi"){
-				res = "https://doi.org/"+value;
+				window.open("https://doi.org/"+value);
 			} else {
 				res = value;
 			}
-			return res;
+
 		}
 
-		vm.bioToolsLink = function (url){
-			var res = ""
-			res = url.match(/\/([^/]+:[^/]+)\//)[1].replace(":","/");
-			return "https://"+res;
-		}
+		vm.upChartData = function (url){
+			dataService.getData(vm.parseLink("last_seen",url))
+				.then(function (response){
+					vm.data = ["a","b","c"];
+				}).catch(function (error){
+					vm.error = error;
+					vm.loadingDisplay=2
+				})
 
-		vm.badgefn = function (url){
-			var res = ""
-			res = url.split(/tool\/(.*):/)[1];
-			return res;
+		}
+		vm.parseLink = function (option,url){
+			switch (option) {
+				case "biotools":
+					var res = url.split("/")[5];
+					var a = res.split(":")
+					$window.open("https://bio.tools/"+a[1]);
+					break;
+				case "last_seen":
+					var a =""
+					a = url.split(/.+\/tool\//);
+					var res = "https://openebench.bsc.es/monitor/metrics/log/"+a[1]+"/project/website/last_check"
+					return res;
+					break;
+				case option:
+					break;
+				default:
+
+			}
 		}
 
     };

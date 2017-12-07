@@ -71,38 +71,35 @@
         <title>OpenEbench</title>
     </head>
     <body ng-controller="mainController as mainCtrl">
+        <div class="content">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a href="#" class="navbar-brand">OpenEBench</a>
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
 
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div style="padding-right : 4%">
-                <div class="navbar-header">
-                    <a href="#" class="navbar-brand">OpenEBench</a>
-                    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                    <div id="navbarCollapse" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- <li ng-class="{ activecustom: mainCtrl.isActive('/') }" ><a href="#!/">Home</a></li> -->
+                            <li ng-class="{ activecustom: mainCtrl.isActive('/benchmarking/') }"><a href="#!/benchmarking">Scientific Benchmarking</a></li>
+                            <li ng-class="{ activecustom: mainCtrl.isActive('/tool/') }"><a href="#!/tool">Technical Monitoring</a></li>
+                            <li ng-class="{ activecustom: mainCtrl.isActive('/stats/') }" ><a href="#!/stats">Statistics</a></li>
+                            <li ng-class=""><a href="#">OpenEbench API</a></li>
+                            <li ng-class=""><a href="#!/about">About</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div id="navbarCollapse" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li ng-class="{ activecustom: mainCtrl.isActive('/') }" ><a href="#!/">Home</a></li>
-                        <li ng-class="{ activecustom: mainCtrl.isActive('/benchmarking/') }"><a href="#!/benchmarking">Scientific Benchmarking</a></li>
-                        <li ng-class="{ activecustom: mainCtrl.isActive('/tool/') }"><a href="#!/tool">Technical Monitoring</a></li>
-                        <li ng-class="{ activecustom: mainCtrl.isActive('/stats/') }" ><a href="#!/stats">Statistics</a></li>
-                        <li ng-class=""><a href="#">OpenEbench API</a></li>
-                        <li ng-class=""><a href="#!/about">About</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <ng-view></ng-view>
-        <footer>
-            <div class="row">
-                <div style="padding-right:20px;">
-                    <p class="text-right">Copyright © <a href="https://www.bsc.es/">BSC-CNS</a> 2017</p>
-                </div>
-            </div>
+            </nav>
+            <ng-view></ng-view>
+        </div>
+        <footer class="footer">
+            <p class="text-right">Copyright © <a href="https://www.bsc.es/">BSC-CNS</a> 2017</p>
         </footer>
     </body>
 </html>

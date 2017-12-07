@@ -1,54 +1,179 @@
 <div class="container" ng-controller="toolDetailsController as toolDetailsCtrl" ng-init="toolDetailsCtrl.loadInitData()" >
-    <div ng-show="toolDetailsCtrl.loadingDisplay==1" class="jumbotron">
-        <div class="col-md-12">
-            <h1 class="text-center" >{{toolDetailsCtrl.tool.name}}</h1>
-        </div>
-        <div class="row">
-            <div class="col-md-4" style="padding-bottom:2%">
-                <div style="text-align:right">
-                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a>
-                <!-- <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: coral" id="badge1" class="label label-info">Github</span></a>
-                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: #00B9B4" id="badge1" class="label label-info">OpenMinTed</span></a><br>
-                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: pink" id="badge1" class="label label-info">Github</span></a>
-                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span   id="badge1" class="label label-warning">OpenMinTed</span></a>
-                <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  id="badge1" class="label label-danger">bio.tools</span></a> -->
-            </div>
-            </div>
-            <div class="col-md-4">
-                <small><h5 class="text-center" ><a  href="{{toolDetailsCtrl.tool.homepage}}" target="_blank">{{toolDetailsCtrl.tool.homepage}}</a></h5></small>
-            </div>
-            <div class="col-md-4">
+    <div ng-show="toolDetailsCtrl.loadingDisplay==1" class="">
+                <ul class="nav nav-tabs">
+                    <li class="{{$index === 0 ? 'active' : ''}}" ng-repeat="tool in toolDetailsCtrl.tools" ><a data-toggle="tab" data-target="#{{tool['@type']}}" href=""><img style="vertical-align: text-bottom; font-size:40px;" ng-src="img/{{tool['@type']}}.png" data-toggle="tooltip" title="{{tool['@type'] | uppercase}}" alt="{{tool['@type'] | uppercase}}"  /></a>
 
-                <img style="vertical-align: text-bottom" ng-src="img/{{toolDetailsCtrl.tool['@type']}}.png" data-toggle="tooltip" title="{{toolDetailsCtrl.tool['@type'] | uppercase}}" alt="{{toolDetailsCtrl.tool['@type'] | uppercase}}"/>
-                <!-- <img style="vertical-align: text-bottom" ng-src="img/web.png" data-toggle="tooltip" title="web" alt="web"/> -->
-            </div>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div ng-repeat="tool in toolDetailsCtrl.tools" id="{{tool['@type']}}" class="{{$index === 0 ? 'tab-pane fade in active' : 'tab-pane fade'}}">
+                        <div class="row">
+                            <br>
+                                <div class="col-md-12" >
+                                    <h1 class="text-center">{{tool.name}}</h1>
+                                    <h6 class="text-center"><a href="{{tool.homepage}}" target="_blank">{{tool.homepage}}</a></h6>
+                                    <p class="text-center">
+                                        <!-- <p>{{tool['@id']}}</p> -->
+                                      <!-- <a  target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a>
+                                      <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: #00B9B4" id="badge1" class="label label-info">OpenMinTed</span></a>
+                                      <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: coral" id="badge1" class="label label-info">Github</span></a> -->
+                                      <a ng-click="toolDetailsCtrl.parseLink('biotools',tool['@id'])"><img src="https://img.shields.io/badge/Bio.tools-Link-5BC0DE.svg" alt=""></a>
+                                      <img src="https://img.shields.io/badge/OpenMinTed-Link-00B9B4.svg" alt="">
+                                      <img src="https://img.shields.io/badge/Github-Link-FF7F50.svg" alt="">
+                                    </p>
+                                </div>
+                        </div>
+
+                      <hr>
+                      <div class="row">
+                          <div class="col-md-2">
+                              <p><b>Description: </b></p>
+                          </div>
+                          <div class="col-md-10">
+                              <p>{{tool.description}}</p>
+
+                          </div>
+                      </div>
+
+
+                      <div class="row">
+                          <div class="col-md-12">
+                              <h2 class="text-center">Metrics</h2>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-2">
+                              <p><b>Installability:</b></p>
+                          </div>
+                          <div class="col-md-10">
+                              <p>
+                                  <img src="https://img.shields.io/badge/Website-ONLINE-green.svg" alt="">
+                                  <img src="https://img.shields.io/badge/Domain-AVAILABLE-green.svg" alt="">
+                                  <img src="https://img.shields.io/badge/Recognizability-NO-red.svg" alt="">
+                                  <img src="https://img.shields.io/badge/Registries-NONE-red.svg" alt="">
+                                  <img src="https://img.shields.io/badge/Uniqueness-YES-green.svg" alt="">
+                              </p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-2">
+                              <p><b>Accesibility:</b></p>
+                          </div>
+                          <div class="col-md-10">
+                              <p>
+                                  <img src="https://img.shields.io/badge/Binary_distribution-AVAILABLE-green.svg" alt="">
+                                  <img src="https://img.shields.io/badge/Sourcecode-AVAILABLE-green.svg" alt="">
+                              </p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-2">
+                              <p><b>Licensing:</b></p>
+                          </div>
+                          <div class="col-md-10">
+                              <p>
+                                  <img src="https://img.shields.io/badge/Open_source-YES-green.svg" alt="">
+                                  <img src="https://img.shields.io/badge/OSI-NO-red.svg" alt="">
+                              </p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-2">
+                              <p><b>Documentation:</b></p>
+                          </div>
+                          <div class="col-md-10">
+                              <p>
+                                  <img src="https://img.shields.io/badge/Help-NO-red.svg" alt="">
+                                  <img src="https://img.shields.io/badge/Tutorial-YES-green.svg" alt="">
+                                  <img src="https://img.shields.io/badge/Publications-YES-green.svg" alt="">
+                                  <img src="https://img.shields.io/badge/Readme-NO-red.svg" alt="">
+                                  <img src="https://img.shields.io/badge/Howto-NO-red.svg" alt="">
+                                  <img src="https://img.shields.io/badge/API-NO-red.svg" alt="">
+                              </p>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <h2 class="text-center">Up time</h2>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-6" ng-if="toolDetailsCtrl.data">
+                              <up-time-chart dataset="toolDetailsCtrl.data"></up-time-chart>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-md-2">
+                              <p><b>Publications: </b></p>
+                          </div>
+                          <div class="col-md-10">
+                              <p ng-if="tool.publications.length==0">No publications</p>
+                              <span ng-repeat="publication in tool.publications">
+                                  <span ng-repeat="(key,value) in publication">
+                                      <p><a ng-click="toolDetailsCtrl.publicationLinks(key,value)">{{key | uppercase}}:{{value}}</a></p>
+                                  </span>
+                              </span>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-2">
+                              <p><b>Version: </b></p>
+                          </div>
+                          <div class="col-md-10">
+                              <p>{{tool.version ? tool.version : "No version information found"}}</p>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+    </div>
+
+
+    <error-message error="toolDetailsCtrl.error" ng-show="toolDetailsCtrl.loadingDisplay==2" ></error-message>
+</div>
+        <!-- <span ng-repeat="tool in toolDetailsCtrl.tools">
+        <div class="row">
+
+
+                <div class="col-md-offset-8 col-md-4" >
+                    <img style="vertical-align: text-bottom" ng-src="img/{{tool['@type']}}.png" data-toggle="tooltip" title="{{tool['@type'] | uppercase}}" alt="{{tool['@type'] | uppercase}}"/>
+                </div>
+                <div class="col-md-12" >
+                    <h1 class="text-center">{{tool.name}}</h1>
+                    <h6 class="text-center"><a href="{{tool.homepage}}" target="_blank">{{tool.homepage}}</a></h6>
+                    <p class="text-center">
+                        <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a>
+                        <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: #00B9B4" id="badge1" class="label label-info">OpenMinTed</span></a>
+                        <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: coral" id="badge1" class="label label-info">Github</span></a>
+                    </p>
+                </div>
+
         </div>
+
         <hr>
         <div class="row">
             <div class="col-md-2">
                 <p><b>Description: </b></p>
             </div>
             <div class="col-md-10">
-                <p>{{toolDetailsCtrl.tool.description}}
+                <p>{{tool.description}}
                     <span id="badge-tag" class="label label-info">bio.tools</span>
                     <span id="badge-tag" style="background-color: coral"  class="label label-info">Github</span>
                 </p>
 
             </div>
-            <!-- <div class="col-md-2">
-                <badge-tag badge="toolDetailsCtrl.badgeArray[0]"></badge-tag>
-            </div> -->
         </div>
         <div class="row">
             <div class="col-md-2">
                 <p><b>Version: </b></p>
             </div>
             <div class="col-md-10">
-                <p>{{toolDetailsCtrl.tool.version ? toolDetailsCtrl.tool.version : "No version information found"}}</p>
+                <p>{{tool.version ? tool.version : "No version information found"}}</p>
             </div>
-            <!-- <div class="col-md-2">
-                <span  class="label label-info">bio.tools</span>
-            </div> -->
         </div>
 
         <div class="row">
@@ -68,11 +193,6 @@
                     <img src="https://img.shields.io/badge/recognizability-%20%20%20%20%20%20-red.svg" alt="">
                     <img src="https://img.shields.io/badge/registries-%20%20%20%20%20%20-red.svg" alt="">
                     <img src="https://img.shields.io/badge/uniqueness-%20%20%20%20%20%20-green.svg" alt="">
-                    <!-- https://img.shields.io/badge/domain-online-green.svg -->
-                    <!-- <span  class="label label-danger">recognizability</span> -->
-                    <!-- <span  class="label label-success">logo</span> -->
-                    <!-- <span  class="label label-danger">registries</span> -->
-                    <!-- <span  class="label label-success">uniqueness</span> -->
                 </p>
             </div>
         </div>
@@ -84,8 +204,6 @@
                 <p>
                     <img src="https://img.shields.io/badge/binary_distribution-AVAILABLE-green.svg" alt="">
                     <img src="https://img.shields.io/badge/sourcecode-AVAILABLE-green.svg" alt="">
-                    <!-- <span  class="label label-success">binary distribution</span>
-                    <span  class="label label-success">sourcecode</span> -->
                 </p>
             </div>
         </div>
@@ -97,8 +215,6 @@
                 <p>
                     <img src="https://img.shields.io/badge/open_source-YES-green.svg" alt="">
                     <img src="https://img.shields.io/badge/OSI-NO-red.svg" alt="">
-                    <!-- <span  class="label label-success">open source</span>
-                    <span  class="label label-danger">OSI</span> -->
                 </p>
             </div>
         </div>
@@ -111,15 +227,9 @@
                     <img src="https://img.shields.io/badge/Help-NO-red.svg" alt="">
                     <img src="https://img.shields.io/badge/Tutorial-YES-green.svg" alt="">
                     <img src="https://img.shields.io/badge/Publications-YES-green.svg" alt="">
-                    <!-- <span  class="label label-danger">Help</span>
-                    <span  class="label label-danger">Tutorial</span>
-                    <span  class="label label-danger">Publications</span> -->
                     <img src="https://img.shields.io/badge/Readme-NO-red.svg" alt="">
                     <img src="https://img.shields.io/badge/Howto-NO-red.svg" alt="">
                     <img src="https://img.shields.io/badge/API-NO-red.svg" alt="">
-                    <!-- <span  class="label label-danger">Readme</span>
-                    <span  class="label label-danger">Howto</span>
-                    <span  class="label label-danger">API</span> -->
                 </p>
             </div>
         </div>
@@ -131,120 +241,22 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
-                <up-time-chart></up-time-chart>
+            <div class="col-md-6" ng-if="toolDetailsCtrl.data">
+                <up-time-chart dataset="toolDetailsCtrl.data"></up-time-chart>
             </div>
-        <!-- </div>
-
-        <div class="row"> -->
-            <!-- <div class="col-md-6">
-                <canvas class="chart chart-base"
-                chart-type="toolDetailsCtrl.type"
-                chart-labels="toolDetailsCtrl.labels"
-                chart-colors="toolDetailsCtrl.colors"
-                chart-options="toolDetailsCtrl.options"
-                chart-data="toolDetailsCtrl.data">
-                </canvas>
-            </div> -->
         </div>
         <hr>
-
-
-        <!-- <div class="row">
-            <div class="col-md-2">
-                <p><b>Credits: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p ng-if="toolDetailsCtrl.tool.credits.length==0">No credits found</p>
-                <span ng-repeat="credit in toolDetailsCtrl.tool.credits">
-                    <span ng-repeat="(key,value) in credit">
-                        <p>{{key}} : {{toolDetailsCtrl.checkIfEmail(value) ? value.replace("@","_at_").replace(".","_dot_") : value}}</p>
-                    </span>
-                </span>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div> -->
-
-        <!-- <div class="row">
-            <div class="col-md-2">
-                <p><b>Contacts: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p ng-if="toolDetailsCtrl.tool.contacts.length==0">No contacts found</p>
-                <span ng-repeat="contact in toolDetailsCtrl.tool.contacts">
-                    <span ng-repeat="(key,value) in contact">
-                        <p>{{key}} : {{toolDetailsCtrl.checkIfEmail(value) ? value.replace("@","_at_").replace(".","_dot_") : value}}</p>
-                    </span>
-                </span>
-            </div>
-            <div class="col-md-2">
-                <span  class="label label-info">bio.tools</span>
-            </div>
-        </div> -->
-
-        <!-- <div class="row">
-            <div class="col-md-2">
-                <p><b>Documentation: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p ng-if="toolDetailsCtrl.tool.documentation.length==0 || !toolDetailsCtrl.tool.documentation">No documentation found</p>
-                <span ng-repeat="(key,value) in toolDetailsCtrl.tool.documentation">
-                    <p>{{key}} : {{value ? value : "No documentations found"}}</p>
-                </span>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div> -->
-
-
         <div class="row">
             <div class="col-md-2">
                 <p><b>Publications: </b></p>
             </div>
             <div class="col-md-10">
-                <p ng-if="toolDetailsCtrl.tool.publications.length==0">No publications</p>
-                <span ng-repeat="publication in toolDetailsCtrl.tool.publications">
+                <p ng-if="tool.publications.length==0">No publications</p>
+                <span ng-repeat="publication in tool.publications">
                     <span ng-repeat="(key,value) in publication">
-                        <p><a ng-href="{{toolDetailsCtrl.publicationLinks(key,value)}}">{{key | uppercase}}:{{value}}</a></p>
+                        <p><a ng-href="{{publicationLinks(key,value)}}">{{key | uppercase}}:{{value}}</a></p>
                     </span>
                 </span>
             </div>
-            <!-- <div class="col-md-2">
-                <span  class="label label-info">bio.tools</span>
-                <span style="background-color: coral"  class="label label-info">Github</span>
-                <span style="background-color: #00B9B4"  class="label label-info">OpenMinTed</span>
-
-            </div> -->
         </div>
-        <!-- {{toolDetailsCtrl.tool}} -->
-        <!-- <div class="row">
-            <div class="col-md-2">
-                <p><b>Repositories: </b></p>
-            </div>
-            <div class="col-md-8">
-                <p ng-if="toolDetailsCtrl.tool.repositories.length==0 || !toolDetailsCtrl.tool.repositories">No repositories found</p>
-                <span ng-repeat="repositories in toolDetailsCtrl.tool.repositories">
-                    <a target="_blank" href="{{repoLinks}}">{{repoLinks}}</a>
-                </span>
-            </div>
-            <div class="col-md-2">
-
-            </div>
-        </div> -->
-
-
-
-
-        <!-- <div class="row">
-            <div class="col-md-12">
-                <a href="{{toolDetailsCtrl.tool.homepage}}">{{toolDetailsCtrl.tool.homepage}}</a>
-            </div>
-        </div> -->
-    </div>
-
-
-    <error-message error="toolDetailsCtrl.error" ng-show="toolDetailsCtrl.loadingDisplay==2" ></error-message>
-</div>
+    </span> -->

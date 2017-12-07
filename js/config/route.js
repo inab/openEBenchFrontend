@@ -22,7 +22,7 @@
             .when("/tool/", {
                 templateUrl : "view/template/tool-page.html"
             })
-            .when("/tool/:toolName/:toolType/:toolUrl",{
+            .when("/tool/:id",{
                 templateUrl : "view/template/tool-details-page.html"
             })
             .when("/stats/", {
