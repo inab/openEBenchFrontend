@@ -27,7 +27,7 @@
                 vm.currentPage = 1;
                 vm.pageSize = 10;
                 var search  = $routeParams.search ? $routeParams.search : " ";
-                var url = "https://openebench.bsc.es/monitor/rest/search2?text="+search;
+                var url = urlObject.urlMonitorRest + "/aggregate?text="+search;
                 dataService.getData(url)
                 .then(function (response){
                 vm.data = response.data;

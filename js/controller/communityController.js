@@ -26,7 +26,7 @@
 
 		vm.retrieveInfo = function()
 		{
-			var url = "https://elixir.bsc.es/benchmarking/Community/" + vm.community.name +".json"
+			var url = urlObject.urlBenchmark+"/Community/" + vm.community.name +".json"
 			dataService.getData(url).then(function (response){
 				vm.community.description = response.data.description;
 				if ("Dataset" in response.data)
@@ -48,7 +48,7 @@
 		{
 
 			datasets.forEach(function(value, index){
-				var url = urlObject.urlBenchmarkDataset+ value._id + ".json"
+				var url = urlObject.urlBenchmark+"/Dataset/"+ value._id + ".json"
 				dataService.getData(url).then(function (response){
 					vm.datasets[response.data._id] = response.data;
 				});
@@ -59,7 +59,7 @@
 		{
 			if (dataset_id in vm.datasets) return false;
 			vm.datasets[dataset_id] = "NotAvailable"
-			var url = urlObject.urlBenchmarkDataset + dataset_id + ".json"
+			var url = urlObject.urlBenchmark+"/Dataset/" + dataset_id + ".json"
 			dataService.getData(url).then(function (response){
 				vm.datasets[response.data._id] = response.data;
 			});
@@ -69,7 +69,7 @@
 		vm.retrieveMetrics = function(metrics)
 		{
 			metrics.forEach(function(value, index){
-				var url = urlObject.urlBenchmarkMetrics + value._id + ".json"
+				var url = urlObject.urlBenchmark+"/Metrics/" + value._id + ".json"
 				dataService.getData(url).then(function (response){
 					vm.metrics[response.data._id] = response.data;
 				});
@@ -80,7 +80,7 @@
 		{
 			if (metric_id in vm.metrics) return false;
 			vm.metrics[metric_id] = "NotAvailable"
-			var url = urlObject.urlBenchmarkMetrics + metric_id + ".json"
+			var url = urlObject.urlBenchmark+"/Metrics/" + metric_id + ".json"
 			dataService.getData(url).then(function (response){
 				vm.metrics[response.data._id] = response.data;
 			});
@@ -89,7 +89,7 @@
 		vm.retrieveTestEvents = function(testevents)
 		{
 			testevents.forEach(function(value, index){
-				var url = urlObject.urlBenchmarkTestEvent + value._id + ".json"
+				var url = urlObject.urlBenchmark+"/TestEvent/" + value._id + ".json"
 				dataService.getData(url).then(function (response){
 					vm.testevents[response.data._id] = response.data;
 					vm.retrieveTool(response.data.tool_id);
@@ -101,7 +101,7 @@
 		{
 			if (testevent_id in vm.testevents) return false;
 			vm.testevents[testevent_id] = "NotAvailable"
-			var url = urlObject.urlBenchmarkTestEvent  + metric_id + ".json"
+			var url =  urlObject.urlBenchmark+"/TestEvent/" + metric_id + ".json"
 			dataService.getData(url).then(function (response){
 				vm.testevents[response.data._id] = response.data;
 				vm.retrieveTool(response.data.tool_id);
@@ -112,7 +112,7 @@
 		{
 			if (tool in vm.tools) return false;
 			vm.tools[tool] = "NotAvailable"
-			var url = urlObject.urlBenchmarkTool + tool + ".json"
+			var url = urlObject.urlBenchmark+"/Tool/" + tool + ".json"
 			dataService.getData(url).then(function (response){
 				vm.tools[response.data._id] = response.data;
 			});

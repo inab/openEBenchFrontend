@@ -40,7 +40,7 @@
 
 			//if $rootScope.array is empty
 			if(!$rootScope.array){
-				var url = urlObject.urlStatistics;
+				var url = urlObject.urlMonitorRest+"/statistics/";
 				dataService.getData(url)
 					.then(function (response){
 						vm.getChunks(response.data.all.total);
@@ -83,7 +83,7 @@
 
 		//loop chunks
 		vm.loopChunks = function(skip,limit){
-			var url = urlObject.urlSkipAndLimit+skip+'&limit='+limit;
+			var url = urlObject.urlMonitorRest+"/aggregate?projection=name&projection=homepage&skip="+skip+'&limit='+limit;
 			dataService.getData(url)
 				.then(function (response){
 					vm.pushData(response);

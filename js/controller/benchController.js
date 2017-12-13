@@ -16,7 +16,6 @@
 
 		var vm = this;
 
-		vm.apiurl = urlObject.urlBenchmark;
 
 		vm.makeChart = function()
 		{
@@ -30,7 +29,7 @@
 
 		vm.retrieveCommunities = function()
 		{
-			var url = "https://elixir.bsc.es/benchmarking/Community.json"
+			var url = urlObject.urlBenchmark+"/Community.json";
 			vm.communities = [];
 			dataService.getData(url).then(function (response){
 

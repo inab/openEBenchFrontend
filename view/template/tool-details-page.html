@@ -18,7 +18,9 @@
                                       <!-- <a  target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a>
                                       <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: #00B9B4" id="badge1" class="label label-info">OpenMinTed</span></a>
                                       <a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: coral" id="badge1" class="label label-info">Github</span></a> -->
-                                      <a ng-click="toolDetailsCtrl.parseLink('biotools',tool['@id'])"><img src="https://img.shields.io/badge/Bio.tools-Link-5BC0DE.svg" alt=""></a>
+                                      <a ng-click="toolDetailsCtrl.parseLink('biotools',tool['@id'])">
+                                          <img src="https://img.shields.io/badge/Bio.tools-Link-5BC0DE.svg" alt="">
+                                      </a>
                                       <img src="https://img.shields.io/badge/OpenMinTed-Link-00B9B4.svg" alt="">
                                       <img src="https://img.shields.io/badge/Github-Link-FF7F50.svg" alt="">
                                     </p>
@@ -102,8 +104,8 @@
                       </div>
 
                       <div class="row">
-                          <div class="col-md-6" ng-if="toolDetailsCtrl.data">
-                              <up-time-chart dataset="toolDetailsCtrl.data"></up-time-chart>
+                          <div class="col-md-6" ng-if="toolDetailsCtrl.datasetUptimeChart(tool['@id'])" >
+                              <up-time-chart dataset=""></up-time-chart>
                           </div>
                       </div>
                       <hr>
@@ -130,9 +132,16 @@
                       </div>
                     </div>
                 </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>See somthing wrong with the information ?</p>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" name="button">UPDATE</button>
+                    </div>
+                </div>
     </div>
-
-
     <error-message error="toolDetailsCtrl.error" ng-show="toolDetailsCtrl.loadingDisplay==2" ></error-message>
 </div>
         <!-- <span ng-repeat="tool in toolDetailsCtrl.tools">

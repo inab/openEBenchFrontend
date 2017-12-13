@@ -16,15 +16,18 @@
     font-family: 'Lobster', cursive;
 
 }
+
+
 a:hover {
  cursor:pointer;
 }
 .content {
     margin-top: 65px;
-    min-height: calc(100vh - 135px);
+    /*chaneg the negative value with footer */
+    min-height: calc(100vh - 190px);
 }
 .footer {
-  height: 50px;
+  height: 100px;
   /*background-color: blue;*/
 }
 

@@ -22,9 +22,9 @@
 		vm.loadingDisplay = 0;
 		vm.typeArray = [];
 		vm.statistics = [];
+		
+		var url = urlObject.urlMonitorRest+"/statistics/";
 
-
-		var url = urlObject.urlStatistics;
 		dataService.getData(url)
 			.then(function (response){
 				vm.orderStats(response.data);

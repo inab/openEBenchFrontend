@@ -3,7 +3,7 @@
     <div class="text-center" ng-bind-html="statsCtrl.message"></div>
     <error-message error="statsCtrl.error" ng-show="statsCtrl.loadingDisplay==2" ></error-message>
 
-    <div class="col-md-12" ng-show="statsCtrl.loadingDisplay==1">
+    <div ng-show="statsCtrl.loadingDisplay==1">
         <h3>Tools stats</h3>
         <div class="jumbotron">
             <canvas class="chart chart-base"

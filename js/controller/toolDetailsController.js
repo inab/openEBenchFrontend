@@ -21,32 +21,28 @@
 
 
 		vm.loadInitData = function (){
-			var a = $location.absUrl().split("/");
-			var  url = "https://openebench.bsc.es/monitor/rest/search?id="+a[a.length-1];
-			console.log(url);
+			var urlSplit = $location.absUrl().split("/");
+			var  url = urlObject.urlMonitorRest+"/search?id="+urlSplit[urlSplit.length-1];
 			dataService.getData(url)
 			.then(function (response){
-				vm.responseData = response.data;
-				vm.tools = vm.responseData;
+				vm.tools = response.data;
 				console.log(vm.tools);
-				if(vm.tools=vm.responseData){
+				if(vm.tools=response.data){
 					vm.loadingDisplay=1;
 				}
 				// vm.loadUpTimeChart(url);
-			}).catch(function (error){
 
+			}).catch(function (error){
 				vm.error = error;
 				vm.loadingDisplay=2
 			})
 		}
 
-		vm.loadUpTimeChart = function (url){
-			dataService.getData(vm.parseLink("last_seen",url))
-				.then(function (response){
-					vm.createUpTimeChartData(response.data);
-				}).catch(function (error){
-					vm.error = error;
-				})
+		vm.datasetUptimeChart = function (url){
+			console.log(url);
+
+
+			console.log(url);
 		}
 
 		vm.createUpTimeChartData = function (data){
@@ -98,8 +94,12 @@
 					break;
 				case "last_seen":
 					var a =""
+
 					a = url.split(/.+\/tool\//);
-					var res = "https://openebench.bsc.es/monitor/metrics/log/"+a[1]+"/project/website/last_check"
+					// console.log(url);
+					// https://openebench.bsc.es/monitor/metrics/log/bio.tools:pmut:2017/cmd/mmb.irbbarcelona.org/project/website/operational
+					var res = urlObject.urlMonitorMetrics+"/log/"+a[1]+"/project/website/last_check"
+					console.log(res);
 					return res;
 					break;
 				case option:
