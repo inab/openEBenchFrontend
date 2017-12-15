@@ -46,13 +46,7 @@
 		}
 
 
-		vm.logit = function (url){
-			console.log(url);
-		}
 
-		vm.prueba = function(smt) {
-			setTimeout(function() { console.log(smt+Date.now()); }, 1000);
-		}
 		vm.bioToolsLink = function (url){
 			var res = url.split("/")[5];
 			var a = res.split(":")
@@ -71,45 +65,70 @@
 
 		vm.generateDataForUpTimeChart = function (objects){
 			// console.log(objects);
-			vm.arrayUptime = [];
+			// vm.arrayUptime = [];
 			if (objects.length>1){
 				console.log("many");
-				vm.arrayUptime = vm.createDataForUptimeCharts2(objects);
+				var res = vm.createDataForUptimeCharts2(objects);
+				res.pop();
+				var a = vm.createDataForUptimeCharts(objects[objects.length-1].date, vm.parsevalue(objects[objects.length-1].value));
+				vm.arrayUptime = res.concat(a);
 				console.log(vm.arrayUptime);
 			}
 			else {
 				console.log("one");
-				vm.arrayUptime = vm.createDataForUptimeCharts(objects[0].date, objects[0].value);
+				vm.arrayUptime = vm.createDataForUptimeCharts(objects[objects.length-1].date, vm.parsevalue(objects[objects.length-1].value));
 			}
 
 		}
+		vm.parsevalue = function (ae){
+			if(ae=="200")
+			{
+				return "1";
+			}else{
+				return "0";
+		  	};
+		}
 		vm.createDataForUptimeCharts2 = function (objects){
 			var x = [];
-				var i = 0;
-				var ary = [];
-				for ( i; i < objects.length;) {
+			var arrayTmpUptime = [];
+				//console.log(objects.length);
+				console.log(objects.length-1);
+				for (var i = 0; i < objects.length-1; i++) {
+					var a =  objects[i].date;
+					var b = objects[i+1].date;
 
-					var a = new Date(objects[i+1].date); //Todays Date
-					var b = new Date(objects[i].date); // last seen last date
-					var tmp = vm.getDates(b,a);
-					var tmpAr = []
-					for(var x of tmp){
-						tmpAr.push({"date" : x.toISOString().split("T")[0], "status" : objects[i].value });
+					var dateArray = vm.getDates(new Date(a),new Date(b)) ;
+					if(i!=objects.length-2){
+						dateArray.pop();
 					}
-					ary = [].concat.apply([], tmpAr);
-					i = i+2;
-					// console.log(getDates(objects[i].date,objects[i+1].date));
+					for (var j in dateArray) {
+						arrayTmpUptime.push({'date' : dateArray[j].toISOString().split("T")[0], "status": vm.parsevalue(objects[i].value)});
+					}
 				}
-				console.log(ary);
-				var l = vm.createDataForUptimeCharts(objects[objects.length-1].date, objects[objects.length-1].value)
-				console.log(l);
-				return ary.concat(l);
+			return arrayTmpUptime;
 		}
+
+		vm.getDates = function(startDate, endDate) {
+		var dates = [],
+		  currentDate = startDate,
+		  addDays = function(days) {
+		    var date = new Date(this.valueOf());
+		    	date.setDate(date.getDate() + days);
+		    return date;
+		  };
+		while (currentDate <= endDate) {
+			dates.push(new Date(currentDate));
+			currentDate = addDays.call(currentDate, 1);
+		}
+		return dates;
+		};
+
 		vm.createDataForUptimeCharts = function (d, val) {
 			var arrayTmpUptime = [];
 			var a = new Date(); //Todays Date
 			var b = new Date(d); // last seen last date
 			var array = vm.getDates(b,a);
+			console.log(array);
 			var arrayTmpUptime = [];
 
 			for (var j in array) {
@@ -119,22 +138,23 @@
 			return arrayTmpUptime;
 		}
 
-		vm.getDates = function (startDate, stopDate) {
-		    var dateArray = new Array();
-		    var currentDate = startDate;
-		    while (currentDate <= stopDate) {
-		        dateArray.push(new Date (currentDate));
-		        currentDate = currentDate.addDays(1);
-		    }
-			dateArray.push(new Date (stopDate));
-		    return dateArray;
-		}
-
-		Date.prototype.addDays = function(days) {
-		    var date = new Date(this.valueOf());
-		    date.setDate(date.getDate() + days);
-		    return date;
-		}
+		// vm.getDates = function (startDate, stopDate) {
+		// 	console.log("here");
+		// 	var dateArray = new Array();
+		// 	   var currentDate = startDate;
+		// 	   while (currentDate <= stopDate) {
+		// 		   dateArray.push(new Date (currentDate));
+		// 		   currentDate = currentDate.addDays(1);
+		// 	   }
+		// 	   return dateArray;
+		// }
+		//
+		//
+		// vm.addDays = function(days) {
+		//     var date = new Date(this.valueOf());
+		//     date.setDate(date.getDate() + days);
+		//     return date;
+		// }
 
 
 		vm.checkIfEmail = function (value){

@@ -78,7 +78,7 @@
 
                         // Add the y Axis
                         svg.append("g")
-                          .call(d3.axisLeft(y).ticks(1).tickFormat(function(d){ return d==200 ? "online" : "offline"}));
+                          .call(d3.axisLeft(y).ticks(1).tickFormat(function(d){ return d==1 ? "online" : "offline"}));
 
                         // text label for the y axis
                         svg.append("text")
