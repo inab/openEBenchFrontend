@@ -71,8 +71,11 @@
 				var res = vm.createDataForUptimeCharts2(objects);
 				res.pop();
 				var a = vm.createDataForUptimeCharts(objects[objects.length-1].date, vm.parsevalue(objects[objects.length-1].value));
-				vm.arrayUptime = res.concat(a);
-				console.log(vm.arrayUptime);
+				var b = res.concat(a);
+
+				console.log(b);
+				vm.arrayUptime = b.slice(Math.max(b.length - 5, 1));;
+
 			}
 			else {
 				console.log("one");
