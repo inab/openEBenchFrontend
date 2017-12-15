@@ -123,6 +123,7 @@
 		@author Vicky Sundesha
 		*/
 		vm.showDetails = function (tool){
+
 			$window.open($location.absUrl()+tool._id._id, "_blank");
 		};
 

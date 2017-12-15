@@ -25,8 +25,8 @@
                     url: url,
                 }).then(function successCallback(response){
                          def.resolve(response);
-                }).catch(function errorCallback(response){
-                        def.reject(response);
+                }).catch(function errorCallback(error){
+                        def.reject(error);
                 });
                 return def.promise;
             };

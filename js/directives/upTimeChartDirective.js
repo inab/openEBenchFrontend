@@ -8,7 +8,7 @@
         function upTimeChart (){
             var directive = {
                 scope : {
-                    dataset : "=dataset",
+                    dataset : "@",
                 },
                 link : link,
                 restrict : 'EA'
@@ -19,15 +19,16 @@
 
                 // scope.$watch('dataset', function(newData, oldData) {
                 //     if(newData){
-                        var data = scope.dataset;
-                        console.log(scope.dataset);
+
+                        var data = JSON.parse(scope.dataset);
                         // set the dimensions and margins of the graph
                         var margin = {top: 20, right: 20, bottom: 50, left: 70};
                         var width = 400;
                         var height = 200 - margin.top - margin.bottom;
 
                         // parse the date / time
-                        var parseTime = d3.utcParse("%d-%m-%Y");
+                        // var parseTime = d3.utcParse("%d-%m-%Y");
+                        var parseTime = d3.utcParse("%Y-%m-%d");
                         // var parsed3.time.format("%d-%b-%y").parse;
 
                         // set the ranges
@@ -37,7 +38,7 @@
                         // define the line
                         var valueline = d3.line()
                             .x(function(d) { return x(d.date); })
-                            .y(function(d) { return y(d.value); });
+                            .y(function(d) { return y(d.status); });
 
                         // append the svg obgect to the body of the page
                         // appends a 'group' element to 'svg'
@@ -49,17 +50,12 @@
                           .append("g")
                             .attr("transform",
                                   "translate(" + margin.left + "," + margin.top + ")");
-
-
-
-
-
                         data.forEach(function(d) {
                             d.date = parseTime(d.date);
                         })
                         // Get the data
                         x.domain(d3.extent(data, function(d) { return d.date; }));
-                        y.domain([0, d3.max(data, function(d) { return d.value; })]);
+                        y.domain([0, d3.max(data, function(d) { return d.status; })]);
 
                         // Add the valueline path.
                         svg.append("path")
@@ -82,7 +78,7 @@
 
                         // Add the y Axis
                         svg.append("g")
-                          .call(d3.axisLeft(y).ticks(1).tickFormat(function(d){ return d==1 ? "online" : "offline"}));
+                          .call(d3.axisLeft(y).ticks(1).tickFormat(function(d){ return d==200 ? "online" : "offline"}));
 
                         // text label for the y axis
                         svg.append("text")
@@ -91,7 +87,7 @@
                           .attr("x",0 - (height / 2))
                           .attr("dy", "1em")
                           .style("text-anchor", "middle")
-                          .text("value");
+                          .text("status");
 
                 //     }
                 // }, true);
