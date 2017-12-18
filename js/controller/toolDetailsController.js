@@ -65,21 +65,24 @@
 
 		vm.generateDataForUpTimeChart = function (objects){
 			// console.log(objects);
-			// vm.arrayUptime = [];
+			vm.arrayUptime = [];
 			if (objects.length>1){
-				console.log("many");
+				// console.log("many");
 				var res = vm.createDataForUptimeCharts2(objects);
 				res.pop();
 				var a = vm.createDataForUptimeCharts(objects[objects.length-1].date, vm.parsevalue(objects[objects.length-1].value));
 				var b = res.concat(a);
-
-				console.log(b);
-				vm.arrayUptime = b.slice(Math.max(b.length - 5, 1));;
+				// console.log(b);
+				vm.arrayUptime = b.slice(Math.max(b.length - 5, 1));
+				// console.log(vm.arrayUptime);
 
 			}
 			else {
-				console.log("one");
-				vm.arrayUptime = vm.createDataForUptimeCharts(objects[objects.length-1].date, vm.parsevalue(objects[objects.length-1].value));
+				// console.log("one");
+				var c = vm.createDataForUptimeCharts(objects[objects.length-1].date, vm.parsevalue(objects[objects.length-1].value));
+				// console.log(c);
+				vm.arrayUptime = c.slice(Math.max(c.length - 5, 1));
+				// console.log(vm.arrayUptime);
 			}
 
 		}
@@ -95,7 +98,7 @@
 			var x = [];
 			var arrayTmpUptime = [];
 				//console.log(objects.length);
-				console.log(objects.length-1);
+				// console.log(objects.length-1);
 				for (var i = 0; i < objects.length-1; i++) {
 					var a =  objects[i].date;
 					var b = objects[i+1].date;
@@ -131,7 +134,7 @@
 			var a = new Date(); //Todays Date
 			var b = new Date(d); // last seen last date
 			var array = vm.getDates(b,a);
-			console.log(array);
+			// console.log(array);
 			var arrayTmpUptime = [];
 
 			for (var j in array) {
@@ -177,11 +180,11 @@
 		}
 
 		vm.lastSeen= function (url){
-			console.log(url);
+			// console.log(url);
 			var res = url.split("/");
 			var a = res[5]+"/"+res[6]+"/"+res[7];
 			var b = urlObject.urlMonitorMetrics+"/log/"+a+"/project/website/operational";
-			console.log(b);
+			// console.log(b);
 			return b;
 		}
 
