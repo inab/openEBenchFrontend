@@ -19,7 +19,7 @@
                         <h6 class="text-center"><a href="{{tool.homepage}}" target="_blank">{{tool.homepage}}</a></h6>
                         <p class="text-center">
                             <a href="{{toolDetailsCtrl.biolink}}">
-                                <img src="https://img.shields.io/badge/Bio.tools-Link-5BC0DE.svg" alt="">
+                                <img src="img/bt.svg" alt="">
                             </a>
                         </p>
                     </div>
@@ -49,11 +49,11 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img src="https://img.shields.io/badge/Website-ONLINE-green.svg" alt="">
-                            <img src="https://img.shields.io/badge/Domain-AVAILABLE-green.svg" alt="">
-                            <img src="https://img.shields.io/badge/Recognizability-NO-red.svg" alt="">
-                            <img src="https://img.shields.io/badge/Registries-NONE-red.svg" alt="">
-                            <img src="https://img.shields.io/badge/Uniqueness-YES-green.svg" alt="">
+                            <img src="img/i1.svg" alt="">
+                            <img src="img/i2.svg" alt="">
+                            <img src="img/i3.svg" alt="">
+                            <img src="img/i4.svg" alt="">
+                            <img src="img/i5.svg" alt="">
                         </p>
                     </div>
                 </div>
@@ -63,8 +63,8 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img src="https://img.shields.io/badge/Binary_distribution-AVAILABLE-green.svg" alt="">
-                            <img src="https://img.shields.io/badge/Sourcecode-AVAILABLE-green.svg" alt="">
+                            <img src="img/a1.svg" alt="">
+                            <img src="img/a2.svg" alt="">
                         </p>
                     </div>
                 </div>
@@ -74,8 +74,8 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img src="https://img.shields.io/badge/Open_source-YES-green.svg" alt="">
-                            <img src="https://img.shields.io/badge/OSI-NO-red.svg" alt="">
+                            <img src="img/l1.svg" alt="">
+                            <img src="img/l2.svg" alt="">
                         </p>
                     </div>
                 </div>
@@ -85,12 +85,12 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img src="https://img.shields.io/badge/Help-NO-red.svg" alt="">
-                            <img src="https://img.shields.io/badge/Tutorial-YES-green.svg" alt="">
-                            <img src="https://img.shields.io/badge/Publications-YES-green.svg" alt="">
-                            <img src="https://img.shields.io/badge/Readme-NO-red.svg" alt="">
-                            <img src="https://img.shields.io/badge/Howto-NO-red.svg" alt="">
-                            <img src="https://img.shields.io/badge/API-NO-red.svg" alt="">
+                            <img src="img/d1.svg" alt="">
+                            <img src="img/d2.svg" alt="">
+                            <img src="img/d3.svg" alt="">
+                            <img src="img/d4.svg" alt="">
+                            <img src="img/d5.svg" alt="">
+                            <img src="img/d6.svg" alt="">
                         </p>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
         <hr>
         <div class="row">
             <div class="col-md-6">
-                <p>See somthing wrong with the information ?</p>
+                <p>See something wrong with the information ?</p>
             </div>
             <div class="col-md-6">
                 <button type="button" name="button">UPDATE</button>
@@ -149,128 +149,3 @@
     </div>
     <error-message error="toolDetailsCtrl.error" ng-show="toolDetailsCtrl.loadingDisplay==2" ></error-message>
 </div>
-<!-- <span ng-repeat="tool in toolDetailsCtrl.tools">
-<div class="row">
-
-
-<div class="col-md-offset-8 col-md-4" >
-<img style="vertical-align: text-bottom" ng-src="img/{{tool['@type']}}.png" data-toggle="tooltip" title="{{tool['@type'] | uppercase}}" alt="{{tool['@type'] | uppercase}}"/>
-</div>
-<div class="col-md-12" >
-<h1 class="text-center">{{tool.name}}</h1>
-<h6 class="text-center"><a href="{{tool.homepage}}" target="_blank">{{tool.homepage}}</a></h6>
-<p class="text-center">
-<a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  id="badge1" class="label label-info">bio.tools</span></a>
-<a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: #00B9B4" id="badge1" class="label label-info">OpenMinTed</span></a>
-<a href="{{toolDetailsCtrl.biolink}}"    target="_blank"><span  style="background-color: coral" id="badge1" class="label label-info">Github</span></a>
-</p>
-</div>
-
-</div>
-
-<hr>
-<div class="row">
-<div class="col-md-2">
-<p><b>Description: </b></p>
-</div>
-<div class="col-md-10">
-<p>{{tool.description}}
-<span id="badge-tag" class="label label-info">bio.tools</span>
-<span id="badge-tag" style="background-color: coral"  class="label label-info">Github</span>
-</p>
-
-</div>
-</div>
-<div class="row">
-<div class="col-md-2">
-<p><b>Version: </b></p>
-</div>
-<div class="col-md-10">
-<p>{{tool.version ? tool.version : "No version information found"}}</p>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-12">
-<h2 class="text-center">Metrics</h2>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-2">
-<p><b>Installability:</b></p>
-</div>
-<div class="col-md-10">
-<p>
-<img src="https://img.shields.io/badge/website-%20%20%20%20%20%20-green.svg" alt="">
-<img src="https://img.shields.io/badge/domain-%20%20%20%20%20%20-green.svg" alt="">
-<img src="https://img.shields.io/badge/recognizability-%20%20%20%20%20%20-red.svg" alt="">
-<img src="https://img.shields.io/badge/registries-%20%20%20%20%20%20-red.svg" alt="">
-<img src="https://img.shields.io/badge/uniqueness-%20%20%20%20%20%20-green.svg" alt="">
-</p>
-</div>
-</div>
-<div class="row">
-<div class="col-md-2">
-<p><b>Accesibility:</b></p>
-</div>
-<div class="col-md-10">
-<p>
-<img src="https://img.shields.io/badge/binary_distribution-AVAILABLE-green.svg" alt="">
-<img src="https://img.shields.io/badge/sourcecode-AVAILABLE-green.svg" alt="">
-</p>
-</div>
-</div>
-<div class="row">
-<div class="col-md-2">
-<p><b>Licensing:</b></p>
-</div>
-<div class="col-md-10">
-<p>
-<img src="https://img.shields.io/badge/open_source-YES-green.svg" alt="">
-<img src="https://img.shields.io/badge/OSI-NO-red.svg" alt="">
-</p>
-</div>
-</div>
-<div class="row">
-<div class="col-md-2">
-<p><b>Documentation:</b></p>
-</div>
-<div class="col-md-10">
-<p>
-<img src="https://img.shields.io/badge/Help-NO-red.svg" alt="">
-<img src="https://img.shields.io/badge/Tutorial-YES-green.svg" alt="">
-<img src="https://img.shields.io/badge/Publications-YES-green.svg" alt="">
-<img src="https://img.shields.io/badge/Readme-NO-red.svg" alt="">
-<img src="https://img.shields.io/badge/Howto-NO-red.svg" alt="">
-<img src="https://img.shields.io/badge/API-NO-red.svg" alt="">
-</p>
-</div>
-</div>
-<hr>
-<div class="row">
-<div class="col-md-12">
-<h2 class="text-center">Up time</h2>
-</div>
-</div>
-
-<div class="row">
-<div class="col-md-6" ng-if="toolDetailsCtrl.data">
-<up-time-chart dataset="toolDetailsCtrl.data"></up-time-chart>
-</div>
-</div>
-<hr>
-<div class="row">
-<div class="col-md-2">
-<p><b>Publications: </b></p>
-</div>
-<div class="col-md-10">
-<p ng-if="tool.publications.length==0">No publications</p>
-<span ng-repeat="publication in tool.publications">
-<span ng-repeat="(key,value) in publication">
-<p><a ng-href="{{publicationLinks(key,value)}}">{{key | uppercase}}:{{value}}</a></p>
-</span>
-</span>
-</div>
-</div>
-</span> -->
