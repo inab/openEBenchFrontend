@@ -168,8 +168,8 @@
 	]
 
 	// Controller creation inside the module elixibilitasApp
-	angular
-	.module('elixibilitasApp')
-	.controller("communityController", communityController)
+	// angular
+	// .module('elixibilitasApp')
+	// .controller("communityController", communityController)
 
 })();

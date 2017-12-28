@@ -5,15 +5,33 @@
     @author Vicky Sundesha
 */
 
+var angular = require('angular');
+var chartjs = require('angular-chart.js');
+var angularUtilsdirectivesdirPagination = require('angular-utils-pagination');
+var ngSanitize = require('angular-sanitize');
+var uibootstrap = require('angular-ui-bootstrap');
+var ngRoute = require ('angular-route')
+
 (function() {
     'use strict';
 
     angular
         .module('elixibilitasApp', [
-            'chart.js',
-            'angularUtils.directives.dirPagination',
-            'ngSanitize',
-            'ui.bootstrap',
-            'ngRoute'
+            chartjs,
+            angularUtilsdirectivesdirPagination,
+            ngSanitize,
+            uibootstrap,
+            ngRoute
         ]);
+
+    require('./controller');
+    require('./directives');
+    require('./external/dirPagination.js');
+    require('./factory');
+    require('./factory/errorService');
+    require('./model/Chart.js');
+    require('./model/Instance.js');
+    require('./model/Tool.js');
+    require('./model/Tooltype.js');
+    require('./model/url.js');
 })();

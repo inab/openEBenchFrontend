@@ -51,8 +51,8 @@
 
     mainController.$inject = ['$scope','$rootScope','dataService','$location','$document']
 
-    angular
-    .module('elixibilitasApp')
-    .controller("mainController",mainController)
+    // angular
+    // .module('elixibilitasApp')
+    // .controller("mainController",mainController)
 
 })();

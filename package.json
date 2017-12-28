@@ -4,21 +4,25 @@
   "description": "openEBench",
   "main": "js/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "webpack"
   },
   "author": "Vicky Sundesha <vicky.sundesha@bsc.es>",
   "license": "AGPL-3.0",
   "dependencies": {
     "angular-chart.js": "^1.1.1",
     "angular-ui-bootstrap": "^2.5.0",
+    "angular-utils-pagination": "^0.11.1",
     "bootstrap": "^3.3.7",
     "chartjs": "^0.3.24",
     "d3": "^4.12.2",
     "jquery": "^3.2.1"
   },
   "devDependencies": {
+    "angular": "^1.6.6",
     "angular-route": "^1.6.6",
     "angular-sanitize": "^1.6.6",
-    "angular": "^1.6.6"
+    "webpack": "^3.10.0",
+    "yarn": "^1.3.2"
   }
 }

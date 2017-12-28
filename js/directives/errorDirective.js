@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular
-        .module('elixibilitasApp')
-        .directive('errorMessage', errorMessage);
+    // angular
+    //     .module('elixibilitasApp')
+    //     .directive('errorMessage', errorMessage);
 
         function errorMessage (){
             var scope = {

@@ -22,7 +22,7 @@
 		vm.loadingDisplay = 0;
 		vm.typeArray = [];
 		vm.statistics = [];
-		
+
 		var url = urlObject.urlMonitorRest+"/statistics/";
 
 		dataService.getData(url)
@@ -126,9 +126,9 @@
 };
 		statsController.$inject = ['$scope','$http', '$window','$rootScope','$anchorScroll', '$location', '$q' ,'dataService', 'errorService', '$interval']
 
-	angular
-	.module('elixibilitasApp')
-	.controller("statsController", statsController)
+	// angular
+	// .module('elixibilitasApp')
+	// .controller("statsController", statsController)
 
 
 

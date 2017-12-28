@@ -58,8 +58,8 @@
 
 
          searchController.$inject = ['$scope','$rootScope','dataService','$location','$window','$routeParams']
-
-        angular.module('elixibilitasApp')
-        .controller("searchController",searchController)
+        // 
+        // angular.module('elixibilitasApp')
+        // .controller("searchController",searchController)
 
 })();

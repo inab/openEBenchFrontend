@@ -1,9 +1,9 @@
 (function() {
     'use strict';
-
-    angular
-        .module('elixibilitasApp')
-        .directive('datasetDirective', datasetDirective);
+    // 
+    // angular
+    //     .module('elixibilitasApp')
+    //     .directive('datasetDirective', datasetDirective);
 
         function datasetDirective (){
             var scope = {

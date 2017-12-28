@@ -1,10 +1,11 @@
 (function() {
     'use strict';
 
-    angular
-        .module('elixibilitasApp')
-        .service('errorService', errorService);
-
+    // angular
+    //     .module('elixibilitasApp')
+    //     .service('errorService', errorService);
+    module.export= errorService;
+    
     errorService.$inject = [];
 
 

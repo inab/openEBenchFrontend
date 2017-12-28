@@ -246,8 +246,8 @@
 
 	toolController.$inject = ['$scope','$http', '$window','$rootScope','$anchorScroll', '$location', '$q', 'dataService', 'errorService']
 
-	angular
-	.module('elixibilitasApp')
-	.controller("toolController", toolController);
+	// angular
+	// .module('elixibilitasApp')
+	// .controller("toolController", toolController);
 
 })();

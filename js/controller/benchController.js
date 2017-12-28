@@ -65,9 +65,9 @@
 	]
 
 	// Controller creation inside the module elixibilitasApp
-	angular
-	.module('elixibilitasApp')
-	.controller("benchController", benchController);
+	// angular
+	// .module('elixibilitasApp')
+	// .controller("benchController", benchController);
 
 
 })();

@@ -29,7 +29,8 @@
 
          homeController.$inject = ['$scope','$rootScope','dataService','$location','$window']
 
-        angular.module('elixibilitasApp')
-        .controller("homeController",homeController)
+        // angular
+        //     .module('elixibilitasApp')
+        //     .controller("homeController",homeController)
 
 })();

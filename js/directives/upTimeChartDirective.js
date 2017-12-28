@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular
-        .module('elixibilitasApp')
-        .directive('upTimeChart', upTimeChart);
+    // angular
+    //     .module('elixibilitasApp')
+    //     .directive('upTimeChart', upTimeChart);
 
         function upTimeChart (){
             var directive = {

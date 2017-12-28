@@ -1,9 +1,10 @@
 (function() {
     'use strict';
 
-    angular
-        .module('elixibilitasApp')
-        .factory('dataService', dataService);
+    // angular
+    //     .module('elixibilitasApp')
+    //     .factory('dataService', dataService);
+    module.export = dataService;
 
     dataService.$inject = ['$http','$q'];
 

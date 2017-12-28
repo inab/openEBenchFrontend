@@ -196,8 +196,8 @@
 
 
 
-	angular
-	.module('elixibilitasApp')
-	.controller("toolDetailsController", toolDetailsController);
+	// angular
+	// .module('elixibilitasApp')
+	// .controller("toolDetailsController", toolDetailsController);
 
 })();

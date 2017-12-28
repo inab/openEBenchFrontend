@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular
-        .module('elixibilitasApp')
-        .directive('badgeTag', badgeTag);
+    // angular
+    //     .module('elixibilitasApp')
+    //     .directive('badgeTag', badgeTag);
 
         function badgeTag (){
             var scope = {
