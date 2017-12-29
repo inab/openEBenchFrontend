@@ -133,7 +133,7 @@
                 <td class="col-md-2;">
                     <a ng-click="toolCtrl.showDetails(tool);" type="button" class="btn btn-info btn-xs" >+ info</a>
                 </td>
-                <td ><span  ng-repeat="a in tool.tools" style="display:inline-block"><img class ="table-icons" ng-src="img/{{a['@type']}}.png" data-toggle="tooltip" title="{{a['@type'] | uppercase}}" alt="{{a['@type'] | uppercase}}"/></span></td>
+                <td ><span  ng-repeat="a in tool.tools" ><img class ="table-icons" ng-src="img/{{a['@type']}}.png" data-toggle="tooltip" title="{{a['@type'] | uppercase}}" alt="{{a['@type'] | uppercase}}"/></span></td>
 
             </tr>
         </table>

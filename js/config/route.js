@@ -34,6 +34,9 @@
             .when("/benchmarking/:community", {
                 templateUrl : "view/template/community-page.html"
             })
+            .when("/profile/", {
+                templateUrl : "view/template/user-profile-page.html"
+            })
             .otherwise({redirectTo:'/'})
     }
 })();

@@ -16,7 +16,13 @@
     font-family: 'Lobster', cursive;
 
 }
+.border-left{
+    border-left: 1px solid #EF7500 ;
+}
 
+.border-top{
+    border-top: 1px solid #ECECEC ;
+}
 
 a:hover {
  cursor:pointer;
@@ -38,7 +44,7 @@ body {
 }
 
 /*orange line on navbar*/
-nav li:hover{
+nav li.underlink :hover{
      box-shadow:0px -3px 0px 0px #EF7500 inset;
      transition: box-shadow 0.2s ease-in-out;
 }
@@ -125,7 +131,7 @@ th {
 .table-icons{
     height: 30px;
     width: auto;
-    display: block;
+    /*display: block;*/
 }
 
 /*this is the bottom of the home page*/
