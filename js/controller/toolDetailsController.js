@@ -23,6 +23,7 @@
 		vm.loadInitData = function (){
 			vm.loadingDisplay=0;
 			vm.tools = null;
+
 			vm.dataServiceFunction(vm.parseUrl());
 		}
 
@@ -31,13 +32,24 @@
 			return urlObject.urlMonitorRest+"/search?id="+urlSplit[urlSplit.length-1];
 		}
 
+
+		vm.addAlert = function() {
+			vm.alerts= [];
+			vm.alerts.push({msg: 'Your request has been accepted ! Thank you !'});
+		};
+
+		vm.closeAlert = function(index) {
+			vm.alerts.splice(index, 1);
+		};
+
 		vm.dataServiceFunction = function (url){
+			console.log(url);
 			dataService.getData(url)
 				.then(function (response){
 					var theData = angular.copy(response.data);
-					vm.tools = theData;
-					vm.bioToolsLink(vm.tools[0]['@id']);
-					vm.datasetUptimeChart(vm.tools[0]['@id']);
+					vm.toTools(response.data)
+
+					vm.datasetUptimeChart(theData[0]['@id']);
 					vm.loadDisplay=1
 				}).catch(function (error){
 					vm.error = error;
@@ -45,26 +57,46 @@
 				})
 		}
 
+		vm.toTools = function (data){
+			vm.tools = [];
+			for (var i = 0; i < data.length; i++) {
+				// console.log(data[i]);
+				var tool = new Tool();
+				tool.setName(data[i].name);
+				tool.setId(data[i]['@id']);
+				tool.setDesc(data[i].description);
+				tool.setType(data[i]['@type']);
+				tool.setLinkToBioTool(vm.bioToolsLink(data[i]['@id']));
+				tool.setVersion(data[i].version);
+				tool.setPublications(data[i].publications);
+				tool.setLink(data[i].homepage);
+				// console.log(tool.getVersion());
+				vm.tools.push(tool);
+			}
+		}
 
 
 		vm.bioToolsLink = function (url){
 			var res = url.split("/")[5];
 			var a = res.split(":")
-			vm.biolink = "https://bio.tools/"+a[1];
+			return "https://bio.tools/"+a[1];
 		}
 
 		vm.datasetUptimeChart = function (url){
+			console.log(url);
 			dataService.getData(vm.lastSeen(url))
 				.then(function (response){
+
 					var res = angular.copy(response.data)
 					vm.generateDataForUpTimeChart(response.data);
+					// return response.data;
 				}).catch(function (error){
 					vm.error = error;
 				})
 		}
 
 		vm.generateDataForUpTimeChart = function (objects){
-			// console.log(objects);
+			console.log(objects);
 			vm.arrayUptime = [];
 			if (objects.length>1){
 				// console.log("many");

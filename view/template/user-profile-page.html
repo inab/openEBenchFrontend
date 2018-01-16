@@ -11,203 +11,212 @@
             <br>
             <div>
                 <ul class="nav">
+
                     <li>
                         <a ng-click ="profileCtrl.loadDisplay=0">
                             <i class="glyphicon glyphicon-home"></i>
-                            Overview </a>
-                        </li>
-                        <li>
-                            <a ng-click ="profileCtrl.loadDisplay=1">
-                                <i class="glyphicon glyphicon-user"></i>
-                                Account Settings </a>
-                            </li>
-                            <li>
-                                <a ng-click ="profileCtrl.loadDisplay=2">
-                                    <i class="glyphicon glyphicon-flag"></i>
-                                    Help </a>
-                                </li>
-                            </ul>
+                            Overview
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click ="profileCtrl.loadDisplay=1">
+                            <i class="glyphicon glyphicon-user"></i>
+                            Account Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click ="profileCtrl.loadDisplay=4">
+                            <i class="glyphicon glyphicon-flag"></i>
+                                    Scientific benchmark
+                                </a>
+                    </li>
+                    <li>
+                        <a ng-click ="profileCtrl.loadDisplay=3">
+                            <i class="glyphicon glyphicon-flag"></i>
+                                    Technical monitoring
+                                </a>
+                    </li>
+                    <li>
+                        <a ng-click ="profileCtrl.loadDisplay=2">
+                            <i class="glyphicon glyphicon-flag"></i>
+                            Help
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-10 border-left">
+            <div ng-show="profileCtrl.loadDisplay==0">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <h3 class="text-center"><i class="glyphicon glyphicon-wrench"></i> My tools</h3>
                         </div>
+                        <table class="table table-condensed table-hover">
+                            <tr>
+                                <th><b>Name</b></th>
+                                <th><b>More info</b></th>
+                                <th><b>Types</b></th>
+                                <th><b>Action</b></th>
+                            </tr>
+                            <tr>
+                                <td>TrimAl</td>
+                                <td><a href="#" class="btn btn-info btn-xs">info</a></td>
+                                <td><img class ="table-icons" src="img/cmd.png" alt=""></td>
+                                <td><button class="btn btn-success btn-xs" type="button" name="button">Update</button></td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="col-md-10 border-left">
-                        <div ng-show="profileCtrl.loadDisplay==0">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="col-md-12">
-                                        <h3 class="text-center"><i class="glyphicon glyphicon-wrench"></i> My tools</h3>
+
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <h3 class="text-center"><i class="glyphicon glyphicon-edit"></i> Contributions</h3>
+                        </div>
+                        <table class="table table-condensed table-hover">
+                            <tr>
+                                <th><b>Name</b></th>
+                                <th><b>More info</b></th>
+                                <th><b>Types</b></th>
+
+                            </tr>
+                            <tr>
+                                <td>TrimAl</td>
+                                <td><a href="#" class="btn btn-info btn-xs">info</a></td>
+                                <td><img class ="table-icons" src="img/cmd.png" alt=""></td>
+                            </tr>
+                            <tr>
+                                <td>PMut</td>
+                                <td><a href="#" class="btn btn-info btn-xs">info</a></td>
+                                <td><img class ="table-icons"  title="CMD" src="img/cmd.png" alt="">
+                                    <img class ="table-icons"  title="WEB"  src="img/web.png" alt="">
+                                    <img class ="table-icons"  title="REST" src="img/rest.png" alt="REST"></td>
+                                </tr>
+                                <tr>
+                                    <td>xcms</td>
+                                    <td><a href="#" class="btn btn-info btn-xs">info</a></td>
+                                    <td>
+                                        <span style="display:inline-block !important">
+                                            <img class ="table-icons" src="img/cmd.png" alt=""/>
+                                            <img class ="table-icons" src="img/lib.png" alt=""/>
+                                        </span>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <h3 class="text-center"><i class="glyphicon glyphicon-pushpin"></i> Bookmarked tools</h3>
+                        </div>
+                        <table class="table table-condensed table-hover">
+                            <tr>
+                                <th><b>Name</b></th>
+                                <th><b>More info</b></th>
+                                <th><b>Types</b></th>
+                            </tr>
+                            <tr>
+                                <td>PMut</td>
+                                <td><a href="#" class="btn btn-info btn-xs">info</a></td>
+                                <td><img class ="table-icons"  title="CMD" src="img/cmd.png" alt="">
+                                    <img class ="table-icons"  title="WEB"  src="img/web.png" alt="">
+                                    <img class ="table-icons"  title="REST" src="img/rest.png" alt="REST"></td>
+                                </tr>
+                                <tr>
+                                    <td>TrimAl</td>
+                                    <td><a href="#" class="btn btn-info btn-xs">info</a></td>
+                                    <td><img class ="table-icons" src="img/cmd.png" alt=""></td>
+                                </tr>
+                                <tr>
+                                    <td>xcms</td>
+                                    <td><a href="#" class="btn btn-info btn-xs">info</a></td>
+                                    <td>
+                                        <span style="display:inline-block !important">
+                                            <img class ="table-icons" src="img/cmd.png" alt=""/>
+                                            <img class ="table-icons" src="img/lib.png" alt=""/>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>zipHMM</td>
+                                    <td><a href="#" class="btn btn-info btn-xs">info</a></td>
+                                    <td><img class ="table-icons" src="img/lib.png" alt=""></td>
+                                </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="profileCtrl.loadDisplay==1">
+                <h2 class="text-center">Account settings</h2>
+                <br>
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="Display name">Display name</label>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="glyphicon glyphicon-user">
+                                        </i>
                                     </div>
-                                    <table class="table table-condensed table-hover">
-                                        <tr>
-                                            <th><b>Name</b></th>
-                                            <th><b>More info</b></th>
-                                            <th><b>Types</b></th>
-                                            <th><b>Action</b></th>
-                                        </tr>
-                                        <tr>
-                                            <td>TrimAl</td>
-                                            <td><a href="#" class="btn btn-info btn-xs">info</a></td>
-                                            <td><img class ="table-icons" src="img/cmd.png" alt=""></td>
-                                            <td><button class="btn btn-success btn-xs" type="button" name="button">Update</button></td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="col-md-12">
-                                        <h3 class="text-center"><i class="glyphicon glyphicon-edit"></i> Contributions</h3>
-                                    </div>
-                                    <table class="table table-condensed table-hover">
-                                        <tr>
-                                            <th><b>Name</b></th>
-                                            <th><b>More info</b></th>
-                                            <th><b>Types</b></th>
-
-                                        </tr>
-                                        <tr>
-                                            <td>TrimAl</td>
-                                            <td><a href="#" class="btn btn-info btn-xs">info</a></td>
-                                            <td><img class ="table-icons" src="img/cmd.png" alt=""></td>
-                                        </tr>
-                                        <tr>
-                                            <td>PMut</td>
-                                            <td><a href="#" class="btn btn-info btn-xs">info</a></td>
-                                            <td><img class ="table-icons"  title="CMD" src="img/cmd.png" alt="">
-                                                <img class ="table-icons"  title="WEB"  src="img/web.png" alt="">
-                                                <img class ="table-icons"  title="REST" src="img/rest.png" alt="REST"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>xcms</td>
-                                                <td><a href="#" class="btn btn-info btn-xs">info</a></td>
-                                                <td>
-                                                    <span style="display:inline-block !important">
-                                                        <img class ="table-icons" src="img/cmd.png" alt=""/>
-                                                        <img class ="table-icons" src="img/lib.png" alt=""/>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="row">
-
-                                    <div class="col-md-6">
-                                        <div class="col-md-12">
-                                            <h3 class="text-center"><i class="glyphicon glyphicon-pushpin"></i> Bookmarked tools</h3>
-                                        </div>
-                                        <table class="table table-condensed table-hover">
-                                            <tr>
-                                                <th><b>Name</b></th>
-                                                <th><b>More info</b></th>
-                                                <th><b>Types</b></th>
-                                            </tr>
-                                            <tr>
-                                                <td>PMut</td>
-                                                <td><a href="#" class="btn btn-info btn-xs">info</a></td>
-                                                <td><img class ="table-icons"  title="CMD" src="img/cmd.png" alt="">
-                                                    <img class ="table-icons"  title="WEB"  src="img/web.png" alt="">
-                                                    <img class ="table-icons"  title="REST" src="img/rest.png" alt="REST"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>TrimAl</td>
-                                                    <td><a href="#" class="btn btn-info btn-xs">info</a></td>
-                                                    <td><img class ="table-icons" src="img/cmd.png" alt=""></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>xcms</td>
-                                                    <td><a href="#" class="btn btn-info btn-xs">info</a></td>
-                                                    <td>
-                                                        <span style="display:inline-block !important">
-                                                            <img class ="table-icons" src="img/cmd.png" alt=""/>
-                                                            <img class ="table-icons" src="img/lib.png" alt=""/>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>zipHMM</td>
-                                                    <td><a href="#" class="btn btn-info btn-xs">info</a></td>
-                                                    <td><img class ="table-icons" src="img/lib.png" alt=""></td>
-                                                </tr>
-
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-show="profileCtrl.loadDisplay==1">
-                                    <h2 class="text-center">Account settings</h2>
-                                    <br>
-                                    <form class="form-horizontal">
-                                        <fieldset>
-
-                                            <!-- Form Name -->
-
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label" for="Display name">Display name</label>
-                                                <div class="col-md-4">
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="glyphicon glyphicon-user">
-                                                            </i>
-                                                        </div>
-                                                        <input id="Display name" name="Display name " type="text" placeholder="{{profileCtrl.name ? profileCtrl.name : 'Demo'}}" class="form-control input-md">
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-
-                                            <!-- File Button -->
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label" for="Upload photo">Upload photo</label>
-                                                <div class="col-md-4">
-                                                    <input id="Upload photo" name="Upload photo" class="input-file" type="file">
-                                                </div>
-                                            </div>
-
-                                            <!-- Textarea -->
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label" for="Overview (max 200 words)">Overview (max 200 words)</label>
-                                                <div class="col-md-4">
-                                                    <textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)">Overview</textarea>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label" ></label>
-                                                <div class="col-md-4">
-                                                    <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</a>
-                                                    <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
-
-                                                </div>
-                                            </div>
-
-                                        </fieldset>
-                                    </form>
+                                    <input id="Display name" name="Display name " type="text" placeholder="{{profileCtrl.name ? profileCtrl.name : 'Demo'}}" class="form-control input-md">
                                 </div>
 
 
-                                <div ng-show="profileCtrl.loadDisplay==2">
-                                    <form class="form-horizontal">
-                                        <fieldset>
-                                            <div class="form-group">
-
-                                                <p class="col-md-12" >Contact our support team (max 200 words)</p>
-                                                <div class="col-md-10">
-                                                    <textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label" ></label>
-                                                <div class="col-md-4">
-                                                    <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Send</a>
-                                                    <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
-
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                </div>
                             </div>
-
                         </div>
-                    </div>
+
+                        <!-- File Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="Upload photo">Upload photo</label>
+                            <div class="col-md-4">
+                                <input id="Upload photo" name="Upload photo" class="input-file" type="file">
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="Overview (max 200 words)">Overview (max 200 words)</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)">Overview</textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" ></label>
+                            <div class="col-md-4">
+                                <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</a>
+                                <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div ng-show="profileCtrl.loadDisplay==2">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+
+                            <p class="col-md-12" >Contact our support team (max 200 words)</p>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" ></label>
+                            <div class="col-md-4">
+                                <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Send</a>
+                                <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

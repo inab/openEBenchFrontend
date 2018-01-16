@@ -8,8 +8,10 @@ function Tool(){
     this.instanceArray={};
     this.contact;
     this.credits;
+    this.version;
+    this.publications;
 
-    this.construct = function (_id,name,type,desc,link,linkToBioTool,instance,contact,credits){
+    this.construct = function (_id,name,type,desc,link,linkToBioTool,instance,contact,credits,version,publications){
         this.setId(_id);
         this.setName(name);
         this.setType(type)
@@ -19,6 +21,8 @@ function Tool(){
         this.setInstance(instance);
         this.setContact(contact);
         this.setCredits(credits);
+        this.setVersion(version);
+        this.setPublications(publications);
     }
 
     //Setters
@@ -31,6 +35,8 @@ function Tool(){
     this.setInstance = function (instance) {this.instanceArray[this.type] = instance}
     this.setContact = function (contact){this.contact = contact;}
     this.setCredits = function (credits) {this.credits = credits;}
+    this.setVersion = function (version) {this.version = version;}
+    this.setPublications = function (publications) {this.publications = publications;}
 
 
     //Getters
@@ -43,4 +49,6 @@ function Tool(){
     this.getInstance = function () {return this.instanceArray;}
     this.getContact = function () {return this.contact;}
     this.getCredits = function () {return this.credits;}
+    this.getVersion = function () {return this.version;}
+    this.getPublications =function () {return this.publications;}
 }

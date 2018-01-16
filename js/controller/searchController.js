@@ -27,7 +27,7 @@
                 vm.currentPage = 1;
                 vm.pageSize = 10;
                 var search  = $routeParams.search ? $routeParams.search : " ";
-                var url = urlObject.urlMonitorRest + "/aggregate?text="+search;
+                var url = urlObject.urlMonitorRest + "/aggregate2?text="+search;
                 dataService.getData(url)
                 .then(function (response){
                 vm.data = response.data;
@@ -49,7 +49,7 @@
             @author Vicky Sundesha
             */
             vm.showDetails = function (tool){
-                $window.open("http://localhost/~vsundesh/openEBenchFrontend/#!/tool/"+tool._id._id, "_blank");
+                $window.open(location.href.split("#!")[0]+"#!/tool/"+tool.id, "_blank");
             };
 
 		 }

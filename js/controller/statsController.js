@@ -22,7 +22,7 @@
 		vm.loadingDisplay = 0;
 		vm.typeArray = [];
 		vm.statistics = [];
-		
+
 		var url = urlObject.urlMonitorRest+"/statistics/";
 
 		dataService.getData(url)
@@ -97,6 +97,45 @@
 			labels.push("OTHERS");
 			data.push(ope,notOpe);
 			vm.chart1.construct("bar",labels,data,['Operational', 'Not Operational'],['#45b7cd', '#ff6384',"#ffffff"],options)
+
+
+  			var getRepos = ["github","bitbucket","sourceforge","apache","emboss"];
+			var charts2labels = [];
+			var charts2data = [];
+			var i = 0;
+			for (i = 0; i < getRepos.length; i++) {
+				var url2 = "https://openebench.bsc.es/monitor/rest/statistics/count/repositories?text="+getRepos[i];
+				dataService.getData(url2)
+					.then(function (response){
+						charts2labels.push(response.config.url.split("text=")[1]);
+
+						charts2data.push(response.data);
+						
+					}).catch(function(error){
+						console.log(error);
+						vm.error = error;
+						vm.loadingDisplay = 2;
+					});
+
+
+			}
+			if (i == getRepos.length){
+				vm.chart2 = new Chart();
+				var options2 = {
+					title: {
+						display: false
+					},
+					tooltips : {
+						titleFontSize : 26,
+						bodyFontSize : 20,
+						bodySpacing : 4,
+					},
+					legend: {display: true, position: 'bottom'},
+				};
+
+				vm.chart2.construct("pie",charts2labels,charts2data,"","",options2);
+				// console.log(vm.sum2);
+			}
 			vm.loadingDisplay=1;
 		}
 

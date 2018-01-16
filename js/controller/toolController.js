@@ -29,7 +29,7 @@
 		*/
 		vm.loadInitData = function() {
 			vm.currentPage = 1;
-			vm.pageSize = 10;
+			vm.pageSize = 5;
 			vm.toolsArray = [];
 			vm.displayDetailsView = 0;
 			vm.basicDetails;
@@ -83,7 +83,9 @@
 
 		//loop chunks
 		vm.loopChunks = function(skip,limit){
-			var url = urlObject.urlMonitorRest+"/aggregate?projection=name&projection=homepage&skip="+skip+'&limit='+limit;
+			// var url = urlObject.urlMonitorRest+"/aggregate?projection=name&projection=homepage&projection=description&projection=homepage&skip="+skip+'&limit='+limit;
+			var url = urlObject.urlMonitorRest+"/aggregate2?projection=description&projection=homepage&projection=name&skip="+skip+'&limit='+limit;
+			console.log(url);
 			dataService.getData(url)
 				.then(function (response){
 					vm.pushData(response);
@@ -124,7 +126,7 @@
 		*/
 		vm.showDetails = function (tool){
 
-			$window.open($location.absUrl()+tool._id._id, "_blank");
+			$window.open($location.absUrl()+tool.id, "_blank");
 		};
 
 		// vm.allData= function (tool){
@@ -133,6 +135,7 @@
 		// 		array.push(vm.initTool(tool[i]));
 		// 	}
 		// 	return array
+    <!-- {{tool["_id"]._id}} -->
 		// }
 
 
