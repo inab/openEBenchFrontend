@@ -29,7 +29,7 @@
 
 		vm.parseUrl = function (){
 			var urlSplit = $location.absUrl().split("/");
-			return urlObject.urlMonitorRest+"/search?id="+urlSplit[urlSplit.length-1];
+			return urlObject.urlMonitorRest+"/aggregate?id="+urlSplit[urlSplit.length-1];
 		}
 
 
@@ -46,10 +46,12 @@
 			console.log(url);
 			dataService.getData(url)
 				.then(function (response){
-					var theData = angular.copy(response.data);
-					vm.toTools(response.data)
-
-					vm.datasetUptimeChart(theData[0]['@id']);
+					vm.theData = angular.copy(response.data);
+					// console.log(response.data);
+					// vm.toTools(response.data)
+					// console.log(vm.theData[0].entities[0].tools[0]['@id']);
+					
+					vm.datasetUptimeChart(vm.theData[0].entities[0].tools[0]['@id']);
 					vm.loadDisplay=1
 				}).catch(function (error){
 					vm.error = error;
@@ -176,23 +178,7 @@
 			return arrayTmpUptime;
 		}
 
-		// vm.getDates = function (startDate, stopDate) {
-		// 	console.log("here");
-		// 	var dateArray = new Array();
-		// 	   var currentDate = startDate;
-		// 	   while (currentDate <= stopDate) {
-		// 		   dateArray.push(new Date (currentDate));
-		// 		   currentDate = currentDate.addDays(1);
-		// 	   }
-		// 	   return dateArray;
-		// }
-		//
-		//
-		// vm.addDays = function(days) {
-		//     var date = new Date(this.valueOf());
-		//     date.setDate(date.getDate() + days);
-		//     return date;
-		// }
+
 
 
 		vm.checkIfEmail = function (value){

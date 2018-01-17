@@ -27,7 +27,7 @@
                 vm.currentPage = 1;
                 vm.pageSize = 10;
                 var search  = $routeParams.search ? $routeParams.search : " ";
-                var url = urlObject.urlMonitorRest + "/aggregate2?text="+search;
+                var url = urlObject.urlMonitorRest + "/aggregate?text="+search+"&projection=description&projection=homepage&projection=name";
                 dataService.getData(url)
                 .then(function (response){
                 vm.data = response.data;

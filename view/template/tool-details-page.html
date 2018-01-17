@@ -1,11 +1,13 @@
 <div ng-controller="toolDetailsController as toolDetailsCtrl" ng-init="toolDetailsCtrl.loadInitData();" class="container" >
-        <h1 class="text-center">{{toolDetailsCtrl.tools[0].name}}</h1>
-        <h6 class="text-center"><a href="{{toolDetailsCtrl.tools[0].homepage}}" target="_blank">{{toolDetailsCtrl.tools[0].link}}</a></h6>
+        <h1 class="text-center">{{toolDetailsCtrl.theData[0].entities[0].tools[0].name}}</h1>
+
+        <h6 class="text-center"><a href="{{toolDetailsCtrl.theData[0].entities[0].tools[0].homepage}}" target="_blank">{{toolDetailsCtrl.theData[0].entities[0].tools[0].homepage}}</a></h6>
         <p class="text-center">
-            <a href="{{toolDetailsCtrl.tools[0].getLinkToBioTool()}}">
+            <a href="https://bio.tools/{{toolDetailsCtrl.theData[0].id}}">
                 <img src="img/bt.svg" alt="">
             </a>
         </p>
+
 
 
 
@@ -18,119 +20,124 @@
             </li>
         </ul> -->
 
-        <uib-tabset active="active">
-        <uib-tab index="$index" ng-repeat="tool in toolDetailsCtrl.tools" heading='{{tool.getType() | uppercase}}'>
+        <uib-tabset active="active" ng-repeat="tools in toolDetailsCtrl.theData">
+            <uib-tab index="$index" ng-repeat="tool in tools.entities" heading='{{tool.type | uppercase}}'>
+                <!-- {{a.tools}} -->
+                <!-- {{tool.tools[index]}} -->
+                <br>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p><b>Description: </b></p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>{{versionSelected.description}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p><b>Version: </b></p>
+                    </div>
 
-            <br>
+                    <div class="col-md-10">
 
-            <div class="row">
-                <div class="col-md-2">
-                    <p><b>Description: </b></p>
-                </div>
-                <div class="col-md-10">
-                    <p>{{tool.getDesc()}}</p>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <p><b>Version: </b></p>
-                </div>
-
-                <div class="col-md-10">
-                    <p>{{tool.getVersion() ? tool.getVersion() : "No version information found"}}</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="text-center">Metrics</h2>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-2">
-                    <p><b>Installability:</b></p>
-                </div>
-                <div class="col-md-10">
-                    <p>
-                        <img src="img/i1.svg" alt="">
-                        <img src="img/i2.svg" alt="">
-                        <img src="img/i3.svg" alt="">
-                        <img src="img/i4.svg" alt="">
-                        <img src="img/i5.svg" alt="">
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <p><b>Accesibility:</b></p>
-                </div>
-                <div class="col-md-10">
-                    <p>
-                        <img src="img/a1.svg" alt="">
-                        <img src="img/a2.svg" alt="">
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <p><b>Licensing:</b></p>
-                </div>
-                <div class="col-md-10">
-                    <p>
-                        <img src="img/l1.svg" alt="">
-                        <img src="img/l2.svg" alt="">
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <p><b>Documentation:</b></p>
-                </div>
-                <div class="col-md-10">
-                    <p>
-                        <img src="img/d1.svg" alt="">
-                        <img src="img/d2.svg" alt="">
-                        <img src="img/d3.svg" alt="">
-                        <img src="img/d4.svg" alt="">
-                        <img src="img/d5.svg" alt="">
-                        <img src="img/d6.svg" alt="">
-                    </p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="text-center">Up time</h2>
-                </div>
-            </div>
+                        <select ng-init="versionSelected = tool.tools[tool.tools.length-1]"
+                                ng-model="versionSelected"
+                                ng-options="x.version ? x.version : 'No version information' for x in tool.tools">
+                        </select>
 
 
-            <div class="row text-center">
-                <div class="col-md-12" ng-if="toolDetailsCtrl.arrayUptime">
-                    <up-time-chart dataset="{{toolDetailsCtrl.arrayUptime}}"></up-time-chart>
-                    <!-- <up-time-chart dataset="{{toolDetailsCtrl.generateDataForUpTimeChart(toolDetailsCtrl.datasetUptimeChart(tool.getId()))}}"></up-time-chart> -->
+                        <!-- <select ng-options="x in tool.tools for x in tool.tools" ng-model="selected"></select> -->
+                    </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">Metrics</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <p><b>Installability:</b></p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <img src="img/i1.svg" alt="">
+                            <img src="img/i2.svg" alt="">
+                            <img src="img/i3.svg" alt="">
+                            <img src="img/i4.svg" alt="">
+                            <img src="img/i5.svg" alt="">
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p><b>Accesibility:</b></p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <img src="img/a1.svg" alt="">
+                            <img src="img/a2.svg" alt="">
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p><b>Licensing:</b></p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <img src="img/l1.svg" alt="">
+                            <img src="img/l2.svg" alt="">
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p><b>Documentation:</b></p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <img src="img/d1.svg" alt="">
+                            <img src="img/d2.svg" alt="">
+                            <img src="img/d3.svg" alt="">
+                            <img src="img/d4.svg" alt="">
+                            <img src="img/d5.svg" alt="">
+                            <img src="img/d6.svg" alt="">
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">Up time</h2>
+                    </div>
+                </div>
 
 
-            <hr>
-            <div class="row">
-                <div class="col-md-2">
-                    <p><b>Publications: </b></p>
+                <div class="row text-center">
+                    <div class="col-md-12" ng-if="toolDetailsCtrl.arrayUptime">
+                        <up-time-chart dataset="{{toolDetailsCtrl.arrayUptime}}"></up-time-chart>
+                        <!-- <up-time-chart dataset="{{toolDetailsCtrl.generateDataForUpTimeChart(toolDetailsCtrl.datasetUptimeChart(tool.getId()))}}"></up-time-chart> -->
+                    </div>
                 </div>
-                <div class="col-md-10">
-                    <p ng-if="tool.getPublications().length==0">No publications</p>
-                    <span ng-repeat="publication in tool.getPublications()">
-                        <span ng-repeat="(key,value) in publication">
-                            <p><a ng-click="toolDetailsCtrl.publicationLinks(key,value)">{{key | uppercase}}:{{value}}</a></p>
+
+
+                <hr>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p><b>Publications: </b></p>
+                    </div>
+                    <div class="col-md-10">
+                        <p ng-if="versionSelected.publications.length==0">No publications</p>
+                        <span ng-repeat="publication in versionSelected.publications">
+                            <span ng-repeat="(key,value) in publication">
+                                <p><a ng-click="toolDetailsCtrl.publicationLinks(key,value)">{{key | uppercase}}:{{value}}</a></p>
+                            </span>
                         </span>
-                    </span>
+                    </div>
                 </div>
-            </div>
 
-        </uib-tab>
+            </uib-tab>
         </uib-tabset>
 
 
