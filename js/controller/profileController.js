@@ -20,11 +20,10 @@
 		*/
 		function profileController ($scope,$rootScope,dataService,$location,$window){
             var vm = this
-            
+
             vm.name = $location.search().name
             vm.loadDisplay = 0;
-
-
+            vm.section = 1
 		 }
 
          profileController.$inject = ['$scope','$rootScope','dataService','$location','$window']

@@ -37,6 +37,12 @@
             .when("/profile/", {
                 templateUrl : "view/template/user-profile-page.html"
             })
+            .when("/about/", {
+                templateUrl : "view/template/about-page.html"
+            })
+            .when("/opebapi/", {
+                templateUrl : "view/template/opebapi-page.html"
+            })
             .otherwise({redirectTo:'/'})
     }
 })();

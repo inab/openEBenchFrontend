@@ -16,39 +16,53 @@
 
 		var vm = this;
 
-
-		vm.makeChart = function()
-		{
-			vm.chart = new Chart();
-			vm.chart.setType("line");
-			vm.chart.setLabel(vm.mockJSON[0].Xval);
-			vm.chart.setData([vm.mockJSON[0].Yval]);
+		vm.loadInitData = function (){
+			vm.currentPage = 1;
+			vm.pageSize = 5;
+			var url = urlObject.urlBenchmark+"/Community.json";
+			dataService.getData(url)
+			.then(function (response){
+				vm.communities = response.data;
+				// console.log(vm.communities);
+				vm.loadingDisplay = 1;
+			}).catch(function(error){
+				vm.error = error;
+				vm.loadingDisplay = 2;
+			})
 		}
 
-		// this.makeChart();
+		// vm.makeChart = function()
+		// {
+		// 	vm.chart = new Chart();
+		// 	vm.chart.setType("line");
+		// 	vm.chart.setLabel(vm.mockJSON[0].Xval);
+		// 	vm.chart.setData([vm.mockJSON[0].Yval]);
+		// }
 
-		vm.retrieveCommunities = function()
-		{
-			var url = urlObject.urlBenchmark+"/Community.json";
-			vm.communities = [];
-			dataService.getData(url).then(function (response){
 
-				response.data.Commmunity.forEach(function(element)
-				{
-					vm.communities.push(element);
-					element.show = false;
-					element._extended = false;
 
-					element.links.forEach(function(link)
-					{
-						if (link.label == "MainSite")
-						{
-							element["MainSite"] = link["uri"];
-						}
-					})
-				})
-			});
-		}();
+		// vm.retrieveCommunities = function()
+		// {
+		// 	var url = urlObject.urlBenchmark+"/Community.json";
+		// 	vm.communities = [];
+		// 	dataService.getData(url).then(function (response){
+        //
+		// 		response.data.Commmunity.forEach(function(element)
+		// 		{
+		// 			vm.communities.push(element);
+		// 			element.show = false;
+		// 			element._extended = false;
+        //
+		// 			element.links.forEach(function(link)
+		// 			{
+		// 				if (link.label == "MainSite")
+		// 				{
+		// 					element["MainSite"] = link["uri"];
+		// 				}
+		// 			})
+		// 		})
+		// 	});
+		// }();
 	};
 
 	benchController.$inject =

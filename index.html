@@ -66,6 +66,9 @@
         <!-- external -->
         <script src="js/external/dirPagination.js" type="text/javascript" xml:space="preserve"></script>
 
+        <script src="https://unpkg.com/uppy"></script>
+        <link href="https://unpkg.com/uppy/dist/uppy.min.css" rel="stylesheet">
+
         <title>OpenEbench</title>
     </head>
     <body ng-controller="mainController as mainCtrl">
@@ -86,11 +89,11 @@
                         <ul class="nav navbar-nav navbar-right">
                             <!-- <li ng-class="{ activecustom: mainCtrl.isActive('/') }" ><a href="#!/">Home</a></li> -->
                             <li ng-class="{ activecustom: mainCtrl.isActive('/benchmarking/') } " class ="underlink"><a href="#!/benchmarking/">Scientific Benchmarking</a></li>
-                            <li ng-class="{ activecustom: mainCtrl.isActive('/tool/') }"class ="underlink"><a href="#!/tool/">Technical Monitoring</a></li>
-                            <li ng-class="{ activecustom: mainCtrl.isActive('/stats/') }" class ="underlink"><a href="#!/stats/">Statistics</a></li>
-                            <li ng-class=""class ="underlink"><a href="#">OpenEbench API</a></li>
-                            <li ng-class=""class ="underlink"><a href="#!/about" >About</a></li>
-                            <li ng-class="{ activecustom: mainCtrl.isActive('/profile/') }" class ="underlink"><a href="#!/profile/">Sign in</a></li>
+                            <li ng-class="{ activecustom: mainCtrl.isActive('/tool/') }"class ="underlink"><a href="#!/tool">Technical Monitoring</a></li>
+                            <li ng-class="{ activecustom: mainCtrl.isActive('/stats/') }" class ="underlink"><a href="#!/stats">Statistics</a></li>
+                            <li ng-class="{ activecustom: mainCtrl.isActive('/opebapi/') }"class ="underlink"><a href="#!/opebapi">OpenEbench API</a></li>
+                            <li ng-class="{ activecustom: mainCtrl.isActive('/about/') }" class ="underlink"><a href="#!/about" >About</a></li>
+                            <li ng-class="{ activecustom: mainCtrl.isActive('/profile/') }" class ="underlink"><a href="#!/profile">Sign in</a></li>
                             <!-- <li class="">
                               <a  class="dropdown-toggle" data-toggle="dropdown" role="button"><img src="img/pp.png" alt="" height="25px" width="25px"> <span class="caret"></span></a>
                               <ul class="dropdown-menu">

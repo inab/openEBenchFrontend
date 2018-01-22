@@ -19,7 +19,7 @@
                     </li>
                     <li>
                         <a ng-click ="profileCtrl.loadDisplay=1">
-                            <i class="glyphicon glyphicon-flag"></i>
+                            <i class="glyphicon glyphicon-stats"></i>
 
                             Scientific benchmark
                         </a>
@@ -133,9 +133,24 @@
             <div ng-show="profileCtrl.loadDisplay==1">
                 <h2 class="text-center">Scientific benchmark</h2>
                 <br>
+
+                <!-- <nav class="navbar navbar-default">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li ng-class="active " ng-click="profileCtrl.section = 0" class ="underlink"><a href="">Uploads</a></li>
+                        <li ng-class=" " ng-click="profileCtrl.section = 1" class ="underlink"><a href="">Communities</a></li>
+                    </ul>
+                </nav> -->
+
+
+                <div ng-show="profileCtrl.section == 1">
                 <uib-tabset active="active">
                     <uib-tab index="0" heading="Community 1">
 
+                        <br>
+                        <label for="">Role: </label>
+                        <select class="" name="">
+                            <option value="">Participant</option>
+                        </select>
 
                             <div class="row">
                                 <h3 class="text-center">File upload </h3>
@@ -240,7 +255,9 @@
                                 </div>
                             </div>
                             <div class="">
-                                <button class = "btn btn-default" type="button" name="button">Upload file</button>
+                                <br>
+                                <label for="">Upload files :</label>
+                                <div class="UppyDragDrop"></div>
                                 <br>
                                 <br>
                             </div>
@@ -253,8 +270,13 @@
 
 
                     <uib-tab index="1" heading="Community 2">
-
-                        <div class="">
+                        <br>
+                        <label for="">Role: </label>
+                        <select class="" name="" ng-init="selectedRole = 'manager'" ng-model="selectedRole">
+                            <option value="participant" >Participant</option>
+                                <option value="manager" selected>Manager</option>
+                        </select>
+                        <div class="" ng-show="selectedRole=='manager'">
 
                             <div class="">
                                 <h3 class="text-center">Evaluation protocol </h3>
@@ -421,7 +443,9 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <button class = "btn btn-default" type="button" name="button">Upload docker</button>
+                                    <br>
+                                    <label for="">Upload Dockers :</label>
+                                    <div class="UppyDragDrop1"></div>
                                     <br>
                                     <br>
                                 </div>
@@ -440,10 +464,10 @@
                                 </div>
                             </h4>
                             </div>
-                            <select class="" name="">
+                            <!-- <select class="" name="">
                                 <option value="" selected>Workflow 1</option>
                                 <option value="" >Workflow 2</option>
-                            </select>
+                            </select> -->
                             <ul class="timeline">
                                 <li>
                                     <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
@@ -458,7 +482,7 @@
                                     </div>
                                 </li>
                                 <li class="timeline-inverted">
-                                    <div class="timeline-badge success"><i class="glyphicon glyphicon-credit-card"></i></div>
+                                    <div class="timeline-badge success"><i class="glyphicon glyphicon-stats"></i></div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
                                             <h5 class="timeline-title text-center">Metrics calculation <span class="badge">1</span></h5>
@@ -506,10 +530,130 @@
 
 
 
+
+
+
+
+
+
+                        <div class="" ng-show="selectedRole=='participant'">
+                            <div class="row">
+                                <h3 class="text-center">File upload </h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr>
+                                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 16th Jan 2018</small></p>
+                                </div>
+                                <div class="col-md-1">
+                                    <p>file 1:</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                        aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width:76%">
+                                        76%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-xs" disabled>
+                                            Validate
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs" disabled>
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-1">
+                                    <p>file 2:</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar"
+                                        aria-valuenow="Falied" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        Failed
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-xs " disabled>
+                                            Validate
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <p>file 3:</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar"
+                                        aria-valuenow="Falied" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        100% (Ready to use)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success btn-xs">
+                                            Validate
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr>
+                                    <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 17th Jan 2018</small></p>
+                                </div>
+                                <div class="col-md-1">
+                                    <p>file 4:</p>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-info active" role="progressbar"
+                                        aria-valuenow="Falied" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                        Validating...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="btn-group">
+
+                                        <button type="button" class="btn btn-warning btn-xs">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <br>
+                                <label for="">Upload files :</label>
+                                <div class="UppyDragDrop2"></div>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+
+
+
                     </uib-tab>
 
                 </uib-tabset>
-
+            </div>
 
 
 
@@ -590,3 +734,21 @@
         </div>
     </div>
 </div>
+
+
+
+
+<script>
+  var uppy = Uppy.Core()
+  uppy.use(Uppy.DragDrop, { target: '.UppyDragDrop' })
+  uppy.use(Uppy.Tus, { endpoint: '//master.tus.io/files/' })
+  uppy.run()
+  var uppy1 = Uppy.Core()
+  uppy1.use(Uppy.DragDrop, { target: '.UppyDragDrop1' })
+  uppy1.use(Uppy.Tus, { endpoint: '//master.tus.io/files/' })
+  uppy1.run()
+  var uppy2 = Uppy.Core()
+  uppy2.use(Uppy.DragDrop, { target: '.UppyDragDrop2' })
+  uppy2.use(Uppy.Tus, { endpoint: '//master.tus.io/files/' })
+  uppy2.run()
+</script>
