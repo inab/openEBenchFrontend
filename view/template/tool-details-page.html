@@ -30,7 +30,7 @@
                         <p><b>Description: </b></p>
                     </div>
                     <div class="col-md-10">
-                        <p>{{versionSelected.description}}</p>
+                        <p>{{toolDetailsCtrl.versionSelected.description}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -40,12 +40,12 @@
 
                     <div class="col-md-10">
 
-                        <select ng-init="versionSelected = tool.tools[tool.tools.length-1]"
-                                ng-model="versionSelected"
+                        <!-- <select ng-init="toolDetailsCtrl.versionSelected = tool.tools[tool.tools.length-1] "
+                                ng-model="toolDetailsCtrl.versionSelected"
                                 ng-options="x.version ? x.version : 'No version information' for x in tool.tools">
-                        </select>
 
-
+                        </select> -->
+                        <a ng-repeat="x in tool.tools" ng-model = "toolDetailsCtrl.versionSelected" ng-click="toolDetailsCtrl.versionSelectedfun($index)">{{x.version ? x.version : 'No version information'}} </a>
                         <!-- <select ng-options="x in tool.tools for x in tool.tools" ng-model="selected"></select> -->
                     </div>
                 </div>
@@ -61,11 +61,8 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img src="img/i1.svg" alt="">
-                            <img src="img/i2.svg" alt="">
-                            <img src="img/i3.svg" alt="">
-                            <img src="img/i4.svg" alt="">
-                            <img src="img/i5.svg" alt="">
+                            <img src="https://img.shields.io/badge/Build_dependencies-NO-red.svg" alt="">
+                            <!-- <img src="https://img.shields.io/badge/Build_dependencies-YES-green.svg" alt=""> -->
                         </p>
                     </div>
                 </div>
@@ -75,8 +72,10 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img src="img/a1.svg" alt="">
-                            <img src="img/a2.svg" alt="">
+                            <!-- <img src="https://img.shields.io/badge/Binary-NO-red.svg" alt="">
+                            <img src="https://img.shields.io/badge/Binary-YES-green.svg" alt=""> -->
+                            <img ng-show="!toolDetailsCtrl.metricsData.distribution.sourcecode" src="https://img.shields.io/badge/Source_code-NO-red.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.distribution.sourcecode" src="https://img.shields.io/badge/Source_code-YES-green.svg" alt="">
                         </p>
                     </div>
                 </div>
@@ -86,8 +85,12 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img src="img/l1.svg" alt="">
-                            <img src="img/l2.svg" alt="">
+                            <!-- <img ng-show="!toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/Tool_license-NO-red.svg" alt=""> -->
+                            <!-- <img ng-show="toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/Tool_license-YES-green.svg" alt=""> -->
+                            <img ng-show="toolDetailsCtrl.metricsData.project.license.osi == false || !toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/OSI-NO-red.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.project.license.osi == true" src="https://img.shields.io/badge/OSI-YES-green.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.project.license.open_source == false || !toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/Open_source-NO-red.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.project.license.open_source == true" src="https://img.shields.io/badge/Open_source-YES-green.svg" alt="">
                         </p>
                     </div>
                 </div>
@@ -97,12 +100,26 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img src="img/d1.svg" alt="">
-                            <img src="img/d2.svg" alt="">
-                            <img src="img/d3.svg" alt="">
-                            <img src="img/d4.svg" alt="">
-                            <img src="img/d5.svg" alt="">
-                            <img src="img/d6.svg" alt="">
+                            <img src="https://img.shields.io/badge/Tutorial-NO-red.svg" alt="">
+                            <!-- <img src="https://img.shields.io/badge/Tutorial-YES-green.svg" alt=""> -->
+                            <img src="https://img.shields.io/badge/API-NO-red.svg" alt="">
+                            <!-- <img src="https://img.shields.io/badge/API-YES-green.svg" alt=""> -->
+                            <!-- <img src="https://img.shields.io/badge/Citation-NO-red.svg" alt=""> -->
+                            <img src="https://img.shields.io/badge/Citation-YES-green.svg" alt="">
+
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p><b>Support:</b></p>
+                    </div>
+                    <div class="col-md-10">
+                        <p>
+                            <!-- <img ng-show="!toolDetailsCtrl.metricsData.support" src="https://img.shields.io/badge/Support-NO-red.svg" alt=""> -->
+                            <!-- <img ng-show="toolDetailsCtrl.metricsData.support" src="https://img.shields.io/badge/Support-YES-green.svg" alt=""> -->
+                            <img ng-show="toolDetailsCtrl.metricsData.support.email == false || !toolDetailsCtrl.metricsData.support" src="https://img.shields.io/badge/Email-NO-red.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.support.email == true" src="https://img.shields.io/badge/Email-YES-green.svg" alt="">
                         </p>
                     </div>
                 </div>
@@ -128,8 +145,8 @@
                         <p><b>Publications: </b></p>
                     </div>
                     <div class="col-md-10">
-                        <p ng-if="versionSelected.publications.length==0">No publications</p>
-                        <span ng-repeat="publication in versionSelected.publications">
+                        <p ng-if="toolDetailsCtrl.versionSelected.publications.length==0">No publications</p>
+                        <span ng-repeat="publication in toolDetailsCtrl.versionSelected.publications">
                             <span ng-repeat="(key,value) in publication">
                                 <p><a ng-click="toolDetailsCtrl.publicationLinks(key,value)">{{key | uppercase}}:{{value}}</a></p>
                             </span>

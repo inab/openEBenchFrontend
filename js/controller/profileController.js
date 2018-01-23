@@ -23,7 +23,13 @@
 
             vm.name = $location.search().name
             vm.loadDisplay = 0;
-            vm.section = 1
+            vm.section = 1;
+            vm.section = 0;
+
+
+            vm.isActive = function () {
+                return active;
+            }
 		 }
 
          profileController.$inject = ['$scope','$rootScope','dataService','$location','$window']

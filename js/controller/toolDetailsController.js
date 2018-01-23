@@ -23,9 +23,23 @@
 		vm.loadInitData = function (){
 			vm.loadingDisplay=0;
 			vm.tools = null;
-
+			// vm.versionSelected = "";
 			vm.dataServiceFunction(vm.parseUrl());
 		}
+
+
+
+		// $scope.$watch(()=>vm.versionSelected, function(newValue, oldValue){
+		// 	console.log(vm.versionSelected['@id']);
+		// });
+
+		vm.versionSelectedfun = function (i){
+			vm.versionSelected = vm.theData[0].entities[0].tools[i];
+				vm.getMetrics(vm.theData[0].entities[0].tools[i]['@id']);
+		}
+
+
+
 
 		vm.parseUrl = function (){
 			var urlSplit = $location.absUrl().split("/");
@@ -43,15 +57,13 @@
 		};
 
 		vm.dataServiceFunction = function (url){
-			console.log(url);
 			dataService.getData(url)
 				.then(function (response){
 					vm.theData = angular.copy(response.data);
-					// console.log(response.data);
-					// vm.toTools(response.data)
-					// console.log(vm.theData[0].entities[0].tools[0]['@id']);
-					
+
+					vm.versionSelected = vm.theData[0].entities[0].tools[vm.theData[0].entities[0].tools.length-1];
 					vm.datasetUptimeChart(vm.theData[0].entities[0].tools[0]['@id']);
+					vm.getMetrics(vm.versionSelected['@id'])
 					vm.loadDisplay=1
 				}).catch(function (error){
 					vm.error = error;
@@ -59,10 +71,23 @@
 				})
 		}
 
+		vm.getMetrics = function (u){
+			var url = u.replace("/tool/","/metrics/");
+			// console.log(url);
+			dataService.getData(url)
+				.then(function (response){
+					vm.metricsData = response.data;
+					// console.log(vm.metricsData);
+				}).catch(function (error){
+					vm.error = error;
+					vm.loadingDisplay=2;
+				})
+		}
+
+
 		vm.toTools = function (data){
 			vm.tools = [];
 			for (var i = 0; i < data.length; i++) {
-				// console.log(data[i]);
 				var tool = new Tool();
 				tool.setName(data[i].name);
 				tool.setId(data[i]['@id']);
@@ -72,7 +97,7 @@
 				tool.setVersion(data[i].version);
 				tool.setPublications(data[i].publications);
 				tool.setLink(data[i].homepage);
-				// console.log(tool.getVersion());
+
 				vm.tools.push(tool);
 			}
 		}
@@ -85,7 +110,6 @@
 		}
 
 		vm.datasetUptimeChart = function (url){
-			console.log(url);
 			dataService.getData(vm.lastSeen(url))
 				.then(function (response){
 
@@ -98,25 +122,25 @@
 		}
 
 		vm.generateDataForUpTimeChart = function (objects){
-			console.log(objects);
+
 			vm.arrayUptime = [];
 			if (objects.length>1){
-				// console.log("many");
+
 				var res = vm.createDataForUptimeCharts2(objects);
 				res.pop();
 				var a = vm.createDataForUptimeCharts(objects[objects.length-1].date, vm.parsevalue(objects[objects.length-1].value));
 				var b = res.concat(a);
-				// console.log(b);
+
 				vm.arrayUptime = b.slice(Math.max(b.length - 5, 1));
-				// console.log(vm.arrayUptime);
+
 
 			}
 			else {
-				// console.log("one");
+
 				var c = vm.createDataForUptimeCharts(objects[objects.length-1].date, vm.parsevalue(objects[objects.length-1].value));
-				// console.log(c);
+
 				vm.arrayUptime = c.slice(Math.max(c.length - 5, 1));
-				// console.log(vm.arrayUptime);
+
 			}
 
 		}
@@ -131,8 +155,7 @@
 		vm.createDataForUptimeCharts2 = function (objects){
 			var x = [];
 			var arrayTmpUptime = [];
-				//console.log(objects.length);
-				// console.log(objects.length-1);
+
 				for (var i = 0; i < objects.length-1; i++) {
 					var a =  objects[i].date;
 					var b = objects[i+1].date;
@@ -168,11 +191,11 @@
 			var a = new Date(); //Todays Date
 			var b = new Date(d); // last seen last date
 			var array = vm.getDates(b,a);
-			// console.log(array);
+
 			var arrayTmpUptime = [];
 
 			for (var j in array) {
-				// console.log(array[j]);
+
 				arrayTmpUptime.push({'date' : array[j].toISOString().split("T")[0], "status": val});
 			}
 			return arrayTmpUptime;
@@ -186,7 +209,7 @@
 		}
 
 		vm.publicationLinks = function (key,value){
-			console.log(key,value);
+
 			var res = ""
 			if(key=="pmid"){
 				window.open("https://www.ncbi.nlm.nih.gov/pubmed/"+value);
@@ -198,11 +221,11 @@
 		}
 
 		vm.lastSeen= function (url){
-			// console.log(url);
+
 			var res = url.split("/");
 			var a = res[5]+"/"+res[6]+"/"+res[7];
 			var b = urlObject.urlMonitorMetrics+"/log/"+a+"/project/website/operational";
-			// console.log(b);
+
 			return b;
 		}
 
