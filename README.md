@@ -1,3 +1,7 @@
+# OpenEBench Frontend
+
+This project built on the AngularJS framework version 1.6.8
+
 # How to use
 
 Requirements:
