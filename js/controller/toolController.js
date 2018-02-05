@@ -85,7 +85,7 @@
 		vm.loopChunks = function(skip,limit){
 			// var url = urlObject.urlMonitorRest+"/aggregate?projection=name&projection=homepage&projection=description&projection=homepage&skip="+skip+'&limit='+limit;
 			var url = urlObject.urlMonitorRest+"/aggregate?projection=description&projection=homepage&projection=name&skip="+skip+'&limit='+limit;
-			
+			console.log(url);
 			dataService.getData(url)
 				.then(function (response){
 					vm.pushData(response);

@@ -73,7 +73,7 @@
 
 		vm.getMetrics = function (u){
 			var url = u.replace("/tool/","/metrics/");
-			// console.log(url);
+			console.log(url);
 			dataService.getData(url)
 				.then(function (response){
 					vm.metricsData = response.data;
@@ -198,6 +198,7 @@
 
 				arrayTmpUptime.push({'date' : array[j].toISOString().split("T")[0], "status": val});
 			}
+			
 			return arrayTmpUptime;
 		}
 

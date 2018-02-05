@@ -87,6 +87,9 @@
                         </table>
                     </div>
 
+
+
+
                     <div class="col-md-6">
                         <div class="col-md-12">
                             <h3 class="text-center"><i class="glyphicon glyphicon-edit"></i> Contributions</h3>
@@ -366,13 +369,39 @@
                         </div>
                     </div>
                     <br>
-                    <label for="">Upload files:</label>
+                    <!-- <label for="">Upload files:</label>
                     <div class="text-center" style="border:solid 2px #ADADAD; border-style: dashed;">
                         <h1 style="color:#E0E0E0;">
                             <i class="glyphicon glyphicon-upload"></i>
                         </h1>
                         <h4>Drop files here or <a href="">browse</a></h4>
                     </div>
+                    <br>
+                    <br>
+                        <div class="UppyDragDrop"></div>
+                    <br>
+                    <br> -->
+                    <label for="">Upload files:</label>
+                    <div ngf-drop ngf-select ng-model="files"  class="text-center" style="border:solid 2px #ADADAD; border-style: dashed;"
+                       ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                       accept="image/*,application/pdf"
+                       ngf-pattern="'image/*,application/pdf'">
+                       <h1 style="color:#E0E0E0;">
+                           <i class="glyphicon glyphicon-upload"></i>
+                       </h1>
+                       <h4>Drop files here or <a href="">browse</a></h4>
+                   </div>
+
+                   <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+                   <label for="">Files</label>
+                   <ul>
+                       <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+                   </ul>
+
+                   <label for="">Upload log:</label>
+                   <pre>{{log}}</pre>
+
 
 
 
@@ -546,6 +575,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
+                            <label for="">Import files:</label>
+                            <div class="text-center" style="border:solid 2px #ADADAD; border-style: dashed;">
+                                <h1 style="color:#E0E0E0;">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </h1>
+                                <h4><a href="">Import</a> files from uploads</h4>
+                            </div>
+                            <br>
                     </uib-tab>
 
 
@@ -563,114 +601,8 @@
                         </select>
                         <div class="" ng-show="selectedRole=='manager'">
 
-                            <div class="">
+                            <!-- <div class="">
                                 <p class="text-center">Evaluation protocol </p>
-                            </div>
-
-
-
-                            <div class="page-header">
-                                <p class="">Dockers </p>
-                            </div>
-                            <div class="">
-
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <p>Docker_3:</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar"
-                                            aria-valuenow="Falied" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                            100% (Ready to use)
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                Use
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                Delete
-                                            </button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <p>Docker_4:</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar"
-                                            aria-valuenow="Falied" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                            100% (Ready to use)
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                Use
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                Delete
-                                            </button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <p>Docker_5:</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar"
-                                            aria-valuenow="Falied" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                            100% (Ready to use)
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                Use
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                Delete
-                                            </button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <p>Docker_6:</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar"
-                                            aria-valuenow="Falied" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                            100% (Ready to use)
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                Use
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                Delete
-                                            </button>
-
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                             <label for="">Import files :</label>
                             <div class="text-center" style="border:solid 2px #ADADAD; border-style: dashed;">
@@ -678,84 +610,215 @@
                                     <i class="glyphicon glyphicon-plus"></i>
                                 </h1>
                                 <h4><a href="">Import</a> file from uploads</h4>
-                            </div>
-                            <div class="page-header">
-                                <p class="">Workflow
-                                    <div class="btn-group">
+                            </div> -->
 
-                                        <button type="button" class="btn btn-success btn-xs">
+                            <br>
+                            <div class="">
+                                <div class="text-center">
+                                    <h1>Workflow</h1>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success btn-xl">
                                             Run Workflow
                                         </button>
-                                        <button type="button" class="btn btn-default btn-xs">
+                                        <button type="button" class="btn btn-default btn-xl">
                                             CWL Workflow
                                         </button>
-
+                                        <button type="button" class="btn btn-success btn-xl">
+                                            Export Workflow
+                                        </button>
                                     </div>
-                                </p>
-                            </div>
-                            <!-- <select class="" name="">
-                                <option value="" selected>Workflow 1</option>
-                                <option value="" >Workflow 2</option>
-                            </select> -->
-                            <ul class="timeline">
-                                <li>
-                                    <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h5 class="timeline-title text-center">Validation <span class="badge">2</span></h5>
+                                </div>
+
+                                <ul class="timeline">
+                                    <li class="timeline">
+                                        <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i>
                                         </div>
-                                        <div class="timeline-body">
-                                            <span class="label label-info">Docker_4 x</span>
-                                            <span class="label label-info">Docker_5 x</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge success"><i class="glyphicon glyphicon-stats"></i></div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h5 class="timeline-title text-center">Metrics calculation <span class="badge">2</span></h5>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <span class="label label-info">Docker_3 x</span>
-                                            <span class="label label-info">Docker_6 x</span>
+                                        <h2 class="text-center">Validation</h2>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-body">
+                                                <div class="col-md-10">
+                                                    <div class="row">
+                                                        <div class="">
+                                                            <div class="col-md-6">
+                                                                <div class="">
+                                                                    <img src="img/files.png" height="50px" width="50px" alt="">
+                                                                    <img src="img/docker.png" height="50px" width="50px" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <br>
+                                                                <div class="">
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-success btn-xs">
+                                                                            Run
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-danger btn-xs">
+                                                                            Delete
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-default btn-xs">
+                                                                            Download
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-info btn-xs">
+                                                                            link
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                        </div>
-                                    </div>
-                                </li>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="">
+                                                            <div class="col-md-6">
+                                                                <div class="">
+                                                                    <img src="img/files.png" height="50px" width="50px" alt="">
+                                                                    <img src="img/docker.png" height="50px" width="50px" alt="">
 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <br>
+                                                                <div class="">
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-success btn-xs">
+                                                                            Run
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-danger btn-xs">
+                                                                            Delete
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-default btn-xs">
+                                                                            Download
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-info btn-xs">
+                                                                            link
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                <li>
-                                    <div class="timeline-badge success"><i class="glyphicon glyphicon-floppy-disk"></i></div>
-                                    <!-- <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h5 class="timeline-title text-center">Data handling <span class="badge">0</span></h5>
-                                        </div>
-                                        <div class="timeline-body">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="text-center" style="border:solid 2px #ADADAD; border-style: dashed;">
+                                                        <h6 style="color:#E0E0E0;">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                        </h6>
+                                                        <p><a href="">Import</a> dockers from uploads</p>
+                                                        <br>
+                                                    </div>
+                                                </div>
 
+                                            </div>
+                                          </div>
+                                    </li>
 
-                                        </div>
+                                    <li class="timeline">
+                                        <div class="timeline-badge"><i class="glyphicon glyphicon-stats"></i></div>
+                                        <h2 class="timeline-title text-center">Metrics Calculation</h2>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-body">
+                                                <div class="col-md-10">
+                                                    <div class="row">
+                                                        <div class="">
+                                                            <div class="col-md-6">
+                                                                <div class="">
+                                                                    <img src="img/files.png" height="50px" width="50px" alt="">
+                                                                    <img src="img/docker.png" height="50px" width="50px" alt="">
 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <br>
+                                                                <div class="">
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-success btn-xs">
+                                                                            Run
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-danger btn-xs">
+                                                                            Delete
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-default btn-xs">
+                                                                            Download
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-info btn-xs">
+                                                                            link
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                        <div class="timeline-body">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="text-center" style="border:solid 2px #ADADAD; border-style: dashed;">
+                                                        <h6 style="color:#E0E0E0;">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                        </h6>
+                                                        <p><a href="">Import</a> dockers from uploads</p>
+                                                        <br>
+                                                    </div>
+                                                </div>
 
-                                            <hr>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Action</a></li>
-                                                    <li><a href="#">Another action</a></li>
-                                                    <li><a href="#">Something else here</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a></li>
-                                                </ul>
                                             </div>
                                         </div>
-                                    </div> -->
-                                </li>
-                            </ul>
+                                    </li>
+
+                                    <li class="timeline">
+                                        <div class="timeline-badge"><i class="glyphicon glyphicon-list-alt"></i></div>
+                                        <h2 class="text-center">Submission</h2>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-body">
+                                                <div class="col-md-10">
+                                                    <div class="row">
+                                                        <div class="">
+                                                            <div class="col-md-6">
+                                                                <div class="">
+                                                                    <img src="img/files.png" height="50px" width="50px" alt="">
+                                                                    <img src="img/docker.png" height="50px" width="50px" alt="">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <br>
+                                                                <div class="">
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-success btn-xs">
+                                                                            Run
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-danger btn-xs">
+                                                                            Delete
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-default btn-xs">
+                                                                            Download
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-info btn-xs">
+                                                                            link
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="text-center" style="border:solid 2px #ADADAD; border-style: dashed;">
+                                                        <h6 style="color:#E0E0E0;">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                        </h6>
+                                                        <p><a href="">Import</a> dockers from uploads</p>
+                                                        <br>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
 
@@ -919,7 +982,17 @@
                                     </button>
                                 </div>
                             </div>
+
                         </div>
+                        <br>
+                        <label for="">Upload files:</label>
+                        <div class="text-center" style="border:solid 2px #ADADAD; border-style: dashed;">
+                            <h1 style="color:#E0E0E0;">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </h1>
+                            <h4><a href="">Import</a> files from uploads</h4>
+                        </div>
+                        <br>
                     </div>
                     </uib-tab>
                 </uib-tabset>
@@ -991,7 +1064,6 @@
                             <div class="col-md-4">
                                 <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Send</a>
                                 <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
-
                             </div>
                         </div>
                     </fieldset>
@@ -1000,3 +1072,12 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- <script>
+  var uppy = Uppy.Core({ autoProceed: false })
+  uppy.use(Uppy.DragDrop, {target: '.UppyDragDrop'})
+  uppy.use(Uppy.Tus, {endpoint: '//master.tus.io/files/'})
+  uppy.run()
+</script> -->
