@@ -154,18 +154,25 @@
                         </span>
                     </div>
                 </div>
-                
-                <div ng-if="toolDetailsCtrl.chartavail!=0">
-                    <div style ="height:300px; width:500px;">
+
+                <div class="row" ng-if="toolDetailsCtrl.chartavail!=0" >
+
+                    <div class="col-md-2">
                         <p><b>Citations per year:</b></p>
-                        <canvas width="400" height="200" class="chart chart-base"
-                        chart-type="toolDetailsCtrl.chart.getType()"
-                        chart-labels="toolDetailsCtrl.chart.getLabel()"
-                        chart-options="toolDetailsCtrl.chart.getOptions()"
-                        chart-data="toolDetailsCtrl.chart.getData()">
-                        </canvas>
+                    </div>
+                    <div class="col-md-8 col-md-offset-2" >
+                        <div style="width:400px;">
+                            <canvas  class="chart chart-base"
+                            chart-type="toolDetailsCtrl.chart.getType()"
+                            chart-labels="toolDetailsCtrl.chart.getLabel()"
+                            chart-options="toolDetailsCtrl.chart.getOptions()"
+                            chart-data="toolDetailsCtrl.chart.getData()"
+                            chart-colors="toolDetailsCtrl.chart.getColor()">
+                            </canvas>
+                        </div>
                     </div>
                 </div>
+
             </uib-tab>
         </uib-tabset>
 

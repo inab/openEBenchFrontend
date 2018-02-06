@@ -127,24 +127,33 @@
 					title: {
 						display: false
 					},
-
+					tooltips : {
+						titleFontSize : 12,
+						bodyFontSize : 10,
+						bodySpacing : 2,
+					},
 
 					scales: {
-
+						xAxes: [{
+							stacked: true,
+						}],
 						yAxes: [{
 							stacked: true,
 						}],
 
-					}
-
+					},
 				};
-				// var colours = ["#fff"];
 
-			vm.chart.setType("bar");
-			vm.chart.setOptions(options);
-			vm.chart.setLabel(labels);
-			vm.chart.setData(data);
+
+				var colours = ['#45b7cd', '#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd','#45b7cd'];
+
+			// vm.chart.setType("bar");
+			// vm.chart.setOptions(options);
+			// vm.chart.setLabel(labels);
+			// vm.chart.setData(data);
 			// vm.chart.setColor(colours);
+			vm.chart.construct("bar",labels,data,"",colours,options)
+
 
 
 
