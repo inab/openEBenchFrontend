@@ -3,7 +3,7 @@ function Chart(){
     this.label;
     this.data ;
     this.series;
-    this.color ;
+    this.color;
     this.options;
 
     this.construct = function (type,label,data,series,color,options){

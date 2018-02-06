@@ -37,7 +37,7 @@
                     <div class="col-md-2">
                         <p><b>Version: </b></p>
                     </div>
-                    
+
                     <div class="col-md-10">
 
                         <!-- <select ng-init="toolDetailsCtrl.versionSelected = tool.tools[tool.tools.length-1] "
@@ -149,11 +149,23 @@
                         <span ng-repeat="publication in toolDetailsCtrl.versionSelected.publications">
                             <span ng-repeat="(key,value) in publication">
                                 <p><a ng-click="toolDetailsCtrl.publicationLinks(key,value)">{{key | uppercase}}:{{value}}</a></p>
+
                             </span>
                         </span>
                     </div>
                 </div>
-
+                
+                <div ng-if="toolDetailsCtrl.chartavail!=0">
+                    <div style ="height:300px; width:500px;">
+                        <p><b>Citations per year:</b></p>
+                        <canvas width="400" height="200" class="chart chart-base"
+                        chart-type="toolDetailsCtrl.chart.getType()"
+                        chart-labels="toolDetailsCtrl.chart.getLabel()"
+                        chart-options="toolDetailsCtrl.chart.getOptions()"
+                        chart-data="toolDetailsCtrl.chart.getData()">
+                        </canvas>
+                    </div>
+                </div>
             </uib-tab>
         </uib-tabset>
 
@@ -303,6 +315,7 @@
             </div>
             <div class="col-md-7">
                 <button class="btn btn-success "type="button" ng-click="toolDetailsCtrl.addAlert()" name="button">Update information</button>
+
             </div>
             <div class="col-md-12">
                 <br>

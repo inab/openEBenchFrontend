@@ -24,6 +24,7 @@
 			vm.loadingDisplay=0;
 			vm.tools = null;
 			// vm.versionSelected = "";
+			vm.chartavail=0;
 			vm.dataServiceFunction(vm.parseUrl());
 		}
 
@@ -43,6 +44,7 @@
 
 		vm.parseUrl = function (){
 			var urlSplit = $location.absUrl().split("/");
+
 			return urlObject.urlMonitorRest+"/aggregate?id="+urlSplit[urlSplit.length-1];
 		}
 
@@ -64,12 +66,92 @@
 					vm.versionSelected = vm.theData[0].entities[0].tools[vm.theData[0].entities[0].tools.length-1];
 					vm.datasetUptimeChart(vm.theData[0].entities[0].tools[0]['@id']);
 					vm.getMetrics(vm.versionSelected['@id'])
+					vm.getDataFromJsonFile(vm.theData[0].entities[0].tools[0]['@id'])
 					vm.loadDisplay=1
 				}).catch(function (error){
 					vm.error = error;
 					vm.loadingDisplay=2;
 				})
 		}
+
+
+		vm.getDataFromJsonFile = function (a){
+
+			var url =  a.replace("/tool/","/publi/");
+
+			dataService.getData(url)
+				.then(function (response){
+					vm.parseCitationData(response.data)
+				}).catch(function (error){
+					vm.error = error;
+					vm.loadingDisplay=2;
+				})
+		}
+		vm.parseCitationData = function(data){
+
+			console.log(data.pubs);
+			if ("pubs" in data) {
+				for (var citation of data.pubs){
+					if ("citation_stats" in citation){
+						var citation_data = citation["citation_stats"];
+					}
+					else {
+						var citation_data = null;
+					}
+					if ("citation_count" in citation){
+						var citation_counts = citation["citation_count"];
+					} else {
+						var citation_counts = null;
+					}
+				}
+				vm.citationData = {
+					"data":citation_data,
+					"citation_counts":citation_counts
+				};
+				vm.createChart(vm.citationData);
+				vm.chartavail=1;
+			}
+
+
+		}
+
+		vm.createChart = function(a){
+
+
+			vm.chart= new Chart();
+				var labels = [];
+				var data = [];
+				labels = Object.keys(a.data);
+				data = Object.values(a.data);
+				var options = {
+					title: {
+						display: false
+					},
+
+
+					scales: {
+
+						yAxes: [{
+							stacked: true,
+						}],
+
+					}
+
+				};
+				// var colours = ["#fff"];
+
+			vm.chart.setType("bar");
+			vm.chart.setOptions(options);
+			vm.chart.setLabel(labels);
+			vm.chart.setData(data);
+			// vm.chart.setColor(colours);
+
+
+
+		}
+
+
+
 
 		vm.getMetrics = function (u){
 			var url = u.replace("/tool/","/metrics/");
@@ -104,6 +186,7 @@
 
 
 		vm.bioToolsLink = function (url){
+
 			var res = url.split("/")[5];
 			var a = res.split(":")
 			return "https://bio.tools/"+a[1];
@@ -168,6 +251,7 @@
 						arrayTmpUptime.push({'date' : dateArray[j].toISOString().split("T")[0], "status": vm.parsevalue(objects[i].value)});
 					}
 				}
+
 			return arrayTmpUptime;
 		}
 
@@ -198,7 +282,7 @@
 
 				arrayTmpUptime.push({'date' : array[j].toISOString().split("T")[0], "status": val});
 			}
-			
+
 			return arrayTmpUptime;
 		}
 
