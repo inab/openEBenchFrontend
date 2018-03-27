@@ -15,6 +15,7 @@
             'ngSanitize',
             'ui.bootstrap',
             'ngRoute',
-            'ngFileUpload'
+            'ngFileUpload',
+            
         ]);
 })();

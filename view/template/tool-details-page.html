@@ -1,12 +1,12 @@
 <div ng-controller="toolDetailsController as toolDetailsCtrl" ng-init="toolDetailsCtrl.loadInitData();" class="container" >
-        <h1 class="text-center">{{toolDetailsCtrl.theData[0].entities[0].tools[0].name}}</h1>
+        <!-- <h1 class="text-center">{{toolDetailsCtrl.theData[0].entities[0].tools[0].name}}</h1>
 
         <h6 class="text-center"><a href="{{toolDetailsCtrl.theData[0].entities[0].tools[0].homepage}}" target="_blank">{{toolDetailsCtrl.theData[0].entities[0].tools[0].homepage}}</a></h6>
         <p class="text-center">
             <a href="https://bio.tools/{{toolDetailsCtrl.theData[0].id}}">
                 <img src="img/bt.svg" alt="">
             </a>
-        </p>
+        </p> -->
 
 
 
@@ -20,17 +20,24 @@
             </li>
         </ul> -->
 
-        <uib-tabset active="active" ng-repeat="tools in toolDetailsCtrl.theData">
-            <uib-tab index="$index" ng-repeat="tool in tools.entities" heading='{{tool.type | uppercase}}'>
+        <uib-tabset active="active" ng-repeat="tools in toolDetailsCtrl.theData" >
+            <uib-tab ng-click="toolDetailsCtrl.onOptionChange(versionSelected['@id'])" index="$index" ng-repeat="tool in tools.entities" heading='{{tool.type | uppercase}}'>
                 <!-- {{a.tools}} -->
-                <!-- {{tool.tools[index]}} -->
+                <h1 class="text-center">{{versionSelected.name}}</h1>
+
+                <h6 class="text-center"><a href="{{versionSelected.homepage}}" target="_blank">{{versionSelected.homepage}}</a></h6>
+                <p class="text-center">
+                    <a href="https://bio.tools/{{toolDetailsCtrl.theData[0].id}}">
+                        <img src="img/bt.svg" alt="">
+                    </a>
+                </p>
                 <br>
                 <div class="row">
                     <div class="col-md-2">
                         <p><b>Description: </b></p>
                     </div>
                     <div class="col-md-10">
-                        <p>{{toolDetailsCtrl.versionSelected.description}}</p>
+                        <p>{{versionSelected.description}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -40,12 +47,11 @@
 
                     <div class="col-md-10">
 
-                        <!-- <select ng-init="toolDetailsCtrl.versionSelected = tool.tools[tool.tools.length-1] "
-                                ng-model="toolDetailsCtrl.versionSelected"
-                                ng-options="x.version ? x.version : 'No version information' for x in tool.tools">
-
-                        </select> -->
-                        <a ng-repeat="x in tool.tools" ng-model = "toolDetailsCtrl.versionSelected" ng-click="toolDetailsCtrl.versionSelectedfun($index)">{{x.version ? x.version : 'No version information'}} </a>
+                        <select ng-init="versionSelected = tool.tools[tool.tools.length-1]"
+                                ng-model="versionSelected"
+                                ng-options="x.version ? x.version : 'No version information' for x in tool.tools" ng-change="toolDetailsCtrl.onOptionChange(versionSelected['@id'])">
+                        </select>
+                        <!-- <a ng-repeat="x in tool.tools" ng-model = "toolDetailsCtrl.versionSelected" ng-click="toolDetailsCtrl.versionSelectedfun($index)">{{x.version ? x.version : 'No version information'}} </a> -->
                         <!-- <select ng-options="x in tool.tools for x in tool.tools" ng-model="selected"></select> -->
                     </div>
                 </div>
@@ -100,13 +106,17 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img src="https://img.shields.io/badge/Tutorial-NO-red.svg" alt="">
-                            <!-- <img src="https://img.shields.io/badge/Tutorial-YES-green.svg" alt=""> -->
+                            <!-- <p>{{toolDetailsCtrl.metricsData}}</p> -->
+                            <!-- <img src="https://img.shields.io/badge/Tutorial-NO-red.svg" alt="">
+                            <img src="https://img.shields.io/badge/Tutorial-YES-green.svg" alt="">
                             <img src="https://img.shields.io/badge/API-NO-red.svg" alt="">
-                            <!-- <img src="https://img.shields.io/badge/API-YES-green.svg" alt=""> -->
-                            <!-- <img src="https://img.shields.io/badge/Citation-NO-red.svg" alt=""> -->
-                            <img src="https://img.shields.io/badge/Citation-YES-green.svg" alt="">
-
+                            <img src="https://img.shields.io/badge/API-YES-green.svg" alt="">
+                            <img src="https://img.shields.io/badge/Citation-NO-red.svg" alt="">
+                            <img src="https://img.shields.io/badge/Citation-YES-green.svg" alt=""> -->
+                            <img ng-show="toolDetailsCtrl.metricsData.documentation.general == true" src="https://img.shields.io/badge/General-YES-green.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.documentation.general == false || !toolDetailsCtrl.metricsData.documentation.general" src="https://img.shields.io/badge/General-NO-red.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.project.summary.description == true" src="https://img.shields.io/badge/Description-YES-green.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.project.summary.description == false || !toolDetailsCtrl.metricsData.project.summary.description" src="https://img.shields.io/badge/Description-NO-red.svg" alt="">
                         </p>
                     </div>
                 </div>
@@ -133,187 +143,79 @@
 
                 <div class="row text-center">
                     <div class="col-md-12" ng-if="toolDetailsCtrl.arrayUptime">
+                        <!-- {{toolDetailsCtrl.arrayUptime}} -->
                         <up-time-chart dataset="{{toolDetailsCtrl.arrayUptime}}"></up-time-chart>
-                        <!-- <up-time-chart dataset="{{toolDetailsCtrl.generateDataForUpTimeChart(toolDetailsCtrl.datasetUptimeChart(tool.getId()))}}"></up-time-chart> -->
+
                     </div>
                 </div>
 
 
                 <hr>
+                <!-- <div class="row">
+                    <div class="col-md-2">
+                        <p><b>Publications: </b></p>
+                    </div>
+                    <div class="col-md-10">
+                        <p ng-if="versionSelected.publications.length==0">No publications</p>
+                        
+                        <span ng-repeat="publication in versionSelected.publications">
+                            
+                            <span ng-repeat="(key,value) in publication">
+                                <p ng-if="key!='citations'">
+                                    <a ng-click="toolDetailsCtrl.publicationLinks(key,value)">
+                                        {{key | uppercase}}:{{value}}
+                                    </a>
+                                </p>
+                            </span>
+                          
+                        </span>
+                    </div>
+                </div> -->
+
+                
                 <div class="row">
                     <div class="col-md-2">
                         <p><b>Publications: </b></p>
                     </div>
                     <div class="col-md-10">
-                        <p ng-if="toolDetailsCtrl.versionSelected.publications.length==0">No publications</p>
-                        <span ng-repeat="publication in toolDetailsCtrl.versionSelected.publications">
-                            <span ng-repeat="(key,value) in publication">
-                                <p><a ng-click="toolDetailsCtrl.publicationLinks(key,value)">{{key | uppercase}}:{{value}}</a></p>
-
-                            </span>
+                        <p ng-if="toolDetailsCtrl.publicationsFromJSON.length==0">No publications</p>                        
+                        <span ng-repeat="publication in toolDetailsCtrl.publicationsFromJSON">
+                            
+                            <p ng-if="publication['pmid']!=null">
+                                <a ng-click="toolDetailsCtrl.publicationLinks('pmid',publication['pmid'])">
+                                    PMID:{{publication['pmid']}}
+                                </a>
+                            </p>
+                            <p ng-if="publication['pmid']==null && publication['doi']!=null">
+                                <a ng-click="toolDetailsCtrl.publicationLinks('doi',publication['doi'])">
+                                    DOI:{{publication['doi']}}
+                                </a>
+                            </p>
                         </span>
                     </div>
                 </div>
-
-                <div class="row" ng-if="toolDetailsCtrl.chartavail!=0" >
-
-                    <div class="col-md-2">
-                        <p><b>Citations per year:</b></p>
-                    </div>
-                    <div class="col-md-8 col-md-offset-2" >
-                        <div style="width:400px;">
-                            <canvas  class="chart chart-base"
-                            chart-type="toolDetailsCtrl.chart.getType()"
-                            chart-labels="toolDetailsCtrl.chart.getLabel()"
-                            chart-options="toolDetailsCtrl.chart.getOptions()"
-                            chart-data="toolDetailsCtrl.chart.getData()"
-                            chart-colors="toolDetailsCtrl.chart.getColor()">
-                            </canvas>
+                
+                    <!-- <hr> -->
+                    <div class="row" ng-if="toolDetailsCtrl.chartavailable!=0">
+                        <div class="col-md-2">
+                            <p><b>Citations per year:</b></p>
+                        </div>
+                        <div class="col-md-8 col-md-offset-1" >
+                            <div style="width:600px;">
+                                <canvas  class="chart chart-base"
+                                chart-type="toolDetailsCtrl.chart.getType()"
+                                chart-labels="toolDetailsCtrl.chart.getLabel()"
+                                chart-options="toolDetailsCtrl.chart.getOptions()"
+                                chart-series="toolDetailsCtrl.chart.getSeries()"
+                                chart-data="toolDetailsCtrl.chart.getData()"
+                                chart-colors="toolDetailsCtrl.chart.getColor()">
+                                </canvas>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                
             </uib-tab>
         </uib-tabset>
-
-
-
-
-
-
-        <!-- <div class="tab-content"  ng-show="toolDetailsCtrl.tools!==null">
-            <p>{{toolDetailsCtrl.tools}}</p>
-            <div ng-repeat="tool in toolDetailsCtrl.tools" id="{{tool['@type']}}" class="{{$index === 0 ? 'tab-pane fade in active' : 'tab-pane fade'}}">
-
-                <div class="row">
-                    <br>
-                    <div class="col-md-12" >
-
-                        <h1 class="text-center">{{tool.name}}</h1>
-                        <h6 class="text-center"><a href="{{tool.homepage}}" target="_blank">{{tool.homepage}}</a></h6>
-                        <p class="text-center">
-                            <a href="{{toolDetailsCtrl.biolink}}">
-                                <img src="img/bt.svg" alt="">
-                            </a>
-                        </p>
-                    </div>
-                </div>
-
-                <hr>
-
-                <br>
-                {{tool}}
-                <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Description: </b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <p>{{tool.description}}</p>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Version: </b></p>
-                    </div>
-
-                    <div class="col-md-10">
-                        <p>{{tool.version ? tool.version : "No version information found"}}</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-center">Metrics</h2>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Installability:</b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <p>
-                            <img src="img/i1.svg" alt="">
-                            <img src="img/i2.svg" alt="">
-                            <img src="img/i3.svg" alt="">
-                            <img src="img/i4.svg" alt="">
-                            <img src="img/i5.svg" alt="">
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Accesibility:</b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <p>
-                            <img src="img/a1.svg" alt="">
-                            <img src="img/a2.svg" alt="">
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Licensing:</b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <p>
-                            <img src="img/l1.svg" alt="">
-                            <img src="img/l2.svg" alt="">
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Documentation:</b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <p>
-                            <img src="img/d1.svg" alt="">
-                            <img src="img/d2.svg" alt="">
-                            <img src="img/d3.svg" alt="">
-                            <img src="img/d4.svg" alt="">
-                            <img src="img/d5.svg" alt="">
-                            <img src="img/d6.svg" alt="">
-                        </p>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-center">Up time</h2>
-                    </div>
-                </div>
-
-
-                <div class="row text-center">
-                    <div class="col-md-12" ng-if="toolDetailsCtrl.arrayUptime.length==5">
-                        <up-time-chart dataset="{{toolDetailsCtrl.arrayUptime}}"></up-time-chart>
-
-                    </div>
-                </div>
-
-
-
-                <hr>
-                <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Publications: </b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <p ng-if="tool.publications.length==0">No publications</p>
-                        <span ng-repeat="publication in tool.publications">
-                            <span ng-repeat="(key,value) in publication">
-                                <p><a ng-click="toolDetailsCtrl.publicationLinks(key,value)">{{key | uppercase}}:{{value}}</a></p>
-                            </span>
-                        </span>
-                    </div>
-                </div>
-
-            </div>
-        </div> -->
-
 
         <hr>
         <div class="row">

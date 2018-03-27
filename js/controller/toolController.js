@@ -83,9 +83,8 @@
 
 		//loop chunks
 		vm.loopChunks = function(skip,limit){
-			// var url = urlObject.urlMonitorRest+"/aggregate?projection=name&projection=homepage&projection=description&projection=homepage&skip="+skip+'&limit='+limit;
 			var url = urlObject.urlMonitorRest+"/aggregate?projection=description&projection=homepage&projection=name&skip="+skip+'&limit='+limit;
-			console.log(url);
+			// console.log(url);
 			dataService.getData(url)
 				.then(function (response){
 					vm.pushData(response);
@@ -102,11 +101,6 @@
 			vm.toolsArray = [].concat.apply([], vm.chunks);
 			$rootScope.array = [].concat.apply([], vm.chunks);
 			vm.loadingDisplay = 1
-
-			// vm.chunks.push(vm.allData(tools.data))
-			// vm.toolsArray = [].concat.apply([], vm.chunks);
-			// $rootScope.array = [].concat.apply([], vm.chunks);
-			// vm.loadingDisplay = 1
 		}
 
 		//Sort name
@@ -125,86 +119,10 @@
 		@author Vicky Sundesha
 		*/
 		vm.showDetails = function (tool){
-
+			console.log(tool)
+			console.log(tool.id)
 			$window.open($location.absUrl()+tool.id, "_blank");
 		};
-
-		// vm.allData= function (tool){
-		// 	var array = []
-		// 	for (var i = 0; i < tool.length; i++) {
-		// 		array.push(vm.initTool(tool[i]));
-		// 	}
-		// 	return array
-    <!-- {{tool["_id"]._id}} -->
-		// }
-
-
-		// /**
-		// @name initInstance
-		// @description Creats new instances of a tool and returns the instance
-		// @param tool is the response data from the Api
-		// @param i is the posistion
-		// @version 1.0
-		// @author Vicky Sundesha
-		// */
-		// vm.initInstance = function (tool){
-		// 	var instance = new Instance();
-		// 	// if(tool['@type']){
-		// 	// 	instance.setType(tool['@type'])
-		// 	// }
-		// 	if(tool.version){
-		// 		instance.setVersion(tool.version)
-		// 	}
-		// 	if(tool.publications){
-		// 		instance.setPublication(tool.publications)
-		// 	}
-		// 	if(tool.repositories){
-		// 		instance.setRepo(tool.repositories)
-		// 	}
-		// 	if(tool.documentation){
-		// 		instance.setDocs(tool.documentation)
-		// 	}
-		// 	return instance;
-		// }
-
-
-		// /**
-		// @name checkName
-		// @description checks if the tool name exists
-		// @param tool is the response data from the Api
-		// @param i is the posistion
-		// @version 1.0
-		// @author Vicky Sundesha
-		// */
-		// vm.checkName = function (i,tool){
-		// 	return tool[i].name != tool[i-1].name ? false : true;
-		// }
-
-
-		/**
-		@name initTool
-		@description Creats new tool and returns the tool
-		@param tool is the response data from the Api
-		@param i is the posistion
-		@param instance is are the diffrent instances of the tool web,cmd,app etc..
-		@version 1.0
-		@author Vicky Sundesha
-		*/
-		// vm.initTool = function (tool){
-		// 	var toolBasicDetails = new Tool();
-		// 	toolBasicDetails.setId(tool['@id']);
-		// 	toolBasicDetails.setType(tool['@type']);
-		// 	toolBasicDetails.setName(tool.name);
-		// 	toolBasicDetails.setDesc(tool.description);
-		// 	toolBasicDetails.setLink(tool.homepage);
-		// 	toolBasicDetails.setContact(tool.contacts);
-		// 	toolBasicDetails.setCredits(tool.credits);
-		// 	var urlToBioTools = "";
-		// 	var urlToBioTools = "https://bio.tools/"+tool.name.replace(/[\s]/g,"_");
-		// 	toolBasicDetails.setLinkToBioTool(urlToBioTools);
-		// 	toolBasicDetails.setInstance(instance);
-		// 	return toolBasicDetails;
-		// }
 
 		vm.removeFilter = function () {
 			vm.edamTerm = "";
