@@ -19,18 +19,29 @@
 
 		var vm = this;
 
+		angular.element(function () {
+			console.log('page loading completed');
+			// window.OpEB_widgets.OpEB.apply()
+		});
 
 		vm.loadInitData = function (){
+			
 			vm.loadingDisplay=0;
 			vm.tools = null;
 			vm.versionSelected = "";
 			vm.chartavailable=0;
-			vm.dataServiceFunction(vm.parseUrl());
+			vm.dataServiceFunction(vm.parseUrl())
+			
+			// window.OpEB_widgets.OpEB.apply();				
 		}
 
+		setTimeout(() => {
+			// window.OpEB_widgets.OpEB.apply();
+			loadChart()
+			loadCitationChart()
+		}, 500);
 
-
-
+		
 		// vm.versionSelectedfun = function (i){
 		// 	vm.versionSelected = vm.theData[0].entities[0].tools[i];
 			
@@ -66,19 +77,19 @@
 		
 
 		vm.dataServiceFunction = function (url){
-
-			
-			dataService.getData(url)
-			
+			dataService.getData(url)			
 				.then(function (response){
-					vm.theData = angular.copy(response.data);
-					// console.log(vm.theData);
 					
+					vm.theData = angular.copy(response.data);
+					var f = vm.theData[0].entities[0].tools[0]['@id'].split("/");					
+					vm.f = vm.theData[0].entities[0].tools[0]['@id'].split("/tool/")[1]
+					console.log(vm.f);
 					vm.versionSelected = vm.theData[0].entities[0].tools[vm.theData[0].entities[0].tools.length-1];
 					vm.datasetUptimeChart(vm.theData[0].entities[0].tools[0]['@id']);
 					vm.getMetrics(vm.versionSelected['@id'])
 					vm.getDataFromJsonFile(vm.versionSelected['@id'])
 					vm.loadDisplay=1
+				
 				}).catch(function (error){
 					vm.error = error;
 					vm.loadingDisplay=2;

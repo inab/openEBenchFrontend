@@ -119,8 +119,8 @@
 		@author Vicky Sundesha
 		*/
 		vm.showDetails = function (tool){
-			console.log(tool)
-			console.log(tool.id)
+			// console.log(tool)
+			// console.log(tool.id)
 			$window.open($location.absUrl()+tool.id, "_blank");
 		};
 

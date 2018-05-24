@@ -1,3 +1,4 @@
+
 <div ng-controller="toolDetailsController as toolDetailsCtrl" ng-init="toolDetailsCtrl.loadInitData();" class="container" >
         <!-- <h1 class="text-center">{{toolDetailsCtrl.theData[0].entities[0].tools[0].name}}</h1>
 
@@ -19,7 +20,7 @@
                 </a>
             </li>
         </ul> -->
-
+        
         <uib-tabset active="active" ng-repeat="tools in toolDetailsCtrl.theData" >
             <uib-tab ng-click="toolDetailsCtrl.onOptionChange(versionSelected['@id'])" index="$index" ng-repeat="tool in tools.entities" heading='{{tool.type | uppercase}}'>
                 <!-- {{a.tools}} -->
@@ -49,7 +50,7 @@
 
                         <select ng-init="versionSelected = tool.tools[tool.tools.length-1]"
                                 ng-model="versionSelected"
-                                ng-options="x.version ? x.version : 'No version information' for x in tool.tools" ng-change="toolDetailsCtrl.onOptionChange(versionSelected['@id'])">
+                                ng-options="x['@version'] ? x['@version'] : 'No version information' for x in tool.tools" ng-change="toolDetailsCtrl.onOptionChange(versionSelected['@id'])">
                         </select>
                         <!-- <a ng-repeat="x in tool.tools" ng-model = "toolDetailsCtrl.versionSelected" ng-click="toolDetailsCtrl.versionSelectedfun($index)">{{x.version ? x.version : 'No version information'}} </a> -->
                         <!-- <select ng-options="x in tool.tools for x in tool.tools" ng-model="selected"></select> -->
@@ -61,17 +62,16 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-2">
                         <p><b>Installability:</b></p>
                     </div>
                     <div class="col-md-10">
                         <p>
                             <img src="https://img.shields.io/badge/Build_dependencies-NO-red.svg" alt="">
-                            <!-- <img src="https://img.shields.io/badge/Build_dependencies-YES-green.svg" alt=""> -->
                         </p>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-md-2">
                         <p><b>Accesibility:</b></p>
@@ -139,18 +139,30 @@
                         <h2 class="text-center">Up time</h2>
                     </div>
                 </div>
-
-
+                <div>
+                    <div data-id="uptime" data-xaxis="true" data-title="" data-url="{{toolDetailsCtrl.f}}" data-limit="15" class="opebuptime" ></div>
+                </div>
+                
+                <!-- <hr>
                 <div class="row text-center">
-                    <div class="col-md-12" ng-if="toolDetailsCtrl.arrayUptime">
-                        <!-- {{toolDetailsCtrl.arrayUptime}} -->
-                        <up-time-chart dataset="{{toolDetailsCtrl.arrayUptime}}"></up-time-chart>
+                    <div data-id="pmut" data-widget-type="widget" data-widget-subtypes="widget" data-widget-size="225" class="opeb"></div>
+                    <button onclick="window.OpEB_widgets.OpEB.apply()">widget</button>
+                </div> -->
 
+            <!-- </div class="row text-center">
+                <div data-id="test2"  data-xaxis='true' data-url="http://localhost:8080/json/file" class="opebuptime" ></div>
+                <script src="http://localhost/~vsundesh/Widget-Template/build/build.js"></script>
+            </div> -->
+
+
+                <!-- <hr> -->
+                <!-- <div class="row text-center">
+                    <div class="col-md-12" ng-if="toolDetailsCtrl.arrayUptime">
+                        <up-time-chart dataset="{{toolDetailsCtrl.arrayUptime}}"></up-time-chart>
                     </div>
                 </div>
-
-
-                <hr>
+                <hr> -->
+                
                 <!-- <div class="row">
                     <div class="col-md-2">
                         <p><b>Publications: </b></p>
@@ -197,10 +209,10 @@
                 
                     <!-- <hr> -->
                     <div class="row" ng-if="toolDetailsCtrl.chartavailable!=0">
-                        <div class="col-md-2">
+                        <!-- <div class="col-md-2">
                             <p><b>Citations per year:</b></p>
-                        </div>
-                        <div class="col-md-8 col-md-offset-1" >
+                        </div> -->
+                        <!-- <div class="col-md-8 col-md-offset-1" >
                             <div style="width:600px;">
                                 <canvas  class="chart chart-base"
                                 chart-type="toolDetailsCtrl.chart.getType()"
@@ -211,12 +223,25 @@
                                 chart-colors="toolDetailsCtrl.chart.getColor()">
                                 </canvas>
                             </div>
+                        </div> -->
+                        <div>
+                            <div data-id="citation" data-legend="true" style="width:100%" data-url="{{toolDetailsCtrl.f}}" class="opebcitations"></div>
                         </div>
                     </div>
-                
+                    
             </uib-tab>
         </uib-tabset>
-
+        
+        <!-- <hr>   
+        <div class="row">
+            <div class="col-md-2">
+                <p><b>Widget: </b></p>
+            </div>
+            <div class="col-md-10">
+                <div data-id="{{toolDetailsCtrl.theData[0].id}}" data-widget-type="widget" data-widget-tooltip-position="right" data-widget-subtypes="widget" data-widget-size="80" data-widget-tooltip-position="right" class="opeb"></div>
+            </div>
+        </div>
+         -->
         <hr>
         <div class="row">
             <div class="col-md-5">
@@ -233,5 +258,8 @@
         </div>
         <br>
     </div>
+
     <error-message error="toolDetailsCtrl.error" ng-show="toolDetailsCtrl.loadingDisplay==2" ></error-message>
 </div>
+
+    
