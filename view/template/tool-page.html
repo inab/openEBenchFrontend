@@ -9,12 +9,12 @@
                 <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span> -->
                 <input class="advanced-search-input" ng-model="all" id="search" type="text" name="search" placeholder="Filter">
             </div>
-            <div class="input-group col-md-4 col-md-offset-4">
-                <!-- <small><a  href=""data-toggle="modal" data-target="#advancedSearch">Advanced search</a></small> -->
+            <!-- <div class="input-group col-md-4 col-md-offset-4">
+                <small><a  href=""data-toggle="modal" data-target="#advancedSearch">Advanced search</a></small>
                 <div class="input-group">
                     <button ng-if="toolCtrl.edamTerm!=''" type="button" class="btn btn-success btn-xs" name="button" ng-click="toolCtrl.removeFilter()">x {{toolCtrl.edamTerm}}</button>
                 </div>
-            </div>
+            </div> -->
             <div class="input-group">
                 <div id="advancedSearch" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -49,7 +49,7 @@
 
             <div class="panel-body">
                 <div class="col-md-12">
-                    <h3 ng-model="name"><a target="_blank"ng-href="{{tool.entities[0].tools[0].homepage}}">{{tool.entities[0].tools[0].name}}</a></h3>
+                    <h3 ng-model="name"><a target="_blank"ng-click="toolCtrl.showDetails(tool)">{{tool.entities[0].tools[0].name}}</a></h3>
                     <p >{{tool.entities[0].tools[0].description}}</p>
                 </div>
                 <div class="col-md-6">
@@ -57,7 +57,7 @@
 
                 </div>
                 <div class= "col-md-6 text-right">
-                    <a ng-click="toolCtrl.showDetails(tool);" type="button" class="btn btn-success btn-xs">More info</a>
+                    <a ng-href="{{tool.entities[0].tools[0].homepage}}" >More info</a>
                 </div>
             </div>
         </div>

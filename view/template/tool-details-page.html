@@ -1,25 +1,6 @@
 
 <div ng-controller="toolDetailsController as toolDetailsCtrl" ng-init="toolDetailsCtrl.loadInitData();" class="container" >
-        <!-- <h1 class="text-center">{{toolDetailsCtrl.theData[0].entities[0].tools[0].name}}</h1>
 
-        <h6 class="text-center"><a href="{{toolDetailsCtrl.theData[0].entities[0].tools[0].homepage}}" target="_blank">{{toolDetailsCtrl.theData[0].entities[0].tools[0].homepage}}</a></h6>
-        <p class="text-center">
-            <a href="https://bio.tools/{{toolDetailsCtrl.theData[0].id}}">
-                <img src="img/bt.svg" alt="">
-            </a>
-        </p> -->
-
-
-
-
-        <!-- <ul class="nav nav-tabs">
-            <li class="{{$index === 0 ? 'active' : ''}}" ng-repeat="tool1 in toolDetailsCtrl.tools" >
-                <a data-toggle="tab" data-target="#{{tool1['@type']}}" href="">
-                    <img style="vertical-align: text-bottom; font-size:33px;" ng-src="img/{{tool1['@type']}}.png" data-toggle="tooltip" title="{{tool1['@type'] | uppercase}}" alt="{{tool1['@type'] | uppercase}}" />
-                    {{tool1['@type'] | uppercase}}
-                </a>
-            </li>
-        </ul> -->
         
         <uib-tabset active="active" ng-repeat="tools in toolDetailsCtrl.theData" >
             <uib-tab ng-click="toolDetailsCtrl.onOptionChange(versionSelected['@id'])" index="$index" ng-repeat="tool in tools.entities" heading='{{tool.type | uppercase}}'>
@@ -52,8 +33,6 @@
                                 ng-model="versionSelected"
                                 ng-options="x['@version'] ? x['@version'] : 'No version information' for x in tool.tools" ng-change="toolDetailsCtrl.onOptionChange(versionSelected['@id'])">
                         </select>
-                        <!-- <a ng-repeat="x in tool.tools" ng-model = "toolDetailsCtrl.versionSelected" ng-click="toolDetailsCtrl.versionSelectedfun($index)">{{x.version ? x.version : 'No version information'}} </a> -->
-                        <!-- <select ng-options="x in tool.tools for x in tool.tools" ng-model="selected"></select> -->
                     </div>
                 </div>
                 <div class="row">
@@ -61,25 +40,12 @@
                         <h2 class="text-center">Metrics</h2>
                     </div>
                 </div>
-
-                <!-- <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Installability:</b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <p>
-                            <img src="https://img.shields.io/badge/Build_dependencies-NO-red.svg" alt="">
-                        </p>
-                    </div>
-                </div> -->
                 <div class="row">
                     <div class="col-md-2">
                         <p><b>Accesibility:</b></p>
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <!-- <img src="https://img.shields.io/badge/Binary-NO-red.svg" alt="">
-                            <img src="https://img.shields.io/badge/Binary-YES-green.svg" alt=""> -->
                             <img ng-show="!toolDetailsCtrl.metricsData.distribution.sourcecode" src="https://img.shields.io/badge/Source_code-NO-red.svg" alt="">
                             <img ng-show="toolDetailsCtrl.metricsData.distribution.sourcecode" src="https://img.shields.io/badge/Source_code-YES-green.svg" alt="">
                         </p>
@@ -91,8 +57,6 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <!-- <img ng-show="!toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/Tool_license-NO-red.svg" alt=""> -->
-                            <!-- <img ng-show="toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/Tool_license-YES-green.svg" alt=""> -->
                             <img ng-show="toolDetailsCtrl.metricsData.project.license.osi == false || !toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/OSI-NO-red.svg" alt="">
                             <img ng-show="toolDetailsCtrl.metricsData.project.license.osi == true" src="https://img.shields.io/badge/OSI-YES-green.svg" alt="">
                             <img ng-show="toolDetailsCtrl.metricsData.project.license.open_source == false || !toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/Open_source-NO-red.svg" alt="">
@@ -106,13 +70,6 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <!-- <p>{{toolDetailsCtrl.metricsData}}</p> -->
-                            <!-- <img src="https://img.shields.io/badge/Tutorial-NO-red.svg" alt="">
-                            <img src="https://img.shields.io/badge/Tutorial-YES-green.svg" alt="">
-                            <img src="https://img.shields.io/badge/API-NO-red.svg" alt="">
-                            <img src="https://img.shields.io/badge/API-YES-green.svg" alt="">
-                            <img src="https://img.shields.io/badge/Citation-NO-red.svg" alt="">
-                            <img src="https://img.shields.io/badge/Citation-YES-green.svg" alt=""> -->
                             <img ng-show="toolDetailsCtrl.metricsData.documentation.general == true" src="https://img.shields.io/badge/General-YES-green.svg" alt="">
                             <img ng-show="toolDetailsCtrl.metricsData.documentation.general == false || !toolDetailsCtrl.metricsData.documentation.general" src="https://img.shields.io/badge/General-NO-red.svg" alt="">
                             <img ng-show="toolDetailsCtrl.metricsData.project.summary.description == true" src="https://img.shields.io/badge/Description-YES-green.svg" alt="">
@@ -126,123 +83,31 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <!-- <img ng-show="!toolDetailsCtrl.metricsData.support" src="https://img.shields.io/badge/Support-NO-red.svg" alt=""> -->
-                            <!-- <img ng-show="toolDetailsCtrl.metricsData.support" src="https://img.shields.io/badge/Support-YES-green.svg" alt=""> -->
                             <img ng-show="toolDetailsCtrl.metricsData.support.email == false || !toolDetailsCtrl.metricsData.support" src="https://img.shields.io/badge/Email-NO-red.svg" alt="">
                             <img ng-show="toolDetailsCtrl.metricsData.support.email == true" src="https://img.shields.io/badge/Email-YES-green.svg" alt="">
                         </p>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="text-center">Up time</h2>
-                    </div>
-                </div>
-                <div>
-                    <div data-id="uptime" data-xaxis="true" data-title="" data-url="{{toolDetailsCtrl.f}}" data-limit="15" class="opebuptime" ></div>
-                </div>
-                
-                <!-- <hr>
-                <div class="row text-center">
-                    <div data-id="pmut" data-widget-type="widget" data-widget-subtypes="widget" data-widget-size="225" class="opeb"></div>
-                    <button onclick="window.OpEB_widgets.OpEB.apply()">widget</button>
-                </div> -->
-
-            <!-- </div class="row text-center">
-                <div data-id="test2"  data-xaxis='true' data-url="http://localhost:8080/json/file" class="opebuptime" ></div>
-                <script src="http://localhost/~vsundesh/Widget-Template/build/build.js"></script>
-            </div> -->
-
-
-                <!-- <hr> -->
-                <!-- <div class="row text-center">
-                    <div class="col-md-12" ng-if="toolDetailsCtrl.arrayUptime">
-                        <up-time-chart dataset="{{toolDetailsCtrl.arrayUptime}}"></up-time-chart>
-                    </div>
-                </div>
-                <hr> -->
-                
-                <!-- <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Publications: </b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <p ng-if="versionSelected.publications.length==0">No publications</p>
-                        
-                        <span ng-repeat="publication in versionSelected.publications">
-                            
-                            <span ng-repeat="(key,value) in publication">
-                                <p ng-if="key!='citations'">
-                                    <a ng-click="toolDetailsCtrl.publicationLinks(key,value)">
-                                        {{key | uppercase}}:{{value}}
-                                    </a>
-                                </p>
-                            </span>
-                          
-                        </span>
-                    </div>
-                </div> -->
-
-                
-                <div class="row">
-                    <div class="col-md-2">
-                        <p><b>Publications: </b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <p ng-if="toolDetailsCtrl.publicationsFromJSON.length==0">No publications</p>                        
-                        <span ng-repeat="publication in toolDetailsCtrl.publicationsFromJSON">
-                            
-                            <p ng-if="publication['pmid']!=null">
-                                <a ng-click="toolDetailsCtrl.publicationLinks('pmid',publication['pmid'])">
-                                    PMID:{{publication['pmid']}}
-                                </a>
-                            </p>
-                            <p ng-if="publication['pmid']==null && publication['doi']!=null">
-                                <a ng-click="toolDetailsCtrl.publicationLinks('doi',publication['doi'])">
-                                    DOI:{{publication['doi']}}
-                                </a>
-                            </p>
-                        </span>
-                    </div>
-                </div>
-                
-                    <!-- <hr> -->
-                    <div class="row" ng-if="toolDetailsCtrl.chartavailable!=0">
-                        <!-- <div class="col-md-2">
-                            <p><b>Citations per year:</b></p>
-                        </div> -->
-                        <!-- <div class="col-md-8 col-md-offset-1" >
-                            <div style="width:600px;">
-                                <canvas  class="chart chart-base"
-                                chart-type="toolDetailsCtrl.chart.getType()"
-                                chart-labels="toolDetailsCtrl.chart.getLabel()"
-                                chart-options="toolDetailsCtrl.chart.getOptions()"
-                                chart-series="toolDetailsCtrl.chart.getSeries()"
-                                chart-data="toolDetailsCtrl.chart.getData()"
-                                chart-colors="toolDetailsCtrl.chart.getColor()">
-                                </canvas>
-                            </div>
-                        </div> -->
-                        <div>
-                            <div data-id="citation" data-legend="true" style="width:100%" data-url="{{toolDetailsCtrl.f}}" class="opebcitations"></div>
-                        </div>
-                    </div>
-                    
             </uib-tab>
+            
         </uib-tabset>
-        
-        <!-- <hr>   
+
         <div class="row">
-            <div class="col-md-2">
-                <p><b>Widget: </b></p>
-            </div>
-            <div class="col-md-10">
-                <div data-id="{{toolDetailsCtrl.theData[0].id}}" data-widget-type="widget" data-widget-tooltip-position="right" data-widget-subtypes="widget" data-widget-size="80" data-widget-tooltip-position="right" class="opeb"></div>
+            <div class="col-md-12">
+                <h2 class="text-center">Up time</h2>
             </div>
         </div>
-         -->
-        <hr>
+        <div data-id='uptime' data-xaxis="true" data-title="" data-url="{{toolDetailsCtrl.f}}" data-limit="15" class="opebuptime" ></div> 
+        
+        
+        
+        <div class="row">
+            <div class="col-md-12">
+                    <h2 class="text-center">Publications</h2>
+            </div>                        
+        </div>
+        <div data-id="citation" data-legend="true" style="width:100%" data-url="{{toolDetailsCtrl.f}}" class="opebcitations"></div>
+        <br><br><br>
         <div class="row">
             <div class="col-md-5">
                 <p><b>Send a request to update information :</b></p>
@@ -260,6 +125,7 @@
     </div>
 
     <error-message error="toolDetailsCtrl.error" ng-show="toolDetailsCtrl.loadingDisplay==2" ></error-message>
+
 </div>
 
     
