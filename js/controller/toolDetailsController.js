@@ -53,7 +53,7 @@
 			vm.getMetrics(_id);
 			vm.f = _id.split("/");
 			vm.f = _id.split("/tool/")[1]
-			console.log(vm.f)
+			// console.log(vm.f)
 			setTimeout(()=> {
 				loadCitationChart()
 			},600)
@@ -68,7 +68,7 @@
 					vm.theData = angular.copy(response.data);
 
 					vm.versionSelected = vm.theData[0].entities[0].tools[vm.theData[0].entities[0].tools.length-1];
-					console.log(vm.versionSelected);
+					// console.log(vm.versionSelected);
 
 					var f = vm.versionSelected['@id'].split("/");					
 					vm.f = vm.versionSelected['@id'].split("/tool/")[1]
