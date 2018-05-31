@@ -8,13 +8,13 @@
 
                     <div class="panel-body" >
                         <div class="col-md-12">
-                            <h3 ng-model="name">{{c._id}}</h3>
+                            <h3 ng-model="name"><a href="#!/benchmarking/{{c._id}}">{{c._id}}</a></h3>
                             <p>{{c.name}}</p>
                             <p>{{c.description}}</p>
                         </div>
 
                         <div class= "col-md-12 text-right" style="">
-                            <a href="#!/benchmarking/{{c._id}}" type="button" class="btn btn-success btn-xs">More info</a>
+                            <a href="{{c.links[0].uri}}">More info</a>
                         </div>
                     </div>
                 </div>
