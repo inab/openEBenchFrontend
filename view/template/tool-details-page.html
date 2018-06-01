@@ -47,8 +47,7 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img ng-show="!toolDetailsCtrl.metricsData.distribution.sourcecode" src="https://img.shields.io/badge/Source_code-NO-red.svg" alt="">
-                            <img ng-show="toolDetailsCtrl.metricsData.distribution.sourcecode" src="https://img.shields.io/badge/Source_code-YES-green.svg" alt="">
+                            <img ng-src="{{toolDetailsCtrl.metricsData.distribution.sourcecode && 'https://img.shields.io/badge/Source_code-YES-green.svg' || 'https://img.shields.io/badge/Source_code-NO-red.svg'}}" alt="">
                         </p>
                     </div>
                 </div>
@@ -71,10 +70,13 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img ng-show="toolDetailsCtrl.metricsData.documentation.general == true" src="https://img.shields.io/badge/General-YES-green.svg" alt="">
-                            <img ng-show="toolDetailsCtrl.metricsData.documentation.general == false || !toolDetailsCtrl.metricsData.documentation.general" src="https://img.shields.io/badge/General-NO-red.svg" alt="">
-                            <img ng-show="toolDetailsCtrl.metricsData.project.summary.description == true" src="https://img.shields.io/badge/Description-YES-green.svg" alt="">
-                            <img ng-show="toolDetailsCtrl.metricsData.project.summary.description == false || !toolDetailsCtrl.metricsData.project.summary.description" src="https://img.shields.io/badge/Description-NO-red.svg" alt="">
+                            <img ng-src="{{toolDetailsCtrl.metricsData.project.documentation.general == true && 'https://img.shields.io/badge/General-YES-green.svg' || 'https://img.shields.io/badge/General-NO-red.svg'}}" alt="">
+                            <img ng-src="{{toolDetailsCtrl.metricsData.project.documentation.faq == true && 'https://img.shields.io/badge/FAQ-YES-green.svg' || 'https://img.shields.io/badge/FAQ-NO-red.svg'}}" alt="">
+                            <img ng-src="{{toolDetailsCtrl.metricsData.project.documentation.manual == true && 'https://img.shields.io/badge/Manual-YES-green.svg' || 'https://img.shields.io/badge/Manual-NO-red.svg'}}" alt="">
+                            <!-- <img ng-show="toolDetailsCtrl.metricsData.project.documentation.general == true" src="https://img.shields.io/badge/General-YES-green.svg" alt=""> -->
+                            <!-- <img ng-show="toolDetailsCtrl.metricsData.project.documentation.general == false || !toolDetailsCtrl.metricsData.documentation.general" src="https://img.shields.io/badge/General-NO-red.svg" alt=""> -->
+                            <!-- <img ng-show="toolDetailsCtrl.metricsData.project.summary.description == true" src="https://img.shields.io/badge/Description-YES-green.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.project.summary.description == false || !toolDetailsCtrl.metricsData.project.summary.description" src="https://img.shields.io/badge/Description-NO-red.svg" alt=""> -->
                         </p>
                     </div>
                 </div>
@@ -84,8 +86,7 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img ng-show="toolDetailsCtrl.metricsData.support.email == false || !toolDetailsCtrl.metricsData.support" src="https://img.shields.io/badge/Email-NO-red.svg" alt="">
-                            <img ng-show="toolDetailsCtrl.metricsData.support.email == true" src="https://img.shields.io/badge/Email-YES-green.svg" alt="">
+                            <img ng-src="{{toolDetailsCtrl.metricsData.support.email == true && 'https://img.shields.io/badge/Email-YES-green.svg' || 'https://img.shields.io/badge/Email-NO-red.svg'}}" alt="">
                         </p>
                     </div>
                 </div>
@@ -96,8 +97,8 @@
                         </div>
                     </div>
                     <div data-id='uptime' data-xaxis="true" data-title="" data-url="{{toolDetailsCtrl.f}}" data-limit="15" class="opebuptime" ></div> 
+                    <p>{{toolDetailsCtrl.f}}</p>
                     
-                    <!-- <p>{{versionSelected.publications}}</p> -->
                     <span ng-show="versionSelected.publications.length != 0">
                         <div class="row">
                             <div class="col-md-12">
