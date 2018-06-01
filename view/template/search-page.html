@@ -14,7 +14,7 @@
 
             <div class="panel-body">
                 <div class="col-md-12">
-                    <h3 ng-model="nameid"><a target="_blank"ng-href="{{tool.entities[0].tools[0].homepage}}">{{tool.entities[0].tools[0].name}}</a></h3>
+                    <h3 ng-model="nameid"><a target="_blank" ng-click="searchCtrl.showDetails(tool);">{{tool.entities[0].tools[0].name}}</a></h3>
                     <p >{{tool.entities[0].tools[0].description}}</p>
                 </div>
                 <!-- <div class="col-md-6">
@@ -25,7 +25,7 @@
 
                 </div>
                 <div class= "col-md-6 text-right" style="">
-                    <a ng-click="searchCtrl.showDetails(tool);" type="button" class="btn btn-success btn-xs">More info</a>
+                    <a  ng-href="{{tool.entities[0].tools[0].homepage}}" >{{tool.entities[0].tools[0].homepage}}</a>
                 </div>
             </div>
         </div>

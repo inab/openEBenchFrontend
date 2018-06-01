@@ -1,5 +1,5 @@
 <div ng-controller="toolController as toolCtrl" ng-init="toolCtrl.loadInitData();" class="container">
-    <div ng-hide="toolCtrl.loadingDisplay==1" class="text-center">
+    <div ng-hide="toolCtrl.loadingDisplay==1 || toolCtrl.loadingDisplay==2" class="text-center">
         <img style ="margin-top:25%"src="img/loader1.gif" alt="">
     </div>
     <div class="responsive-table" ng-show="toolCtrl.loadingDisplay==1">

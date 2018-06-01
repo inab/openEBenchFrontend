@@ -1,4 +1,7 @@
 <div ng-controller="statsController as statsCtrl" class="container">
+    <div ng-hide="statsCtrl.loadingDisplay==1 || statsCtrl.loadingDisplay==2" class="text-center">
+        <img style ="margin-top:25%"src="img/loader1.gif" alt="">
+    </div>
 
     <div class="text-center" ng-bind-html="statsCtrl.message"></div>
     <error-message error="statsCtrl.error" ng-show="statsCtrl.loadingDisplay==2" ></error-message>

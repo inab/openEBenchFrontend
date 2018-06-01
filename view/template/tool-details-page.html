@@ -35,6 +35,7 @@
                         </select>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="text-center">Metrics</h2>
@@ -88,26 +89,29 @@
                         </p>
                     </div>
                 </div>
+
+                <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center">Up time</h2>
+                        </div>
+                    </div>
+                    <div data-id='uptime' data-xaxis="true" data-title="" data-url="{{toolDetailsCtrl.f}}" data-limit="15" class="opebuptime" ></div> 
+                    
+                    <!-- <p>{{versionSelected.publications}}</p> -->
+                    <span ng-show="versionSelected.publications.length != 0">
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <h2 class="text-center">Publications</h2>
+                            </div>                        
+                        </div>
+                        <div data-id="citation" data-legend="true" style="width:100%" data-url="{{toolDetailsCtrl.f}}" class="opebcitations"></div>
+                    </span>
+                    <br><br><br>
             </uib-tab>
             
         </uib-tabset>
 
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center">Up time</h2>
-            </div>
-        </div>
-        <div data-id='uptime' data-xaxis="true" data-title="" data-url="{{toolDetailsCtrl.f}}" data-limit="15" class="opebuptime" ></div> 
         
-        
-        
-        <div class="row">
-            <div class="col-md-12">
-                    <h2 class="text-center">Publications</h2>
-            </div>                        
-        </div>
-        <div data-id="citation" data-legend="true" style="width:100%" data-url="{{toolDetailsCtrl.f}}" class="opebcitations"></div>
-        <br><br><br>
         <div class="row">
             <div class="col-md-5">
                 <p><b>Send a request to update information :</b></p>

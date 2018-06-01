@@ -70,7 +70,8 @@
 					vm.versionSelected = vm.theData[0].entities[0].tools[vm.theData[0].entities[0].tools.length-1];
 					// console.log(vm.versionSelected);
 
-					var f = vm.versionSelected['@id'].split("/");					
+					var f = vm.versionSelected['@id'].split("/");	
+								
 					vm.f = vm.versionSelected['@id'].split("/tool/")[1]
 					
 					
@@ -112,6 +113,7 @@
 				tool.setLinkToBioTool(vm.bioToolsLink(data[i]['@id']));
 				tool.setVersion(data[i].version);
 				tool.setPublications(data[i].publications);
+				
 				tool.setLink(data[i].homepage);
 
 				vm.tools.push(tool);
