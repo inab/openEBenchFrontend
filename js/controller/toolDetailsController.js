@@ -71,14 +71,19 @@
 
 					vm.versionSelected = vm.theData[0].entities[0].tools[vm.theData[0].entities[0].tools.length-1];
 					// console.log(vm.versionSelected);
+					var ary= [];
 					vm.theData[0].entities[0].tools.forEach(element => {
+						if(!isInArray(ary,element['@id'].split('/tool/')[1].split(':')[0])){
 						var link;
 						if(element['@id'].split('/tool/')[1].split(':')[0]=='bio.tools'){
 							link = 'https://bio.tools/'+element['@id'].split('/tool/')[1].split(':')[1];
+							
 						} else if(element['@id'].split('/tool/')[1].split(':')[0]=='bioconda'){
 							link = 'https://anaconda.org/bioconda/'+element['@id'].split('/tool/')[1].split(':')[1];
+							
 						} else {
 							link = "";
+							
 						}
 						var tool = {
 							'source' : element['@id'].split('/tool/')[1].split(':')[0],	
@@ -87,8 +92,14 @@
 							'link' : link
 							
 						};
+						ary.push(element['@id'].split('/tool/')[1].split(':')[0]);
 						vm.tags.push(tool);
+						}
 					});
+
+					function isInArray(ary, a) {
+						return ary.indexOf(a.toLowerCase()) > -1;
+					}
 					
 					var f = vm.versionSelected['@id'].split("/");	
 								
