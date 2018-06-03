@@ -23,6 +23,7 @@
 			vm.loadingDisplay=0;
 			vm.tools = null;
 			vm.versionSelected = "";
+			vm.tags = [];
 			vm.chartavailable=0;
 			vm.dataServiceFunction(vm.parseUrl())
 			vm.loadCharts();
@@ -66,10 +67,29 @@
 				.then(function (response){
 					
 					vm.theData = angular.copy(response.data);
+					
 
 					vm.versionSelected = vm.theData[0].entities[0].tools[vm.theData[0].entities[0].tools.length-1];
 					// console.log(vm.versionSelected);
-
+					vm.theData[0].entities[0].tools.forEach(element => {
+						var link;
+						if(element['@id'].split('/tool/')[1].split(':')[0]=='bio.tools'){
+							link = 'https://bio.tools/'+element['@id'].split('/tool/')[1].split(':')[1];
+						} else if(element['@id'].split('/tool/')[1].split(':')[0]=='bioconda'){
+							link = 'https://anaconda.org/bioconda/'+element['@id'].split('/tool/')[1].split(':')[1];
+						} else {
+							link = "";
+						}
+						var tool = {
+							'source' : element['@id'].split('/tool/')[1].split(':')[0],	
+							'toolid' : element['@id'].split('/tool/')[1].split(':')[1],	
+							'version' : element['@id'].split('/tool/')[1].split(':')[2],
+							'link' : link
+							
+						};
+						vm.tags.push(tool);
+					});
+					
 					var f = vm.versionSelected['@id'].split("/");	
 								
 					vm.f = vm.versionSelected['@id'].split("/tool/")[1]

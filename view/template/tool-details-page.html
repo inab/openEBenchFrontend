@@ -8,11 +8,19 @@
                 <h1 class="text-center">{{versionSelected.name}}</h1>
 
                 <h6 class="text-center"><a href="{{versionSelected.homepage}}" target="_blank">{{versionSelected.homepage}}</a></h6>
-                <p class="text-center">
+                <!--<p class="text-center">
                     <a href="https://bio.tools/{{toolDetailsCtrl.theData[0].id}}">
                         <img src="img/bt.svg" alt="">
                     </a>
+                </p>-->
+                <p class="text-center" ng-repeat="tag in toolDetailsCtrl.tags">
+                    <a target='_blank' href="{{tag.link}}">
+                        <img ng-src="https://img.shields.io/badge/{{tag.source}}-link-blue.svg" alt="">
+                    </a>
+                    
                 </p>
+                <!--<p ng-repeat="ids in {{toolDetailsCtrl.theData[0].entities[0].tools}}">{{ids['@id']}}</p>-->
+
                 <br>
                 <div class="row">
                     <div class="col-md-2">
