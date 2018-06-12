@@ -73,10 +73,12 @@
 					// console.log(vm.versionSelected);
 					var ary= [];
 					vm.theData[0].entities[0].tools.forEach(element => {
+						
 						if(!isInArray(ary,element['@id'].split('/tool/')[1].split(':')[0])){
 						var link;
-						if(element['@id'].split('/tool/')[1].split(':')[0]=='bio.tools'){
+						if(element['@id'].split('/tool/')[1].split(':')[0]=='biotools'){
 							link = 'https://bio.tools/'+element['@id'].split('/tool/')[1].split(':')[1];
+							
 							
 						} else if(element['@id'].split('/tool/')[1].split(':')[0]=='bioconda'){
 							link = 'https://anaconda.org/bioconda/'+element['@id'].split('/tool/')[1].split(':')[1];
