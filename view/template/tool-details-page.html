@@ -13,11 +13,10 @@
                         <img src="img/bt.svg" alt="">
                     </a>
                 </p>-->
-                <p class="text-center" ng-repeat="tag in toolDetailsCtrl.tags">
-                    <a target='_blank' href="{{tag.link}}">
-                        <img ng-src="https://img.shields.io/badge/{{tag.source}}-link-blue.svg" alt="">
+                <p class="text-center">
+                    <a class="" ng-repeat="tag in toolDetailsCtrl.tags" target='_blank' href="{{tag.link}}">
+                            <span class="source-badge">{{tag.source}}</span>
                     </a>
-                    
                 </p>
                 <!--<p ng-repeat="ids in {{toolDetailsCtrl.theData[0].entities[0].tools}}">{{ids['@id']}}</p>-->
 
@@ -55,8 +54,12 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img ng-src="{{toolDetailsCtrl.metricsData.distribution.sourcecode && 'https://img.shields.io/badge/Source_code-YES-green.svg' || 'https://img.shields.io/badge/Source_code-NO-red.svg'}}" alt="">
-                        </p>
+                            <span class="{{toolDetailsCtrl.metricsData.project.website.bioschemas? 'metrics-true' : 'metrics-false'}}">Bioschema</span>
+                            <span class="{{toolDetailsCtrl.metricsData.distribution.sourcecode? 'metrics-true' : 'metrics-false'}}">Source code</span>
+                            <span class="{{toolDetailsCtrl.metricsData.project.website.ssl? 'metrics-true' : 'metrics-false'}}">SSL</span>
+                            
+                            <!-- <img ng-src="{{toolDetailsCtrl.metricsData.distribution.sourcecode && 'https://img.shields.io/badge/Source_code-YES-green.svg' || 'https://img.shields.io/badge/Source_code-NO-red.svg'}}" alt=""> -->
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -65,10 +68,12 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img ng-show="toolDetailsCtrl.metricsData.project.license.osi == false || !toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/OSI-NO-red.svg" alt="">
+                            <span class="{{toolDetailsCtrl.metricsData.project.license.osi? 'metrics-true' : 'metrics-false'}}">OSI</span>
+                            <span class="{{toolDetailsCtrl.metricsData.project.license.open_source? 'metrics-true' : 'metrics-false'}}">Open source</span>
+                            <!-- <img ng-show="toolDetailsCtrl.metricsData.project.license.osi == false || !toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/OSI-NO-red.svg" alt="">
                             <img ng-show="toolDetailsCtrl.metricsData.project.license.osi == true" src="https://img.shields.io/badge/OSI-YES-green.svg" alt="">
                             <img ng-show="toolDetailsCtrl.metricsData.project.license.open_source == false || !toolDetailsCtrl.metricsData.project.license" src="https://img.shields.io/badge/Open_source-NO-red.svg" alt="">
-                            <img ng-show="toolDetailsCtrl.metricsData.project.license.open_source == true" src="https://img.shields.io/badge/Open_source-YES-green.svg" alt="">
+                            <img ng-show="toolDetailsCtrl.metricsData.project.license.open_source == true" src="https://img.shields.io/badge/Open_source-YES-green.svg" alt=""> -->
                         </p>
                     </div>
                 </div>
@@ -78,13 +83,13 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img ng-src="{{toolDetailsCtrl.metricsData.project.documentation.general == true && 'https://img.shields.io/badge/General-YES-green.svg' || 'https://img.shields.io/badge/General-NO-red.svg'}}" alt="">
+                            <span class="{{toolDetailsCtrl.metricsData.project.documentation.general? 'metrics-true' : 'metrics-false'}}">General</span>
+                            <span class="{{toolDetailsCtrl.metricsData.project.documentation.faq? 'metrics-true' : 'metrics-false'}}">FAQ</span>
+                            <span class="{{toolDetailsCtrl.metricsData.project.documentation.manual? 'metrics-true' : 'metrics-false'}}">Manual</span>
+                            <!-- <img ng-src="{{toolDetailsCtrl.metricsData.project.documentation.general == true && 'https://img.shields.io/badge/General-YES-green.svg' || 'https://img.shields.io/badge/General-NO-red.svg'}}" alt="">
                             <img ng-src="{{toolDetailsCtrl.metricsData.project.documentation.faq == true && 'https://img.shields.io/badge/FAQ-YES-green.svg' || 'https://img.shields.io/badge/FAQ-NO-red.svg'}}" alt="">
-                            <img ng-src="{{toolDetailsCtrl.metricsData.project.documentation.manual == true && 'https://img.shields.io/badge/Manual-YES-green.svg' || 'https://img.shields.io/badge/Manual-NO-red.svg'}}" alt="">
-                            <!-- <img ng-show="toolDetailsCtrl.metricsData.project.documentation.general == true" src="https://img.shields.io/badge/General-YES-green.svg" alt=""> -->
-                            <!-- <img ng-show="toolDetailsCtrl.metricsData.project.documentation.general == false || !toolDetailsCtrl.metricsData.documentation.general" src="https://img.shields.io/badge/General-NO-red.svg" alt=""> -->
-                            <!-- <img ng-show="toolDetailsCtrl.metricsData.project.summary.description == true" src="https://img.shields.io/badge/Description-YES-green.svg" alt="">
-                            <img ng-show="toolDetailsCtrl.metricsData.project.summary.description == false || !toolDetailsCtrl.metricsData.project.summary.description" src="https://img.shields.io/badge/Description-NO-red.svg" alt=""> -->
+                            <img ng-src="{{toolDetailsCtrl.metricsData.project.documentation.manual == true && 'https://img.shields.io/badge/Manual-YES-green.svg' || 'https://img.shields.io/badge/Manual-NO-red.svg'}}" alt=""> -->
+                            
                         </p>
                     </div>
                 </div>
@@ -94,7 +99,8 @@
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <img ng-src="{{toolDetailsCtrl.metricsData.support.email == true && 'https://img.shields.io/badge/Email-YES-green.svg' || 'https://img.shields.io/badge/Email-NO-red.svg'}}" alt="">
+                            <span class="{{toolDetailsCtrl.metricsData.support.email? 'metrics-true' : 'metrics-false'}}">Email</span>
+                            <!-- <img ng-src="{{toolDetailsCtrl.metricsData.support.email == true && 'https://img.shields.io/badge/Email-YES-green.svg' || 'https://img.shields.io/badge/Email-NO-red.svg'}}" alt=""> -->
                         </p>
                     </div>
                 </div>

@@ -7,9 +7,9 @@
     <error-message error="statsCtrl.error" ng-show="statsCtrl.loadingDisplay==2" ></error-message>
 
     <div ng-show="statsCtrl.loadingDisplay==1">
-        <h3>Tools stats</h3>
+        <h3>Tools Statistics</h3>
         <div class="jumbotron">
-            <p class="text-right">TOTAL TOOLS : {{statsCtrl.statistics[0].total}}</p>
+            <p class="text-right">Total Entries : {{statsCtrl.statistics[0].total}}</p>
             <canvas class="chart chart-base"
             chart-type="statsCtrl.chart1.getType()"
             chart-labels="statsCtrl.chart1.getLabel()"

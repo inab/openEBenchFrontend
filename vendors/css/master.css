@@ -267,3 +267,36 @@ nav{
     padding-top:1%;
     padding-bottom:1%;
 }
+
+.metrics-true{
+    color:white;
+    background-color: #3c3c3c;
+    font-size: 14px;
+    /* border: 1px solid #5c5c5c; */
+    border-right: 20px solid #8ab803;
+    border-radius: 5px;
+    padding: 2px 3px 2px 3px;
+    margin-left: 5px;
+}
+
+.metrics-false{
+    color: white;
+    background-color: #3c3c3c;
+    font-size: 14px;
+    /* border: 1px solid #5c5c5c; */
+    border-right: 20px solid #cd5741;
+    border-radius: 5px;
+    padding: 2px 3px 2px 3px;
+    margin-left: 5px;
+}
+.source-badge{
+    color: white;
+    background-color: #3c3c3c;
+    font-size: 14px;
+    /* border: 1px solid #5c5c5c; */
+    font-weight: 400;
+    border-right: 20px solid #0374b4;
+    border-radius: 5px;
+    padding: 2px 3px 2px 3px;
+    margin-left: 5px;
+}
