@@ -77,11 +77,12 @@
 						if(!isInArray(ary,element['@id'].split('/tool/')[1].split(':')[0])){
 						var link;
 						if(element['@id'].split('/tool/')[1].split(':')[0]=='biotools'){
-							link = 'https://bio.tools/'+element['@id'].split('/tool/')[1].split(':')[1];
+							link = 'https://bio.tools/'+element['@id'].split('/tool/')[1].split('/')[0].split(":")[1];
+							
 							
 							
 						} else if(element['@id'].split('/tool/')[1].split(':')[0]=='bioconda'){
-							link = 'https://anaconda.org/bioconda/'+element['@id'].split('/tool/')[1].split(':')[1];
+							link = 'https://anaconda.org/bioconda/'+element['@id'].split('/tool/')[1].split('/')[0].split(":")[1];
 							
 						} else {
 							link = "";

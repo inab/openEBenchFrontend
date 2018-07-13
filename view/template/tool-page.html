@@ -44,8 +44,8 @@
 
         </div>
 
-
-        <div class="panel panel-default" dir-paginate="tool in toolCtrl.toolsArray | orderBy:toolCtrl.sortKey:toolCtrl.reverse | filter : ((type != 'all') ? {type: type} : '' )| filter : {name : name } | filter : all | itemsPerPage: toolCtrl.pageSize" current-page="toolCtrl.currentPage">
+        <!-- | orderBy:toolCtrl.sortKey:toolCtrl.reverse | filter : ((type != 'all') ? {type: type} : '' )| filter : {name : name }  -->
+        <div class="panel panel-default" dir-paginate="tool in toolCtrl.toolsArray |  filter : all | itemsPerPage: toolCtrl.pageSize" current-page="toolCtrl.currentPage">
 
             <div class="panel-body">
                 <div class="col-md-12">
